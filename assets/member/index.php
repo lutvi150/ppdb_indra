@@ -103,7 +103,11 @@ $sqlm = mysqli_query($koneksi,"SELECT * From tbl_register")
 						<li><a href="?page=halaman_home" class="active fa fa-home">Home</a></li>
 						<li><a href="#" class=""></a></li>
 						<li><a href="index.php" class="fa fa-list-alt">Data Pendaftaran</a></li>
-						<li><a href="?page=tampil_data&id=<?= $_SESSION['idregis'] ?>" class="fa fa-user">Profil</a></li>
+						<?php if($data_member->status=='draft'): ?>
+						<li><a href="#" onclick="showModalAlertData()" class="fa fa-user">Profil</a></li>
+						<?php else: ?>
+							<li><a href="<?=base_url('Member/tampil_data/'.$data_member->id_user)?>" class="fa fa-user">Profil</a></li>
+							<?php  ?>
 						<li><a href="?page=pengumuman_lulus&id=<?= $_SESSION['idregis'] ?>" class="fa fa-bullhorn">Pengumuman</a></li>
 						<li><a href="logout.php" class="fa fa-sign-out">Keluar</a></li>
 					
@@ -168,5 +172,28 @@ include "content.php";
 	<!-- //move top icon -->
 
 </body>
-
+<!-- Modal -->
+<div class="modal fade" id="alertDataKosong" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Maaf </h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+			</div>
+			<div class="modal-body">
+				<p>Data Anda Belum Lengkap</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	function showModalAlertData() {
+		$('#alertDataKosong').modal('show');
+	}
+</script>
 </html>

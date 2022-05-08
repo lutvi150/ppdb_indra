@@ -13,13 +13,13 @@
 		</div>
 		<div class="fw-body">
 			<div class="content">
-				<?php 
-				include "koneksi.php";
-				$pilih = mysqli_query($koneksi,"select * from tbl_register");
-				$no=1;
-				?>
+				<?php
+include "koneksi.php";
+$pilih = mysqli_query($koneksi, "select * from tbl_register");
+$no = 1;
+?>
 			<tr>
-				<h3>Data Member<br><br></h3> 
+				<h3>Data Member<br><br></h3>
 			</tr>
 				<table  id="table_id"  class="display table table-bordered">
 					<thead>
@@ -32,25 +32,25 @@
 					</thead>
 
 					<?php
-       
-	   while($data = mysqli_fetch_array($pilih)){
-        ?>
+
+while ($data = mysqli_fetch_array($pilih)) {
+    ?>
 		<tr  >
 			<!-- td atau TABEL DATA, untuk membuat kolom table -->
 			<td><?php echo $no++ ?></td>
-            <td><?php echo $data ['nama']; ?></td>
-            <td><?php echo $data ['username']; ?></td>
+            <td><?php echo $data['nama']; ?></td>
+            <td><?php echo $data['username']; ?></td>
 
-		   
+
 			<td>
-				<form action="hapus.php?id=<?= $data['id_register']; ?>" method='post'>
-				<a href="index.php?page=edit_member&id=<?= $data['id_register']; ?>" class="btn btn-info "><i  class="  fa fa-pencil-square"></i></a>
+				<form action="hapus.php?id=<?=$data['id_register'];?>" method='post'>
+				<a href="index.php?page=edit_member&id=<?=$data['id_register'];?>" class="btn btn-info "><i  class="  fa fa-pencil-square"></i></a>
 				<button type="submit" name="hapus_member" class=" btn btn-danger"><i  class=" fa fa-trash-o"></i></button>
 			</form>
 		</td>
 		</tr>
-	
-        <?php } ?>				
+
+        <?php }?>
 					</table>
 				</div>
 			</div>

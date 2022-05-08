@@ -62,14 +62,43 @@ class Controller extends CI_Controller
             $this->session->set_flashdata('error', 'Username sudah terdaftar');
             redirect('controller/routePage/register');
         } else {
+            $nisn = $this->input->post('nisn');
+            $nama = $this->input->post('nama_lengkap');
+
             $insert = [
-                'nisn' => $this->input->post('nisn'),
-                'nama' => $this->input->post('nama_lengkap'),
+                'nisn' => $nisn,
+                'nama' => $nama,
                 'username' => $this->input->post('user'),
                 'password' => hash('sha512', $this->input->post('pass')),
                 'role' => 'siswa',
             ];
-            $this->model->insertData('tbl_user', $insert);
+            $user_id = $this->model->insertData('tbl_user', $insert);
+            $register = [
+                'id_register' => 0,
+                'no_pendaftaran' => 0,
+                'tgl_daftar' => date('Y-m-d'),
+                'nisn' => $nisn,
+                'nama' => $nama,
+                'tempat_lahir' => 0,
+                'tgl_lahir' => date('Y-m-d'),
+                'jenis_kelamin' => '-',
+                'agama' => '-',
+                'asal_sekolah' => '-',
+                'nm_ayah' => '-',
+                'penghasilan_ayah' => 0,
+                'pekerjaan_ayah' => 0,
+                'nm_ibu' => '-',
+                'pekerjaan_ibu' => 0,
+                'penghasilan_ibu' => 0,
+                'alamat' => '-',
+                'no_tlp' => '-',
+                'konfirmasi' => '-',
+                'id_user' => $user_id,
+                'status' => 'draft',
+                'anak_ke' => 0,
+                'jumlah_saudara' => 0,
+            ];
+            $this->model->insertData('tbl_pendaftar', $register);
             $this->session->set_flashdata('success', 'Pendaftaran berhasil, silahkan login');
             redirect('controller/routePage/login');
         }
@@ -100,6 +129,12 @@ class Controller extends CI_Controller
     {
         $this->session->sess_destroy();
         redirect('controller/index');
+    }
+    public function error_page(Type $var = null)
+    {
+        $data = null;
+        $this->load->view('error_page', $data, false);
+
     }
 }
 

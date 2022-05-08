@@ -10,7 +10,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html>
 
 <head>
-	<title>Modern an Admin Panel Category Flat Bootstarp Resposive Website Template | Home :: w3layouts</title>
+	<title>Modern an Admin Panel Category Flat Bootstarp Resposive Website Template </title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="keywords" content="Modern Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
@@ -26,16 +26,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 	</script>
 	<!-- Bootstrap Core CSS -->
-	<link href="<?=base_url();?>assets/admin/user/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+	<link href="<?=base_url();?>assets/admin/user/css/bootstrap.min.css" rel='stylesheet'  />
 	<!-- Custom CSS -->
-	<link href="<?=base_url();?>assets/admin/user/css/style.css" rel='stylesheet' type='text/css' />
+	<link href="<?=base_url();?>assets/admin/user/css/style.css" rel='stylesheet'  />
 	<!-- Graph CSS -->
-	<link href="<?=base_url();?>assets/admin/user/css/lines.css" rel='stylesheet' type='text/css' />
+	<link href="<?=base_url();?>assets/admin/user/css/lines.css" rel='stylesheet'  />
 	<link href="<?=base_url();?>assets/admin/user/css/font-awesome.css" rel="stylesheet">
 	<!-- jQuery -->
 	<script src="<?=base_url();?>assets/admin/user/js/jquery.min.js"></script>
 	<!----webfonts--->
-	<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' >
 	<!---//webfonts--->
 	<!-- Nav CSS -->
 	<link href="<?=base_url();?>assets/admin/user/css/custom.css" rel="stylesheet">
@@ -89,32 +89,34 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<a href="<?=base_url('controllerAdmin/dataAdmin')?>"><i class="fa fa-user nav_icon"></i>Data Admin</a>
 						</li>
 
-						<li>
-							<a href="?page=data_member"><i class="fa fa-users nav_icon"></i>Data Member</a>
-						</li>
+						<!-- <li>
+							<a href="<?=base_url('ControllerAdmin/data_member')?>"><i class="fa fa-users nav_icon"></i>Data Member</a>
+						</li> -->
 
 						<li>
-							<a href="?page=data_pendaftar"><i class="fa fa-file-text nav_icon"></i>Data Pendaftar</a>
+							<a href="<?=base_url('ControllerAdmin/data_pendaftar')?>"><i class="fa fa-file-text nav_icon"></i>Data Pendaftar</a>
 						</li>
 						<li>
-							<a href="?page=data_galeri"><i class="glyphicon glyphicon-expand nav_icon"></i>Data
+							<a href="<?=base_url('ControllerAdmin/data_galeri')?>"><i class="glyphicon glyphicon-expand nav_icon"></i>Data
 								Galeri</a>
 						</li>
 
 						<li>
-							<a href="?page=data_pengumuman"><i class="fa fa-bell-o nav_icon"></i>Data Pengumuman</a>
+							<a href="<?=base_url('ControllerAdmin/data_pengumuman')?>"><i class="fa fa-bell-o nav_icon"></i>Data Pengumuman</a>
 						</li>
 
 						<li>
-							<a href="?page=data_lulus"><i class="glyphicon glyphicon-list-alt nav_icon"></i>Data Siswa
+							<a href="<?=base_url('ControllerAdmin/data_kelulusan/lulus')?>"><i class="glyphicon glyphicon-list-alt nav_icon"></i>Data Siswa
 								Yang Lulus</a>
 						</li>
 
 						<li>
-							<a href="?page=data_t_lulus"><i class="glyphicon glyphicon-list-alt nav_icon"></i>Data Yang
+							<a href="<?=base_url('ControllerAdmin/data_kelulusan/tidak_lulus')?>"><i class="glyphicon glyphicon-list-alt nav_icon"></i>Data Yang
 								Tidak Lulus</a>
 						</li>
-
+						<li>
+							<a href="<?=base_url('ControllerAdmin/setting')?>"><i class="glyphicon glyphicon-wrench nav_icon"></i> Setting</a>
+						</li>
 						<!-- /.nav-second-level -->
 						<?php endif;?>
 
@@ -137,7 +139,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 						<li>
 						<li>
-							<a class="fa fa-sign-out" href="logout.php">LogOut</a>
+							<a class="fa fa-sign-out" href="<?=base_url('controller/logout')?>">LogOut</a>
 						</li>
 					</ul>
 					<!-- /.nav-second-level -->
