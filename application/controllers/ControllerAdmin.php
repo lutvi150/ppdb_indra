@@ -10,6 +10,10 @@ class ControllerAdmin extends CI_Controller
         parent::__construct();
         $this->load->model('Model', 'model');
         $this->load->model('ModelCount', 'modelCount');
+        if ($this->session->userdata('logged_in') != true) {
+            $this->session->set_flashdata('error', 'Silahkan login terlebih dahulu');
+            redirect('admin/index');
+        }
 
     }
 
@@ -136,9 +140,19 @@ class ControllerAdmin extends CI_Controller
             $this->model->insertData('tbl_setting', $insertSetting);
             redirect('controllerAdmin/setting');
         }
+        $getTotalLulus = $this->model->getSetting('total_lulus');
+        if ($getTotalLulus == null) {
+            $insertSetting = [
+                'jenis_setting' => 'total_lulus',
+                'setting' => 0,
+            ];
+            $this->model->insertData('tbl_setting', $insertSetting);
+            redirect('controllerAdmin/setting');
+        }
         $data['settingPengumuman'] = $getSetting;
         $data['settingKuata'] = $getKuata;
-        $data['content'] = 'admin/setting';
+        $data['settingTotalLulus'] = $getTotalLulus;
+        $data['content'] = 'admin/setting_';
         $this->load->view('admin/index', $data, false);
     }
     public function dataNilai(Type $var = null)
@@ -337,6 +351,69 @@ class ControllerAdmin extends CI_Controller
         $this->load->view('admin/index', $data, false);
         // echo json_encode($data);
     }
+    // laporan periode
+    public function laporan_periode(Type $var = null)
+    {
+        $data['content'] = 'admin/laporan_perpriode';
+        $this->load->view('admin/index', $data, false);
+    }
+    public function cetak_tahunan(Type $var = null)
+    {
+        $tahun = $this->input->post('year');
+        $data['tahun'] = $tahun;
+        $laporan = $this->model->getDataByYear($tahun, 'lulus');
+        $resultLaporan = [];
+        if ($laporan != null) {
+            foreach ($laporan as $key => $value) {
+                $lampiran = $this->model->findAttachment($value->id_user, 1);
+                $lam = $lampiran == null ? '-' : $lampiran->lampiran;
+                $resultLaporan[] = (object) [
+                    'nisn' => $value->nisn,
+                    'nama' => $value->nama,
+                    'tgl_lahir' => $value->tgl_lahir,
+                    'asal_sekolah' => $value->asal_sekolah,
+                    'nm_ayah' => $value->nm_ayah,
+                    'tgl_daftar' => $value->tgl_daftar,
+                    'pas_foto' => $lam,
+                ];
+            }
+        }
+        $data['laporan'] = $resultLaporan;
+        $data['content'] = 'admin/cetaak_tahunan';
+        $this->load->view('admin/index', $data, false);
+        // echo json_encode($data);
+    }
+    public function laporan_tidak_lulus(Type $var = null)
+    {
+        $data['content'] = 'admin/laporan_tidak_lulus';
+        $this->load->view('admin/index', $data, false);
+    }
+    public function cetak_tidak_lulus(Type $var = null)
+    {
+        $tahun = $this->input->post('year');
+        $data['tahun'] = $tahun;
+        $laporan = $this->model->getDataByYear($tahun, 'tidak lulus');
+        $resultLaporan = [];
+        if ($laporan != null) {
+            foreach ($laporan as $key => $value) {
+                $lampiran = $this->model->findAttachment($value->id_user, 1);
+                $lam = $lampiran == null ? '-' : $lampiran->lampiran;
+                $resultLaporan[] = (object) [
+                    'nisn' => $value->nisn,
+                    'nama' => $value->nama,
+                    'tgl_lahir' => $value->tgl_lahir,
+                    'asal_sekolah' => $value->asal_sekolah,
+                    'nm_ayah' => $value->nm_ayah,
+                    'tgl_daftar' => $value->tgl_daftar,
+                    'pas_foto' => $lam,
+                ];
+            }
+        }
+        $data['laporan'] = $resultLaporan;
+        $data['content'] = 'admin/cetak_tidaklulus';
+        $this->load->view('admin/index', $data, false);
+    }
+
 }
 
 /* End of file  ControllerAdmin.php */

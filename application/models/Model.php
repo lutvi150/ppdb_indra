@@ -110,6 +110,27 @@ class Model extends CI_Model
         $this->db->order_by('tbl_pendaftar.id_user', 'desc');
         return $this->db->get()->result();
     }
+    public function getDataUserLulus($total_lulus)
+    {
+        $this->db->from('tbl_pendaftar');
+        $this->db->join('tbl_user', 'tbl_pendaftar.id_user = tbl_user.id_register');
+        $this->db->where_not_in('tbl_pendaftar.status', ['draft']);
+        $this->db->order_by('tbl_pendaftar.nilai_rata_rata', 'desc');
+        $this->db->limit($total_lulus);
+        return $this->db->get()->result();
+    }
+    public function updateStatusKelulusan($reference, $id_lulus, $object)
+    {
+        $this->db->where_in($reference, $id_lulus);
+        $this->db->update('tbl_pendaftar', $object);
+    }
+    public function getDataByYear($year, $status)
+    {
+        $this->db->from('tbl_pendaftar');
+        $this->db->where('kelulusan', $status);
+        $this->db->where('SUBSTR(tgl_lahir,1,4)', $year);
+        return $this->db->get()->result();
+    }
 
 }
 

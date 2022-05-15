@@ -125,11 +125,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<a href="#"><i class="fa fa-file-o nav_icon"></i>Laporan<span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
 								<li>
-									<a href="?page=laporan_perpriode"><i class="fa fa-file-o nav_icon"></i> Siswa Di
+									<a href="<?=base_url('ControllerAdmin/laporan_periode')?>"><i class="fa fa-file-o nav_icon"></i> Siswa Di
 										Terima </a>
 								</li>
 								<li>
-									<a href="?page=laporan_tidak_lulus"><i class="fa fa-file-o nav_icon"></i> Siswa Di
+									<a href="<?=base_url('ControllerAdmin/laporan_tidak_lulus')?>"><i class="fa fa-file-o nav_icon"></i> Siswa Di
 										Tolak</a>
 								</li>
 							</ul>

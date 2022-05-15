@@ -113,6 +113,7 @@ class ApiMember extends CI_Controller
                             'jumlah_saudara' => $this->input->post('jmlsaudara'),
                         ];
                         $this->model->updateData('tbl_pendaftar', 'id_user', $id_user, $register);
+                        $this->prosesUserLulus();
                         $respon = [
                             'status' => 'success',
                             'message' => 'Pendaftaran berhasil, silahkan tunggu konfirmasi dari admin'];
@@ -298,6 +299,36 @@ class ApiMember extends CI_Controller
             ];
         }
         echo json_encode($respon);
+    }
+    public function prosesUserLulus(Type $var = null)
+    {
+        $start = microtime(true);
+        $total_lulus = $this->model->findData('tbl_setting', 'jenis_setting', 'total_lulus')->row()->setting;
+        $pesertaLulus = $this->model->getDataUserLulus((int) $total_lulus);
+        $idUpdate = [];
+        if ($pesertaLulus != null) {
+            foreach ($pesertaLulus as $key => $value) {
+                $idUpdate[] = $value->id_user;
+            }
+        }
+        $this->model->updateStatusKelulusan('status', ['process'], ['kelulusan' => 'tidak lulus']);
+        $this->model->updateStatusKelulusan('id_user', $idUpdate, ['kelulusan' => 'lulus'], $idUpdate);
+        $respon = [
+            'status' => 'success',
+            'elapsed_time' => microtime(true) - $start,
+            'data' => $idUpdate,
+            'total_lulus' => (int) $total_lulus,
+        ];
+        return $respon;
+        // echo json_encode($respon);
+
+    }
+    public function cetakKelulusan($id_user = null)
+    {
+        $data['user'] = $this->model->findData('tbl_pendaftar', 'id_user', $id_user)->row();
+        $lampiran = $this->model->findAttachment($id_user, 1);
+        $data['pas_photo'] = $lampiran == null ? null : base_url('uploads/' . $lampiran->lampiran);
+        $this->load->view('member/cetak_bukti', $data);
     }
 }
 

@@ -32,6 +32,7 @@ class Admin extends CI_Controller
                 'username' => $checkAccount->username,
                 'role' => $checkAccount->role,
                 'nama' => $checkAccount->nama,
+                'logged_in' => true,
             ];
 
             $this->session->set_userdata($ses);

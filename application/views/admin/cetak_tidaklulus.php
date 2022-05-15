@@ -3,22 +3,16 @@
     </script>
 
 
-     <?php
-include "koneksi.php";
-include "tglindo.php";
-$thn = $_GET['year'];
-$laporan = mysqli_query($koneksi, "SELECT * FROM `tbl_pendaftar` WHERE konfirmasi = 'LULUS' AND  Date_format(tgl_daftar,'%Y')='$thn'");
-$no = 1;
-?>
 
-  <div>
+
+<div>
   <tr  align="center">
   <table style="width:98%" border="0">
-  <th><img src="images/logo7.jpg" width="150px" height="150px" align="left"> </th>
+  <th><img src="<?=base_url('assets/member/images/logo7.jpg')?>" width="150px" height="150px" align="left"> </th>
             <td align="center" colspan="3"><h3>PEMERINTAH KOTA MEDAN<br>DINAS PENDIDIKAN DAN KEBUDAYAAN<br> SMP Swasta PNIEL MEDAN<br>
             </h3>Jl. Perjuangan Gg. Pisang No. 1 Pasar IV, Deli Tua, Kec. Namo Rambe
             </td>
-            <th><img width="150px" height="150px" src="images/303.jpg" align="right"></th>
+            <th><img width="150px" height="150px" src="<?=base_url('assets/member/images/303.jpg');?>" align="right"></th>
   </table>
 
     <hr>
@@ -34,23 +28,18 @@ $no = 1;
         <th>Tanggal Pendaftaran</th>
 
     </div>
-    <?php
-
-while ($dat = mysqli_fetch_array($laporan)) {
-
-    ?>
+<?php foreach ($laporan as $key => $value): ?>
         <tr align="center">
-        <td><?php echo $no++ ?></td>
-        <td><?php echo $dat['NISN']; ?></td>
-        <td><?php echo $dat['nama']; ?></td>
-        <td><?=TanggalIndo($dat['tgl_lahir']);?></td>
-        <td><?php echo $dat['asal_sekolah']; ?></td>
-        <td><?php echo $dat['nm_ayah']; ?></td>
-        <td><img src="../../member/images/<?php echo $dat['pas_foto']; ?>" alt="tidak muncul " width="50px"></td>
-        <td><?=TanggalIndo($dat['tgl_daftar']);?></td>
+        <td><?=$key + 1?></td>
+        <td><?=$value->nisn;?></td>
+        <td><?=$value->nama;?></td>
+        <td><?=($value->tgl_lahir);?></td>
+        <td><?=$value->asal_sekolah;?></td>
+        <td><?=$value->nm_ayah;?></td>
+        <td><img src="<?=base_url('uploads/' . $value->pas_foto);?>" alt="tidak muncul " width="50px"></td>
+        <td><?=($value->tgl_daftar);?></td>
         </tr>
-
-                <?php }?>
+<?php endforeach;?>
         </table>
 
         <br>
