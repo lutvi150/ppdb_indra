@@ -128,7 +128,7 @@ class Model extends CI_Model
     {
         $this->db->from('tbl_pendaftar');
         $this->db->where('kelulusan', $status);
-        $this->db->where('SUBSTR(tgl_lahir,1,4)', $year);
+        $this->db->where('SUBSTR(tgl_daftar,1,4)', $year);
         return $this->db->get()->result();
     }
 

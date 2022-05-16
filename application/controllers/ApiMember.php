@@ -70,7 +70,7 @@ class ApiMember extends CI_Controller
         // use for check kuata
         $checkKuata = $this->model->getSetting('kuata');
         $countRegister = $this->model->findData('tbl_pendaftar', 'status', 'process')->num_rows();
-        if ($countRegister >= $checkKuata) {
+        if ($countRegister >= $checkKuata->setting) {
             $respon = [
                 'status' => 'kuata_full',
                 'message' => 'Kuata sudah penuh',
@@ -109,7 +109,7 @@ class ApiMember extends CI_Controller
                             'kelulusan' => null,
                             'id_user' => $id_user,
                             'status' => 'process',
-                            'anak_ke' => $this->input->post('anak_ke'),
+                            'anak_ke' => $this->input->post('anakke'),
                             'jumlah_saudara' => $this->input->post('jmlsaudara'),
                         ];
                         $this->model->updateData('tbl_pendaftar', 'id_user', $id_user, $register);
@@ -234,7 +234,7 @@ class ApiMember extends CI_Controller
         $nilai_rata_rata = $this->input->post('total');
 
         $this->model->deleteData('tbl_nilai', 'id_user', $id_user);
-        $nilai = ['ipa', 'matematika', 'bahasa_inggris'];
+        $nilai = ['ipa', 'matematika', 'bahasa_inggris', 'bahasa_indonesia'];
         $this->model->updateData('tbl_pendaftar', 'id_user', $id_user, ['nilai_rata_rata' => $nilai_rata_rata]);
         foreach ($nilai as $key => $value) {
             $nilai = $this->input->post($value);
