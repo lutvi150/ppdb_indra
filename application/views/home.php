@@ -96,7 +96,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<nav class="link-effect-2" id="link-effect-2">
 					<ul class="nav navbar-nav">
 						<li class="active" >
-							<a href="?page=home" class="effect-2">Home</a>
+							<a href="<?=base_url()?>" class="effect-2">Home</a>
 						</li>
 						<li>
 							<a href="#visi" class="effect-1 ">Visi&amp;Misi</a>

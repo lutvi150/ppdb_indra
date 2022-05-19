@@ -54,7 +54,7 @@
           <tr>
             <td>Dinyatakan</td>
             <td>:</td>
-            <td><?=$user->konfirmasi;?></td>
+            <td style="text-transform: uppercase;font-weight: bold;"><?=$user->kelulusan;?></td>
           </tr>
     </table>
             <table style="width: 60%" align="center" >
