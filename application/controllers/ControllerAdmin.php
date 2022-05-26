@@ -96,9 +96,16 @@ class ControllerAdmin extends CI_Controller
     {
         $this->model->deleteData('tbl_pendaftar', 'id_user', $id);
         $this->model->deleteData('tbl_lampiran', 'id_user', $id);
-        $this->model->deleteData('tbl_user', 'id_user', $id);
+        $this->model->deleteData('tbl_user', 'id_register', $id);
         $this->session->set_flashdata('success', 'Data berhasil di hapus');
         redirect('controllerAdmin/data_pendaftar');
+    }
+    public function edit_data_pendaftar($id)
+    {
+        $checkStatusDaftar = $this->model->findData('tbl_pendaftar', 'id_user', $id)->row();
+        $data['data_member'] = $checkStatusDaftar;
+        $data['content'] = 'admin/edit_data_pendaftar';
+        $this->load->view('admin/index', $data, false);
     }
     public function data_lengkap_pendaftar($id_user)
     {

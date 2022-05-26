@@ -59,6 +59,7 @@
 						<td>
 								<a href="<?=base_url('ControllerAdmin/hapus_data_pendaftar/' . $value->id_user)?>" name="hapus_pendaftaran" class=" btn btn-danger"><i
 										class=" fa fa-trash-o"></i></a>
+										<a href="<?=base_url('ControllerAdmin/edit_data_pendaftar/' . $value->id_user)?>" class="btn btn-info"><i class="fa fa-edit"></i></a>
 						</td>
 					</tr>
 					<?php endforeach;?>
