@@ -54,6 +54,14 @@
 								<input type="text" class="form-control" onkeyup="updateTotalLulus(<?=$settingTotalLulus->id_setting?>,'<?=$settingTotalLulus->jenis_setting?>')"  id="total_lulus" value="<?=$settingTotalLulus->setting?>">
 							</td>
 						</tr>
+						<!-- nilai minimal -->
+						<tr>
+							<td>4</td>
+							<td>Nilai Minimal</td>
+							<td id="app">
+								<input type="text" class="form-control" onkeyup="updateNilaiMinimal(<?=$nilaiMinimal->id_setting?>,'<?=$nilaiMinimal->jenis_setting?>')"  id="nilai_minimal" value="<?=$nilaiMinimal->setting?>">
+							</td>
+						</tr>
 					</tbody>
 
 				</table>
@@ -108,6 +116,24 @@
 	 }
 	 function updateTotalLulus (id,jenis) {
 		 let total_lulus = $('#total_lulus').val();
+		 $.ajax({
+			 type: "POST",
+			 url: url+"ApiAdmin/updateSetting",
+			 data: {
+				 id:id,
+				 tgl_pengumuman:total_lulus,
+				 jenis:jenis
+			 },
+			 dataType: "JSON",
+			 success: function (response) {
+
+			 },error:function(){
+				 swal("Gagal","Gagal Mengupdate","error");
+			 }
+		 });
+	  }
+	  function updateNilaiMinimal (id,jenis) {
+		 let total_lulus = $('#nilai_minimal').val();
 		 $.ajax({
 			 type: "POST",
 			 url: url+"ApiAdmin/updateSetting",

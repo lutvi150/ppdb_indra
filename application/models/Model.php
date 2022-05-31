@@ -110,11 +110,12 @@ class Model extends CI_Model
         $this->db->order_by('tbl_pendaftar.id_user', 'desc');
         return $this->db->get()->result();
     }
-    public function getDataUserLulus($total_lulus)
+    public function getDataUserLulus($total_lulus, $nilai_minimal)
     {
         $this->db->from('tbl_pendaftar');
         $this->db->join('tbl_user', 'tbl_pendaftar.id_user = tbl_user.id_register');
         $this->db->where_not_in('tbl_pendaftar.status', ['draft']);
+        $this->db->where('nilai_rata_rata >=', $nilai_minimal);
         $this->db->order_by('tbl_pendaftar.nilai_rata_rata', 'desc');
         $this->db->limit($total_lulus);
         return $this->db->get()->result();

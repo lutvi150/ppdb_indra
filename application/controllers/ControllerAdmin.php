@@ -156,9 +156,19 @@ class ControllerAdmin extends CI_Controller
             $this->model->insertData('tbl_setting', $insertSetting);
             redirect('controllerAdmin/setting');
         }
+        $getNilaiMinimal = $this->model->getSetting('nilai_minimal');
+        if ($getNilaiMinimal == null) {
+            $insertSetting = [
+                'jenis_setting' => 'nilai_minimal',
+                'setting' => 0,
+            ];
+            $this->model->insertData('tbl_setting', $insertSetting);
+            redirect('controllerAdmin/setting');
+        }
         $data['settingPengumuman'] = $getSetting;
         $data['settingKuata'] = $getKuata;
         $data['settingTotalLulus'] = $getTotalLulus;
+        $data['nilaiMinimal'] = $getNilaiMinimal;
         $data['content'] = 'admin/setting_';
         $this->load->view('admin/index', $data, false);
     }
