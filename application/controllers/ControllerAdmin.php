@@ -45,7 +45,7 @@ class ControllerAdmin extends CI_Controller
             'level' => $this->input->post('level'),
         ];
         $this->model->insertData('tbl_user', $insertData);
-        $this->session->set_flashdata('success', 'Data Admin berhasil di tambahkan');
+        $this->session->set_flashdata('success', 'Data A cdmin berhasil di tambahkan');
         redirect('controllerAdmin/dataAdmin');
 
     }

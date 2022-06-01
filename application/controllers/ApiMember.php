@@ -303,8 +303,9 @@ class ApiMember extends CI_Controller
     public function prosesUserLulus(Type $var = null)
     {
         $start = microtime(true);
+        $nilai_minimal = $this->model->findData('tbl_setting', 'jenis_setting', 'nilai_minimal')->row()->setting;
         $total_lulus = $this->model->findData('tbl_setting', 'jenis_setting', 'total_lulus')->row()->setting;
-        $pesertaLulus = $this->model->getDataUserLulus((int) $total_lulus);
+        $pesertaLulus = $this->model->getDataUserLulus((int) $total_lulus, $nilai_minimal);
         $idUpdate = [];
         if ($pesertaLulus != null) {
             foreach ($pesertaLulus as $key => $value) {
@@ -312,12 +313,16 @@ class ApiMember extends CI_Controller
             }
         }
         $this->model->updateStatusKelulusan('status', ['process'], ['kelulusan' => 'tidak lulus']);
-        $this->model->updateStatusKelulusan('id_user', $idUpdate, ['kelulusan' => 'lulus'], $idUpdate);
+        if ($idUpdate != null) {
+            $this->model->updateStatusKelulusan('id_user', $idUpdate, ['kelulusan' => 'lulus'], $idUpdate);
+        }
+        $keteranganData = $idUpdate == null ? "kosong" : "ada";
         $respon = [
             'status' => 'success',
             'elapsed_time' => microtime(true) - $start,
             'data' => $idUpdate,
             'total_lulus' => (int) $total_lulus,
+            'keterangan' => $keteranganData,
         ];
         return $respon;
         // echo json_encode($respon);
