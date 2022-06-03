@@ -38,6 +38,7 @@ class Member extends CI_Controller
         $data['data_member'] = $checkStatusDaftar;
         $data['content'] = 'member/halaman_home';
         $this->load->view('member/index', $data, false);
+        // echo json_encode($this->session->userdata());
     }
     public function data_pendaftaran(Type $var = null)
     {
@@ -64,6 +65,14 @@ class Member extends CI_Controller
             ];
         }
         $data['nilai'] = $resultNilai;
+        $this->load->view('member/index', $data, false);
+    }
+    public function ubahPassword(Type $var = null)
+    {
+        $data['member'] = $this->model->findData('tbl_user', 'id_register', $this->session->userdata('id_user'))->row();
+        $checkStatusDaftar = $this->model->findData('tbl_pendaftar', 'id_user', $this->session->userdata('id_user'))->row();
+        $data['data_member'] = $checkStatusDaftar;
+        $data['content'] = 'member/ubah_password';
         $this->load->view('member/index', $data, false);
     }
     public function pengumuman(Type $var = null)

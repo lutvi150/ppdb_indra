@@ -2,7 +2,7 @@
 <html >
 <head>
   <meta charset="UTF-8">
-  <title>Flat Login Form</title>
+  <title>Administrator PSB SMP PNIEL MEDAN</title>
 
   <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900'>
 <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Montserrat:400,700'>
@@ -30,16 +30,16 @@
   <source src="http://andytran.me/A%20peaceful%20nature%20timelapse%20video.mp4" type="video/mp4"/>
 </video>
   <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-	<script src="<?=base_url();?>node_modules/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="<?=base_url();?>node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script  src="<?=base_url()?>assets/admin/js/index.js"></script>
-	<script src="<?=base_url();?>assets/jquery/jquery-3.6.0.min.js"></script>
-	<?php if ($this->session->flashdata('error')) {
+  <script src="<?=base_url();?>assets/jquery/jquery-3.6.0.min.js"></script>
+  <?php if ($this->session->flashdata('error')) {
     echo '<script>swal({
-		title: "Gagal!",
-		text: "Username atau Password Salah",
-		type: "error",
-		confirmButtonText: "Ok"
-	});</script>';
+    title: "Gagal!",
+    text: "Username atau Password Salah",
+    type: "error",
+    confirmButtonText: "Ok"
+  });</script>';
 }?>
 </body>
 </html>

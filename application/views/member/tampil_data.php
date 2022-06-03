@@ -16,6 +16,20 @@
 
 
 						<br>
+						<div class="row">
+							<div class="col-md-9">
+								<a href="<?=base_url('member/ubahPassword')?>" class="btn btn-info btn-xs"><i
+										class="fa fa-key"></i> Ubah Password</a>
+							</div>
+							<div class="col-md-3" style="text-align: center;">
+								<div class="col-md-12">
+									<img style="width: 150px;height: 150px;" src="<?=base_url();?>uploads/042042.jpg"
+										alt="">
+										<hr>
+									<button type="button" class="btn btn-success btn-xs"> <i class="fa fa-refresh"></i> Update Foto</button></div>
+							</div>
+						</div>
+						<hr>
 						<table class="table table-bordered">
 							<thead>
 								<tr>

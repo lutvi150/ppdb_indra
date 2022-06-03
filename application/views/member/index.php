@@ -143,11 +143,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<div class="copyright-w3ls py-4">
 		<div class="container">
 			<div class="row">
-				<!-- copyright -->
-				<p class="col-lg-8 copy-right-grids text-bl text-lg-left text-center mt-lg-2">© 2021 | IT DEV
-
-				</p>
-				<!-- //copyright -->
+				
 				<!-- social icons -->
 				<div class="col-lg-4 w3social-icons text-lg-right text-center mt-lg-0 mt-3">
 					<ul>

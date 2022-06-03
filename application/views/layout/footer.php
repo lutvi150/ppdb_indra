@@ -34,11 +34,7 @@
 		</div>
 		<div class="footer-copy-right">
 			<div class="container">
-				<div class="allah-copy">
-					<p>© 2022 | IT DEV
-
-					</p>
-				</div>
+				
 				<div class="footercopy-social">
 					<ul>
 						<li>

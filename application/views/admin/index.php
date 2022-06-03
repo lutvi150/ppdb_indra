@@ -10,7 +10,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html>
 
 <head>
-	<title>Modern an Admin Panel Category Flat Bootstarp Resposive Website Template </title>
+	<title>Administrator PSB SMP PNIEL MEDAN</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="keywords" content="Modern Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
@@ -155,9 +155,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div id="page-wrapper">
 			<div class="graphs">
 				<?php $this->load->view($content);?>
-				<div class="copy_layout">
-					<p>Copyright © 2022 RS ICT. All Rights Reserved | IT DEV</p>
-				</div>
+				
 			</div>
 			<div class="clearfix"> </div>
 		</div>
