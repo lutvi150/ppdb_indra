@@ -61,6 +61,41 @@ class ApiAdmin extends CI_Controller
         // echo json_encode($respon);
 
     }
+    // update password admin
+    public function updatePassword(Type $var = null)
+    {
+        $this->form_validation->set_rules('username', 'Username', 'trim|required|alpha_numeric');
+        $this->form_validation->set_rules('password_lama', 'Password Lama', 'trim|required|min_length[5]');
+        $this->form_validation->set_rules('password_baru', 'Password Baru', 'trim|required|min_length[5]');
+        $this->form_validation->set_rules('konfirmasi_password', 'Konfirmasi Password', 'trim|required|min_length[5]|matches[password_baru]');
+        if ($this->form_validation->run() == false) {
+            $respon = [
+                'status' => 'validation_failed',
+                'message' => $this->form_validation->error_array(),
+            ];
+        } else {
+            $username = $this->input->post('username');
+            $password_lama = $this->input->post('password_lama');
+            $password_baru = $this->input->post('password_baru');
+            $checkAccount = $this->model->checkAccount($username, $password_lama, 'admin');
+            if ($checkAccount == null) {
+                $respon = [
+                    'status' => 'error',
+                    'message' => 'Username atau password salah',
+                ];
+            } else {
+                $update = [
+                    'password' => $password_baru,
+                ];
+                $this->model->updateData('tbl_register', 'username', $username, $update);
+                $respon = [
+                    'status' => 'success',
+                    'message' => 'Password berhasil diupdate',
+                ];
+            }
+        }
+        echo json_encode($respon);
+    }
 }
 
 /* End of file  ApiAdmin.php */
