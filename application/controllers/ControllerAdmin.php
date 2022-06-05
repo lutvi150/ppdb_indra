@@ -471,6 +471,7 @@ class ControllerAdmin extends CI_Controller
         } else {
             $informasi = $this->model->findData('tbl_informasi', 'id_informasi', $id_informasi)->row();
             $data['content'] = 'admin/edit_informasi';
+            $data['title'] = str_replace('_', ' ', $informasi->judul);
             $data['informasi'] = $informasi;
             $this->load->view('admin/index', $data, false);
         }

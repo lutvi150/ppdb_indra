@@ -1,7 +1,7 @@
 
 
 <div class="bs-example" data-example-id="form-validation-states">
-	<h1>Informasi</h1>
+	<h1><?=$title?></h1>
     <form action="<?=base_url('ControllerAdmin/update_pengumuman')?>"  method="POST" enctype="multipart/form-data">
       <div class="form-group has-success">
         <label class="control-label" for="inputSuccess1">Terakhir Di Ubah</label>

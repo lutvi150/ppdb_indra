@@ -73,7 +73,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="index.php">
+				<a class="navbar-brand" href="#">
 					<li class="fa fa-user">Admin</li>
 				</a>
 			</div>
@@ -238,7 +238,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 	<script src="<?=base_url();?>assets/admin/user/js/bootstrap.min.js"></script>
 	<script>
-		let url = "<?=base_url();?>";
 
 		function showModalUpdatePassword() {
 			$('#modal-update-password').modal('show');
@@ -255,7 +254,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			} else {
 				$.ajax({
 					type: "POST",
-					url: url + "ApiAdmin/updatePassword",
+					url: "<?=base_url();?>ApiAdmin/updatePassword",
 					data: {
 						password_lama: password_lama,
 						password_baru: password_baru,
