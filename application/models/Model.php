@@ -132,6 +132,33 @@ class Model extends CI_Model
         $this->db->where('SUBSTR(tgl_daftar,1,4)', $year);
         return $this->db->get()->result();
     }
+    // get data for chart
+    public function getDataChart($jenis, $tanggal, $status)
+    {
+        $this->db->from('tbl_pendaftar');
+        if ($jenis == 'tahun') {
+            $this->db->where('SUBSTRING(tgl_daftar,1,7)', $tanggal);
+        } else if ($jenis == 'bulan') {
+            $this->db->where('tgl_daftar', $tanggal);
+        }
+        if ($status !== 'all') {
+            $this->db->where('kelulusan', $status);
+        }
+        return $this->db->count_all_results();
+    }
+    public function getDataSiswaLaporan($jenis, $tanggal)
+    {
+        $this->db->from('tbl_pendaftar');
+        if ($jenis == 'tahun') {
+            $this->db->where('SUBSTRING(tgl_daftar,1,4)', $tanggal);
+        } else if ($jenis == 'bulan') {
+            $this->db->where('SUBSTRING(tgl_daftar,1,7)', $tanggal);
+        }
+        // if ($status !== 'all') {
+        //     $this->db->where('kelulusan', $status);
+        // }
+        return $this->db->get()->result();
+    }
 
 }
 

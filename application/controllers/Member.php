@@ -46,6 +46,7 @@ class Member extends CI_Controller
         $data['content'] = 'member/home_member';
         $data['data_member'] = $checkStatusDaftar;
         $this->load->view('member/index', $data, false);
+        // echo json_encode($data['data_member']);
     }
     public function profil(Type $var = null)
     {

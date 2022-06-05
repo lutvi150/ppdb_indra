@@ -430,6 +430,55 @@ class ControllerAdmin extends CI_Controller
         $data['content'] = 'admin/cetak_tidaklulus';
         $this->load->view('admin/index', $data, false);
     }
+    // use for make report in chart
+    public function laporanGrafik(Type $var = null)
+    {
+        $data['content'] = 'admin/laporan_grafik';
+        $this->load->view('admin/index', $data, false);
+    }
+    // menu informasi
+    public function menuInformasi(Type $var = null)
+    {
+        $data['content'] = 'admin/menu_informasi';
+        $data['data_informasi'] = $this->model->getData('tbl_informasi', 'id_informasi', 'DESC');
+        $this->load->view('admin/index', $data, false);
+    }
+    public function dataInformasi(Type $var = null)
+    {
+        $informasi = [
+            [
+                'judul' => 'visi_misi',
+            ],
+            [
+                'judul' => 'ruangan_kelas',
+            ], [
+                'judul' => 'pengumuman',
+            ], [
+                'judul' => 'kegiatan',
+            ], [
+                'judul' => 'syarat',
+            ], [
+                'judul' => 'biaya',
+            ],
+        ];
+        $this->model->insertBacth('tbl_informasi', $informasi);
+        echo json_encode(['status' => 'success']);
+    }
+    public function editInformasi($id_informasi = null)
+    {
+        if ($id_informasi == null) {
+            redirect('admin/menuInformasi');
+        } else {
+            $informasi = $this->model->findData('tbl_informasi', 'id_informasi', $id_informasi)->row();
+            $data['content'] = 'admin/edit_informasi';
+            $data['informasi'] = $informasi;
+            $this->load->view('admin/index', $data, false);
+        }
+    }
+    public function storeData(Type $var = null)
+    {
+        # code...
+    }
 
 }
 

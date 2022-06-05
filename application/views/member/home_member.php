@@ -234,8 +234,19 @@
 	$(document).ready(function () {
 		showDataNilai();
 		showAttachment();
+		checkStatusRegister();
 	});
-
+	function checkStatusRegister() {
+		let status_pendaftaran='<?=$data_member->status?>';
+		if (status_pendaftaran=='process') {
+			console.log('matikan');
+			$("input").attr("disabled",true);
+			$("textarea").attr("disabled",true);
+			$("select").attr("disabled",true);
+			$("#simpan").attr("disabled",true);
+			$("button").attr("disabled",true);
+		}
+	 }
 	// show attachemnt
 	function showAttachment() {
 		$.ajax({
@@ -316,6 +327,8 @@ ${html_lampiran}
 			data: {id_user:"<?=$this->session->userdata('id_user')?>"},
 			dataType: "JSON",
 			success: function (response) {
+				let status_pendaftaran='<?=$data_member->status?>';
+				let button_score="";
 				if (response.status=="success") {
 					let html="";
 					let average_score=`<tr>
@@ -325,11 +338,14 @@ ${html_lampiran}
 				</td>
 			</tr>`;
 			$.each(response.data, function (indexInArray, valueOfElement) {
+				if (status_pendaftaran=='process') {
+					button_score=`disabled`;
+				}
 				 html+=`<tr>
 				<td>${indexInArray+1}</td>
 				<td>${valueOfElement.nama_nilai}</td>
 				<td>
-					<input type="text" onkeyup="countScore()" name="" id="${valueOfElement.id_nilai}" value="${valueOfElement.nilai}" class="form-control col-sm-2 col-md-2">
+					<input type="text" ${button_score} onkeyup="countScore()" name="" id="${valueOfElement.id_nilai}" value="${valueOfElement.nilai}" class="form-control col-sm-2 col-md-2">
 				</td>
 			</tr>`;
 			});
@@ -410,8 +426,17 @@ ${html_lampiran}
 					$(".ealmt_lkp").text(response.message.alamat);
 					$(".eno_tlp").text(response.message.no_tlp);
 				} else if (response.status=='success') {
-					swal("Berhasil", "Data Berhasil Disimpan", "success");
-					location.reload();
+					swal({
+						title: "Berhasil",
+						text: "Data Berhasil Di Simpan",
+						type: "success",
+						showCancelButton: false,
+						confirmButtonColor: "#DD6B55",
+						confirmButtonText: "OK",
+						closeOnConfirm: false
+					},).then(function () {
+						window.location.href=url+"member/profil";
+					});
 				} else if (response.status=='document_error') {
 					swal("Gagal", response.message, "error");
 				} else if (response.status=='score_not_enough') {

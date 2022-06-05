@@ -22,6 +22,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		function hideURLbar() {
 			window.scrollTo(0, 1);
 		}
+
 	</script>
 	<!-- //meta-tags -->
 	<link href="<?=base_url();?>assets/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
@@ -31,11 +32,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!-- font-awesome -->
 	<link href="<?=base_url();?>assets/css/font-awesome.css" rel="stylesheet">
 	<!-- fonts -->
-	<link href="//fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
-	    rel="stylesheet">
-	<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+	<link
+		href="//fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+		rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i"
+		rel="stylesheet">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<script src="<?=base_url();?>node_modules/sweetalert/dist/sweetalert.min.js"></script>
 	<script src="<?=base_url();?>assets/jquery/jquery-3.6.0.min.js"></script>
+	<link rel="stylesheet" href="<?=base_url()?>assets/css/costumeHome.css">
 </head>
 
 <body>
@@ -44,7 +49,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="container">
 			<div class="bottom_header_left">
 				<p>
-					<span class="fa fa-map-marker" aria-hidden="true"></span>Jl. Perjuangan Gg. Pisang No. 1 Pasar IV, Deli Tua, Kec. Namo Rambe
+					<span class="fa fa-map-marker" aria-hidden="true"></span>Jl. Perjuangan Gg. Pisang No. 1 Pasar IV,
+					Deli Tua, Kec. Namo Rambe
 				</p>
 			</div>
 			<div class="bottom_header_right">
@@ -64,65 +70,93 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 
 				<div class="clearfix"> </div>
-					<!-- modal -->
+				<!-- modal -->
 
-		<!-- modal -->
+				<!-- modal -->
 			</div>
 			<div class="clearfix"> </div>
 		</div>
 	</div>
-	<div class="header" >
+	<div class="header">
 		<div class="content white">
 			<nav class="navbar navbar-default">
 				<div class="container">
 					<div class="navbar-header">
-						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<button type="button" class="navbar-toggle" data-toggle="collapse"
+							data-target="#bs-example-navbar-collapse-1">
 							<span class="sr-only">Toggle navigation</span>
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
 
-							<h3><img src="<?=base_url();?>assets/images/10.png" witdh="40px" alt="" >
-								<span class="" aria-hidden="true"> </span>
-							</h3>
+						<h3><img src="<?=base_url();?>assets/images/10.png" witdh="40px" alt="">
+							<span class="" aria-hidden="true"> </span>
+						</h3>
 						</a>
 					</div>
 				</div>
-			</div>
 		</div>
-		<!--/.navbar-header-->
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" >
-				<nav class="link-effect-2" id="link-effect-2">
-					<ul class="nav navbar-nav">
-						<li class="active" >
-							<a href="<?=base_url()?>" class="effect-2">Home</a>
-						</li>
-						<li>
-							<a href="#visi" class="effect-1 ">Visi&amp;Misi</a>
-						</li>
-						<li>
-							<a href="#informasi" class="effect-3">Informasi</a>
-						</li>
-						<li>
-							<a href="<?=base_url('controller/routePage/panduan')?>"  class="effect-3">Panduan</a>
-						</li>
-						<li>
-							<a href="<?=base_url('controller/galeri')?>"  class="effect-3">Galeri</a>
-						</li>
-						<li>
-							<a href="<?=base_url('controller/routePage/register')?>" class="effect-3">Register</a>
-						</li>
-						<li>
-							<a href="<?=base_url('controller/routePage/login')?>" class="effect-3">Login</a>
-						</li>
-					</ul>
-				</nav>
-			</div>
-		<!-- Indicators -->
-
-					<!--/.navbar-header-->
-<?php $this->load->view($content);?>
+	</div>
+	<!--/.navbar-header-->
+	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		<nav class="link-effect-2" id="link-effect-2">
+			<ul class="navbar-nav mr-auto">
+				<li class="active">
+					<a href="<?=base_url()?>" class="effect-2">Home</a>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Profil Sekolah
+					</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="<?=base_url('controller/menuprofil/visi_misi')?>">Visi Misi</a>
+						<a class="dropdown-item" href="<?=base_url('controller/menuprofil/ruangan_kelas')?>">Rungan Kelas</a>
+					</div>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Informasi
+					</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="<?=base_url('controller/menuprofil/pengumuman')?>">Pengumuman</a>
+						<a class="dropdown-item" href="<?=base_url('controller/menuprofil/kegiatan')?>">Kegiatan</a>
+					</div>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Pendaftaran
+					</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="<?=base_url('controller/menuprofil/syarat')?>">Syarat</a>
+						<a class="dropdown-item" href="<?=base_url('controller/menuprofil/biaya')?>">Biaya</a>
+					</div>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Informasi lainnya
+					</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="<?=base_url('controller/routePage/panduan')?>">Panduan</a>
+						<a class="dropdown-item" href="<?=base_url('controller/galeri')?>">Galeri</a>
+					</div>
+				</li>
+				<li>
+					<a href="<?=base_url('controller/routePage/register')?>" class="effect-3">Register</a>
+				</li>
+				<li>
+					<a href="<?=base_url('controller/routePage/login')?>" class="effect-3">Login</a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+	<!-- Indicators -->
+	<!--/.navbar-header-->
+	<?php $this->load->view($content);?>
 
 
 
@@ -167,6 +201,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			});
 
 		});
+
 	</script>
 	<script src="<?=base_url();?>assets/js/jquery.flexisel.js"></script>
 	<!-- //Flexslider-js for-testimonials -->
@@ -191,10 +226,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			});
 
 		});
+
 	</script>
 	<!-- //here ends scrolling icon -->
 	<!-- smooth scrolling -->
 	<!-- //js-files -->
 
 </body>
+
 </html>

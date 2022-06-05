@@ -1,0 +1,7 @@
+li:hover{
+	background-color: #2AD050;
+}
+.dropdown-item:hover{
+	background-color: #2AD050;
+	color: white;
+}

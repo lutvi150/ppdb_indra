@@ -55,7 +55,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		});
 
 	</script>
-
+	<style>
+		.text-error{
+			color: red !important;
+		}
+	</style>
 </head>
 
 <body>
@@ -146,9 +150,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</ul>
 							<!-- /.nav-second-level -->
 						</li>
+
 						<?php endif;?>
 
 						<li>
+							<a href="<?=base_url('ControllerAdmin/laporanGrafik')?>" ><i
+									class="glyphicon glyphicon-book nav_icon"></i> Laporan Grafik</a>
+						</li>
+						<li>
+							<a href="<?=base_url('ControllerAdmin/menuInformasi')?>" ><i
+									class="glyphicon glyphicon-book nav_icon"></i> Menu Informasi</a>
+						</li>
 						<li>
 							<a href="#" class="#" onclick="showModalUpdatePassword()"><i
 									class="glyphicon glyphicon-cog nav_icon"></i> Ganti Password</a>
@@ -199,19 +211,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 						<div class="form-group">
 							<label for="">Password Lama</label>
-							<input type="text" name="" id="password_lama" class="form-control" placeholder=""
+							<input type="password" name="" id="password_lama" class="form-control" placeholder=""
 								aria-describedby="helpId">
 							<small id="helpId" class="text-error epassword-lama"></small>
 						</div>
 						<div class="form-group">
 							<label for="">Password Baru</label>
-							<input type="text" name="" id="password_baru" class="form-control" placeholder=""
+							<input type="password" name="" id="password_baru" class="form-control" placeholder=""
 								aria-describedby="helpId">
 							<small id="helpId" class="text-error epassword-baru"></small>
 						</div>
 						<div class="form-group">
 							<label for="">Ulangi Password</label>
-							<input type="text" name="" id="ulangi_password" class="form-control" placeholder=""
+							<input type="password" name="" id="ulangi_password" class="form-control" placeholder=""
 								aria-describedby="helpId">
 							<small id="helpId" class="text-error eulangi-password-baru"></small>
 						</div>
@@ -233,6 +245,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		}
 
 		function updatePassword() {
+			$(".text-error").text("");
 			let username = $('#username').val();
 			let password_lama = $('#password_lama').val();
 			let password_baru = $('#password_baru').val();
@@ -246,15 +259,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					data: {
 						password_lama: password_lama,
 						password_baru: password_baru,
-						username: username
+						username: username,
+					ulangi_password: ulangi_password,
+						id_user:"<?=$this->session->userdata('id_user')?>"
 					},
 					dataType: "JSON",
 					success: function (response) {
 						if (response.status == 'success') {
 							$('#modal-update-password').modal('hide');
-							alert('Password berhasil diubah');
+							swal({
+								title: "Berhasil!",
+								text: "Password berhasil diubah",
+								icon: "success",
+								button: "Tutup",
+							});
 						} else if(response.status=='validation_failed'){
-							$(".eusername").html(response.errors.username);
+							$(".eusername").text(response.message.username);
+							$(".epassword-lama").text(response.message.password_lama);
+							$(".epassword-baru").text(response.message.password_baru);
+							$(".eulangi-password-baru").text(response.message.ulangi_password);
 						} else {
 							swal({
 								title: "Gagal",

@@ -58,6 +58,9 @@ class Controller extends CI_Controller
     {
         $username = $this->input->post('user');
         $checkUsername = $this->model->findData('tbl_user', 'username', $username)->num_rows();
+        $this->form_validation->set_rules('nisn', 'nisn', 'trim|required|numeric|min_length[8]|max_length[8]');
+        $this->form_validation->set_rules('user', 'Username', 'trim|required|alpha_numeric|min_length[5]|max_length[20]|is_unique[tbl_user.username]');
+
         if ($checkUsername > 0) {
             $this->session->set_flashdata('error', 'Username sudah terdaftar');
             redirect('controller/routePage/register');
@@ -103,6 +106,92 @@ class Controller extends CI_Controller
             redirect('controller/routePage/login');
         }
     }
+    public function register_v2(Type $var = null)
+    {
+
+        $username = $this->input->post('user');
+        $this->form_validation->set_rules('nisn', 'nisn', 'trim|required|numeric|min_length[8]|max_length[8]', [
+            'required' => 'NISN tidak boleh kosong',
+            'numeric' => 'NISN harus berupa angka',
+            'min_length' => 'NISN harus 8 digit',
+            'max_length' => 'NISN harus 8 digit',
+        ]);
+        $this->form_validation->set_rules('user', 'Username', 'trim|required|alpha_numeric|min_length[5]|max_length[20]|is_unique[tbl_user.username]', [
+            'required' => 'Username tidak boleh kosong',
+            'alpha_numeric' => 'Username harus berupa huruf dan angka',
+            'min_length' => 'Username minimal 5 karakter',
+            'max_length' => 'Username maksimal 20 karakter',
+            'is_unique' => 'Username sudah terdaftar',
+        ]);
+        $this->form_validation->set_rules('pass', 'Password', 'trim|required|min_length[5]', [
+            'required' => 'Password tidak boleh kosong',
+            'min_length' => 'Password minimal 5 karakter',
+        ]);
+        $this->form_validation->set_rules('nama_lengkap', 'Nama Lengkap', 'trim|required|alpha_numeric_spaces', [
+            'required' => 'Nama Lengkap tidak boleh kosong',
+            'alpha_numeric_spaces' => 'Nama Lengkap harus berupa huruf dan angka',
+        ]);
+        if ($this->form_validation->run() == false) {
+            $response = [
+                'status' => 'validation_failed',
+                'errors' => $this->form_validation->error_array(),
+                'post' => $this->input->post(),
+            ];
+        } else {
+            $checkUsername = $this->model->findData('tbl_user', 'username', $username)->num_rows();
+            if ($checkUsername > 0) {
+                $response = [
+                    'status' => 'validation_failed',
+                    'errors' => [
+                        'username' => 'Username sudah terdaftar',
+                    ],
+                ];
+            } else {
+                $nisn = $this->input->post('nisn');
+                $nama = $this->input->post('nama_lengkap');
+
+                $insert = [
+                    'nisn' => $nisn,
+                    'nama' => $nama,
+                    'username' => $this->input->post('user'),
+                    'password' => hash('sha512', $this->input->post('pass')),
+                    'role' => 'siswa',
+                ];
+                $user_id = $this->model->insertData('tbl_user', $insert);
+                $register = [
+                    'id_register' => 0,
+                    'no_pendaftaran' => 0,
+                    'tgl_daftar' => date('Y-m-d'),
+                    'nisn' => $nisn,
+                    'nama' => $nama,
+                    'tempat_lahir' => 0,
+                    'tgl_lahir' => date('Y-m-d'),
+                    'jenis_kelamin' => '-',
+                    'agama' => '-',
+                    'asal_sekolah' => '-',
+                    'nm_ayah' => '-',
+                    'penghasilan_ayah' => 0,
+                    'pekerjaan_ayah' => 0,
+                    'nm_ibu' => '-',
+                    'pekerjaan_ibu' => 0,
+                    'penghasilan_ibu' => 0,
+                    'alamat' => '-',
+                    'no_tlp' => '-',
+                    'konfirmasi' => '-',
+                    'id_user' => $user_id,
+                    'status' => 'draft',
+                    'anak_ke' => 0,
+                    'jumlah_saudara' => 0,
+                ];
+                $this->model->insertData('tbl_pendaftar', $register);
+                $response = [
+                    'status' => 'success',
+                    'message' => 'Pendaftaran berhasil, silahkan login',
+                ];
+            }
+        }
+        echo json_encode($response);
+    }
     public function login(Type $var = null)
     {
         $username = $this->input->post('username');
@@ -134,7 +223,12 @@ class Controller extends CI_Controller
     {
         $data = null;
         $this->load->view('error_page', $data, false);
-
+    }
+    public function menuProfil($profil)
+    {
+        $data['profil'] = $this->model->findData('tbl_informasi', 'judul', $profil)->row();
+        $data['content'] = 'profil';
+        $this->load->view('home', $data, false);
     }
 }
 
