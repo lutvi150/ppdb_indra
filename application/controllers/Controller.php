@@ -28,6 +28,53 @@ class Controller extends CI_Controller
             $this->load->view('home', $data, false);
         }
     }
+    public function sendMail($email, $nama, $pesan)
+    {
+        require_once __DIR__ . '/../../vendor/autoload.php';
+        $config = SendinBlue\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', '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');
+
+        $apiInstance = new SendinBlue\Client\Api\TransactionalEmailsApi(
+            new GuzzleHttp\Client(),
+            $config
+        );
+
+        $sendSmtpEmail = new \SendinBlue\Client\Model\SendSmtpEmail();
+        // $sendSmtpEmail['to'] = array(array('email' => 'fentijuandaputri@gmail.com', 'name' => 'John Doe'));
+        // $sendSmtpEmail['templateId'] = 59;
+        // $sendSmtpEmail['params'] = array('name' => 'John', 'surname' => 'Doe');
+        // $sendSmtpEmail['headers'] = array('X-Mailin-custom' => 'custom_header_1:custom_value_1|custom_header_2:custom_value_2');
+        $sendSmtpEmail['subject'] = 'My {{params.subject}}';
+        $sendSmtpEmail['htmlContent'] = '<html><body><h1>' . $pesan . '</h1></body></html>';
+        $sendSmtpEmail['sender'] = array('name' => 'SMP PNIEL MEDAN', 'email' => 'pnielmedan@cloverteam.com');
+        $sendSmtpEmail['to'] = array(
+            array('email' => $email, 'name' => $nama),
+        );
+        $sendSmtpEmail['cc'] = array(
+            array('email' => $email, 'name' => $nama),
+        );
+        $sendSmtpEmail['bcc'] = array(
+            array('email' => $email, 'name' => $nama),
+        );
+        $sendSmtpEmail['replyTo'] = array('email' => 'rpnielmedan@cloverteam.com', 'name' => 'Peniel Medan');
+        $sendSmtpEmail['headers'] = array('Some-Custom-Name' => 'unique-id-1234');
+        $sendSmtpEmail['params'] = array('parameter' => 'Verifikasi Account', 'subject' => 'Verifikasi Account');
+        try {
+            $result = $apiInstance->sendTransacEmail($sendSmtpEmail);
+            $response = [
+                'status' => 'success',
+                'message' => 'send email success',
+                'result' => $result,
+            ];
+        } catch (Exception $e) {
+            // $res= 'Exception when calling ContactsApi->importContacts: ', $e->getMessage(), PHP_EOL;
+            $response = [
+                'status' => 'error',
+                'message' => 'send email failed',
+                'result' => $e->getMessage(),
+            ];
+        }
+        return $response;
+    }
     public function routePage($url = null)
     {
         if ($url == null) {
@@ -74,6 +121,7 @@ class Controller extends CI_Controller
                 'username' => $this->input->post('user'),
                 'password' => hash('sha512', $this->input->post('pass')),
                 'role' => 'siswa',
+                'verifikasi_email' => false,
             ];
             $user_id = $this->model->insertData('tbl_user', $insert);
             $register = [
@@ -116,12 +164,12 @@ class Controller extends CI_Controller
             'min_length' => 'NISN harus 8 digit',
             'max_length' => 'NISN harus 8 digit',
         ]);
-        $this->form_validation->set_rules('user', 'Username', 'trim|required|alpha_numeric|min_length[5]|max_length[20]|is_unique[tbl_user.username]', [
+        $this->form_validation->set_rules('user', 'Username', 'trim|required|min_length[5]|max_length[20]|is_unique[tbl_user.username]|valid_email', [
             'required' => 'Username tidak boleh kosong',
-            'alpha_numeric' => 'Username harus berupa huruf dan angka',
             'min_length' => 'Username minimal 5 karakter',
             'max_length' => 'Username maksimal 20 karakter',
             'is_unique' => 'Username sudah terdaftar',
+            'valid_email' => 'Username harus berupa email',
         ]);
         $this->form_validation->set_rules('pass', 'Password', 'trim|required|min_length[5]', [
             'required' => 'Password tidak boleh kosong',
@@ -149,13 +197,15 @@ class Controller extends CI_Controller
             } else {
                 $nisn = $this->input->post('nisn');
                 $nama = $this->input->post('nama_lengkap');
-
+                $user = $this->input->post('user');
+                $pass = hash('sha512', $this->input->post('pass'));
                 $insert = [
                     'nisn' => $nisn,
                     'nama' => $nama,
-                    'username' => $this->input->post('user'),
+                    'username' => $user,
                     'password' => hash('sha512', $this->input->post('pass')),
                     'role' => 'siswa',
+                    'verifikasi_email' => false,
                 ];
                 $user_id = $this->model->insertData('tbl_user', $insert);
                 $register = [
@@ -184,9 +234,12 @@ class Controller extends CI_Controller
                     'jumlah_saudara' => 0,
                 ];
                 $this->model->insertData('tbl_pendaftar', $register);
+                $pesan = 'Klik link berikut untuk verifikasi email anda : <a href="' . base_url('controller/appVerification/' . $pass) . '">Verifikasi</a>';
+                $mail = $this->sendMail($user, $nama, $pesan);
                 $response = [
                     'status' => 'success',
                     'message' => 'Pendaftaran berhasil, silahkan login',
+                    'mail' => $mail,
                 ];
             }
         }
@@ -196,23 +249,53 @@ class Controller extends CI_Controller
     {
         $username = $this->input->post('username');
         $password = $this->input->post('password');
-        $checkAccount = $this->model->checkAccount($username, $password, 'siswa');
-        if ($checkAccount == null) {
-            $this->session->set_flashdata('error', 'Username atau password salah');
-            redirect('controller/routePage/login');
-        } else {
-            $ses = [
-                'id_user' => $checkAccount->id_register,
-                'username' => $checkAccount->username,
-                'role' => $checkAccount->role,
-                'nama' => $checkAccount->nama,
-                'nisn' => $checkAccount->nisn,
-            ];
+        $this->form_validation->set_rules('username', 'username', 'trim|required|valid_email', [
+            'required' => 'Username tidak boleh kosong',
+            'valid_email' => 'Username harus berupa email',
+        ]);
+        $this->form_validation->set_rules('password', 'Password', 'trim|required', [
+            'required' => 'Password tidak boleh kosong',
+        ]);
 
-            $this->session->set_userdata($ses);
-            redirect('member');
+        if ($this->form_validation->run() == false) {
+            $response = [
+                'status' => 'validation_failed',
+                'errors' => $this->form_validation->error_array(),
+            ];
+        } else {
+            $checkAccount = $this->model->checkAccount($username, $password, 'siswa');
+            if ($checkAccount == null) {
+                $response = [
+                    'status' => 'username not found',
+                    'errors' => [
+                        'username' => 'Username tidak ditemukan',
+                    ],
+                ];
+            } else {
+                if ($checkAccount->verifikasi_email == false) {
+                    $response = [
+                        'status' => 'email not verified',
+                        'errors' => [
+                            'username' => 'Email belum diverifikasi',
+                        ],
+                    ];
+                } else {
+                    $ses = [
+                        'id_user' => $checkAccount->id_register,
+                        'username' => $checkAccount->username,
+                        'role' => $checkAccount->role,
+                        'nama' => $checkAccount->nama,
+                        'nisn' => $checkAccount->nisn,
+                    ];
+                    $this->session->set_userdata($ses);
+                    $response = [
+                        'status' => 'success',
+                        'message' => 'Login berhasil',
+                    ];
+                }
+            }
         }
-        // echo json_encode($checkAccount);
+        echo json_encode($response);
     }
     public function logout(Type $var = null)
     {
@@ -229,6 +312,17 @@ class Controller extends CI_Controller
         $data['profil'] = $this->model->findData('tbl_informasi', 'judul', $profil)->row();
         $data['content'] = 'profil';
         $this->load->view('home', $data, false);
+    }
+    // use for verifikasi user
+    public function appVerification($token = null)
+    {
+        if ($token == null) {
+            redirect('controller/index');
+        } else {
+            $this->model->updateData('tbl_user', 'password', $token, ['verifikasi_email' => true]);
+            $data['content'] = 'verifikasi';
+            $this->load->view('home', $data, false);
+        }
     }
 }
 

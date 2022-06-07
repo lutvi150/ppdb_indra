@@ -26,8 +26,8 @@
 						<span class="text-error enama_lengkap"></span>
 					</div>
 					<div class="">
-						<p>Username</p>
-						<input class="form-control" type="text" name="user" id="user" placeholder="Masukan Username" required="">
+						<p>Email</p>
+						<input class="form-control" type="email" name="user" id="user" placeholder="Masukan Username" required="">
 						<span class="text-error euser"></span>
 					</div>
 					<div class="">
@@ -39,7 +39,7 @@
 						<input type="checkbox" class="checkbox">
 						<span>I Accept Terms &amp; Conditions</span>
 					</label>
-					<input type="button" class="btn btn-danger" onclick="registerData()" name="simpan" value="Register">
+					<button type="button" id="btn-simpan-data" class="btn btn-danger" onclick="registerData()" name="simpan" >Daftar</button>
 				</form>
 			</div>
 		</div>
@@ -56,6 +56,7 @@
 	<script>
 		let url="<?=base_url()?>";
 		function registerData() {
+			$(".btn-simpan-data").attr('disabled',true);
 			$(".text-error").text("");
 			let data= {
 				nisn: $('#nisn').val(),
@@ -70,21 +71,23 @@
 				dataType: "JSON",
 				success: function (response) {
 					if (response.status=='success') {
+						$(".btn-simpan-data").removeAttr("disabled");
+						$("input").val("");
 						swal({
 							title: "Berhasil",
-							text: "Anda Berhasil Register, silahkan login",
+							text: "Anda Berhasil Register, silahkan check email untuk verifikasi akun anda",
 							icon: "success",
 							button: "OK",
-						}).then(function() {
-							window.location.href = url+"controller/routePage/login";
 						});
 					} else if(response.status=='validation_failed'){
+						$(".btn-simpan-data").removeAttr("disabled");
 						$(".euser").text(response.errors.user);
 						$(".enama_lengkap").text(response.errors.nama_lengkap);
 						$(".enisn").text(response.errors.nisn);
 						$(".epass").text(response.errors.pass);
 					}
 				},error:function(){
+					$(".btn-simpan-data").removeAttr("disabled");
 					swal({
 						title: "Gagal",
 						text: "Data Gagal Di Simpan",
@@ -95,14 +98,3 @@
 			});
 		 }
 	</script>
-	<?php if ($this->session->flashdata('error')) {
-    echo '
-	<script>
-		swal({
-			title: "Gagal!",
-			text: "Register Gagal, Username Sudah Terdaftar",
-			type: "error",
-			confirmButtonText: "Ok"
-		});
-	</script>';
-}?>

@@ -28,7 +28,7 @@ class Admin extends CI_Controller
             redirect('admin/index');
         } else {
             $ses = [
-			'id_user' => $checkAccount->id_register,
+                'id_user' => $checkAccount->id_register,
                 'username' => $checkAccount->username,
                 'role' => $checkAccount->role,
                 'nama' => $checkAccount->nama,
