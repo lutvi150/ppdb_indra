@@ -216,6 +216,21 @@ class ApiAdmin extends CI_Controller
         ];
         echo json_encode($respon);
     }
+    public function verifikasiAccount(Type $var = null)
+    {
+        $status_verifikasi = $this->input->post('status');
+        $id_user = $this->input->post('id_user');
+        $this->model->updateData('tbl_user', 'id_register', $id_user, ['verifikasi_email' => $status_verifikasi]);
+        $message = $status_verifikasi == 1 ? "Verifikasi account berhasil" : "Verifikasi berhasil di batalkan";
+        $respon = [
+            'status' => 'success',
+            'msg' => $message,
+            'id_user' => $id_user,
+            'status_verifikasi' => $status_verifikasi,
+            'data' => $this->model->findData('tbl_user', 'id_register', $id_user)->row(),
+        ];
+        echo json_encode($respon);
+    }
 }
 
 /* End of file  ApiAdmin.php */

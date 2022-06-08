@@ -30,6 +30,14 @@ class ControllerAdmin extends CI_Controller
         $this->load->view('admin/index', $data, false);
 
     }
+    // data user
+    public function data_user(Type $var = null)
+    {
+        $data['user'] = $this->model->findData('tbl_user', 'role', 'siswa')->result();
+        $data['content'] = "admin/data_user";
+        $this->load->view('admin/index', $data, false);
+        // echo json_encode($data);
+    }
     public function dataAdmin(Type $var = null)
     {
         $data['admin'] = $this->model->findData('tbl_user', 'role', 'admin')->result();

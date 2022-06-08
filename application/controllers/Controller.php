@@ -164,12 +164,11 @@ class Controller extends CI_Controller
             'min_length' => 'NISN harus 8 digit',
             'max_length' => 'NISN harus 8 digit',
         ]);
-        $this->form_validation->set_rules('user', 'Username', 'trim|required|min_length[5]|max_length[20]|is_unique[tbl_user.username]|valid_email', [
+        $this->form_validation->set_rules('user', 'Username', 'trim|required|min_length[5]|max_length[20]|is_unique[tbl_user.username]', [
             'required' => 'Username tidak boleh kosong',
             'min_length' => 'Username minimal 5 karakter',
             'max_length' => 'Username maksimal 20 karakter',
             'is_unique' => 'Username sudah terdaftar',
-            'valid_email' => 'Username harus berupa email',
         ]);
         $this->form_validation->set_rules('pass', 'Password', 'trim|required|min_length[5]', [
             'required' => 'Password tidak boleh kosong',
@@ -235,11 +234,11 @@ class Controller extends CI_Controller
                 ];
                 $this->model->insertData('tbl_pendaftar', $register);
                 $pesan = 'Klik link berikut untuk verifikasi email anda : <a href="' . base_url('controller/appVerification/' . $pass) . '">Verifikasi</a>';
-                $mail = $this->sendMail($user, $nama, $pesan);
+                // $mail = $this->sendMail($user, $nama, $pesan);
                 $response = [
                     'status' => 'success',
                     'message' => 'Pendaftaran berhasil, silahkan login',
-                    'mail' => $mail,
+                    // 'mail' => $mail,
                 ];
             }
         }

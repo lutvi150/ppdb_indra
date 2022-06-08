@@ -65,7 +65,7 @@
 					$(".username").text(response.errors.username);
 				} else if(response.status=='email not verified'){
 					swal({
-						title: "Email Belum Diverifikasi",
+						title: "Akun Belum Diverifikasi",
 						text: "Silahkan Cek Email Anda",
 						icon: "warning",
 						button: "Ok",
