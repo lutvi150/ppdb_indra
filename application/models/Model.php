@@ -138,7 +138,7 @@ class Model extends CI_Model
         $this->db->from('tbl_pendaftar');
         if ($jenis == 'tahun') {
             $this->db->where('SUBSTRING(tgl_daftar,1,7)', $tanggal);
-        } else if ($jenis == 'bulan') {
+        } else if ($jenis == 'bulan' || $jenis == 'mingguan') {
             $this->db->where('tgl_daftar', $tanggal);
         }
         if ($status !== 'all') {
@@ -151,9 +151,13 @@ class Model extends CI_Model
         $this->db->from('tbl_pendaftar');
         if ($jenis == 'tahun') {
             $this->db->where('SUBSTRING(tgl_daftar,1,4)', $tanggal);
-        } else if ($jenis == 'bulan') {
+        } elseif ($jenis == 'bulan') {
             $this->db->where('SUBSTRING(tgl_daftar,1,7)', $tanggal);
+        } elseif ($jenis == 'mingguan') {
+            $this->db->where(' tgl_daftar >= date("' . $tanggal['mulai'] . '")');
+            $this->db->where('tgl_daftar <= date("' . $tanggal['selesai'] . '")');
         }
+
         // if ($status !== 'all') {
         //     $this->db->where('kelulusan', $status);
         // }

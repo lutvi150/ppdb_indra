@@ -23,19 +23,6 @@
 		</div>
 		<div class="fw-body">
 			<div class="content">
-<?php if ($this->session->flashdata('success')): ?>
-			<div class="alert alert-success" role="alert">
-				<strong>success</strong>
-				<p><?=$this->session->flashdata('success');?></p>
-			</div>
-			<?php endif;?>
-			<?php if ($this->session->userdata('error')): ?>
-			<div class="alert alert-danger" role="alert">
-				<strong>Gagal</strong>
-				<p><?=$this->session->flashdata('error');
-?></p>
-			</div>
-			<?php endif;?>
 
 				<table id="table_id" class="display table table-bordered">
 					<thead>

@@ -204,7 +204,7 @@ class Controller extends CI_Controller
                     'username' => $user,
                     'password' => hash('sha512', $this->input->post('pass')),
                     'role' => 'siswa',
-                    'verifikasi_email' => false,
+                    'verifikasi_email' => 1,
                 ];
                 $user_id = $this->model->insertData('tbl_user', $insert);
                 $register = [
@@ -248,9 +248,8 @@ class Controller extends CI_Controller
     {
         $username = $this->input->post('username');
         $password = $this->input->post('password');
-        $this->form_validation->set_rules('username', 'username', 'trim|required|valid_email', [
+        $this->form_validation->set_rules('username', 'username', 'trim|required', [
             'required' => 'Username tidak boleh kosong',
-            'valid_email' => 'Username harus berupa email',
         ]);
         $this->form_validation->set_rules('password', 'Password', 'trim|required', [
             'required' => 'Password tidak boleh kosong',

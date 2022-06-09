@@ -116,6 +116,8 @@ class ApiAdmin extends CI_Controller
         $jenis_laporan = $this->input->post('jenis_laporan');
         $tahun = $this->input->post('tahun');
         $bulan = $this->input->post('bulan');
+        $tanggal_mulai = $this->input->post('tanggal_mulai');
+        $tanggal_selesai = $this->input->post('tanggal_selesai');
         if ($jenis_laporan == 'bulan') {
             $hari = cal_days_in_month(CAL_GREGORIAN, $bulan, $tahun);
             $data_siswa = $this->getDataSiswa($jenis_laporan, $tahun . '-' . $bulan);
@@ -144,6 +146,26 @@ class ApiAdmin extends CI_Controller
                 $tidak_lulus[] = $this->model->getDataChart($jenis_laporan, $tanggal, 'tidak lulus');
                 $peserta[] = $this->model->getDataChart($jenis_laporan, $tanggal, 'all');
 
+            }
+            $data = [
+                'label' => $label,
+                'lulus' => $lulus,
+                'tidak_lulus' => $tidak_lulus,
+                'peserta' => $peserta,
+                'data_siswa' => $data_siswa,
+            ];
+        } elseif ($jenis_laporan == 'mingguan') {
+            $data_siswa = $this->getDataSiswa($jenis_laporan, ['mulai' => $tanggal_mulai, 'selesai' => $tanggal_selesai]);
+            $date = new DatePeriod(
+                new DateTime($tanggal_mulai),
+                new DateInterval('P1D'),
+                new DateTime($tanggal_selesai)
+            );
+            foreach ($date as $key => $value) {
+                $label[] = $value->format('Y-m-d');
+                $lulus[] = $this->model->getDataChart($jenis_laporan, $value->format('Y-m-d'), 'lulus');
+                $tidak_lulus[] = $this->model->getDataChart($jenis_laporan, $value->format('Y-m-d'), 'tidak lulus');
+                $peserta[] = $this->model->getDataChart($jenis_laporan, $value->format('Y-m-d'), 'all');
             }
             $data = [
                 'label' => $label,

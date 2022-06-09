@@ -31,13 +31,13 @@
 					  <select name="jenis_laporan" onchange="jenis_laporan()" class="form-control" id="jenis_laporan">
 						  <option value="">Pilih Jenis Laporan</option>
 						  <!-- <option value="harian">Harian</option> -->
-						  <!-- <option value="mingguan">Mingguan</option> -->
+						  <option value="mingguan">Mingguan</option>
 						  <option value="bulan">Bulanan</option>
 						  <option value="tahun">Tahunan</option>
 					  </select>
 					  <small id="helpId" class="text-error ejenis_laporan"></small>
 					</div>
-					<div class="form-group select-bulan" hidden>
+					<div class="form-group tag-select select-bulan" hidden>
 					  <label for="">Pilih Bulan</label>
 					  <select name="bulan" class="form-control" id="bulan">
 						  <option value="">Pilih Bulan</option>
@@ -56,7 +56,7 @@
 					  </select>
 					  <small id="helpId" class="text-error ebulan"></small>
 					</div>
-					<div class="form-group select-tahun" hidden>
+					<div class="form-group tag-select select-tahun" hidden>
 					  <label for="">Pilih Tahun</label>
 					  <select name="tahun" class="form-control" id="tahun">
 						  <option value="">Pilih Tahun</option>
@@ -74,6 +74,16 @@
 						  <option value="2030">2030</option>
 					  </select>
 					  <small id="helpId" class="text-error etahun"></small>
+					</div>
+					<div class="form-group tag-select select-mulai" hidden>
+					  <label for="">Tanggal Awal</label>
+					  <input type="date" name="" id="tanggal_mulai" class="form-control" placeholder="" aria-describedby="helpId">
+					  <small id="helpId" class="text-error emulai"></small>
+					</div>
+					<div class="form-group tag-select select-selesai" hidden>
+					  <label for="">Tanggal Akhir</label>
+					  <input type="date" name="tanggal_selesai" id="tanggal_selesai" class="form-control" placeholder="" aria-describedby="helpId">
+					  <small id="helpId" class="text-error eselesai"></small>
 					</div>
 					<button type="button" onclick="searchData()" class="btn btn-warning btn-xs"><i class="fa fa-search"></i> Buat</button>
 					<button type="button" onclick="cetakData()" class="btn btn-success btn-xs"> <i class="fa fa-print"></i> Cetak</button>
@@ -118,24 +128,31 @@
 			$('.select-bulan').show();
 			$('.select-tahun').show();
 		} else if (jenis_laporan=='tahun') {
-			$('.select-bulan').hide();
+			$(".tag-select").hide();
 			$('.select-tahun').show();
+		} else if(jenis_laporan=='mingguan'){
+			$(".tag-select").hide();
+			$('.select-mulai').show();
+			$('.select-selesai').show();
 		} else {
-			$('.select-bulan').hide();
-			$('.select-tahun').hide();
+			$(".tag-select").hide();
 		}
 	 }
 	 function searchData() {
 		 let jenis_laporan = $('#jenis_laporan').children("option:selected").val();
 		 let bulan = $('#bulan').children("option:selected").val();
 		 let tahun = $('#tahun').children("option:selected").val();
+		 let tanggal_mulai = $('#tanggal_mulai').val();
+		 let tanggal_selesai = $('#tanggal_selesai').val();
 		 $.ajax({
 			 type: "POST",
 			 url: url+"ApiAdmin/makeChart",
 			 data: {
 				 jenis_laporan:jenis_laporan,
 				 bulan:bulan,
-				 tahun:tahun
+				 tahun:tahun,
+				 tanggal_mulai:tanggal_mulai,
+				 tanggal_selesai:tanggal_selesai
 			 },
 			 dataType: "JSON",
 			 success: function (response) {
