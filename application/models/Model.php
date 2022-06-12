@@ -163,7 +163,19 @@ class Model extends CI_Model
         // }
         return $this->db->get()->result();
     }
+    public function filterData($tahun)
+    {
+        $data = $this->model->filterByYear($tahun);
+        echo json_encode($data);
+    }
+    public function filterByYear($tahun)
+    {
+        $this->db->from('log_tamu');
+        $this->db->where('SUBSTR(check_in,1,4)', $tahun);
+        $this->db->join('tamu', 'log_tamu.uid = tamu.uid');
+        return $this->db->get()->result();
 
+    }
 }
 
 /* End of file Model.php */

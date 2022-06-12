@@ -50,19 +50,44 @@ class ControllerAdmin extends CI_Controller
             'nama' => $this->input->post('nama'),
             'username' => $this->input->post('username'),
             'password' => $this->input->post('password'),
-            'level' => $this->input->post('level'),
+            'role' => $this->input->post('level'),
         ];
         $this->model->insertData('tbl_user', $insertData);
         $this->session->set_flashdata('success', 'Data A cdmin berhasil di tambahkan');
         redirect('controllerAdmin/dataAdmin');
 
     }
-    public function deleteAdmin(Type $var = null)
+    public function deleteAdmin($id_register)
     {
-        $id_register = $this->input->post('id_register');
-        $this->model->deleteData('tbl_user', $id_register, $id_register);
+        $this->model->deleteData('tbl_user', 'id_register', $id_register);
         $this->session->set_flashdata('success', 'Data berhasil di hapus');
         redirect('controllerAdmin/dataAdmin');
+    }
+    public function editAdmin(Type $var = null)
+    {
+        $id = $this->input->post('id_register');
+        $name = $this->input->post('nama');
+        $username = $this->input->post('username');
+        $password = $this->input->post('password');
+        $level = $this->input->post('level');
+        if ($password == '') {
+            $insert = [
+                'nama' => $name,
+                'username' => $username,
+                'role' => $level,
+            ];
+        } else {
+            $insert = [
+                'nama' => $name,
+                'username' => $username,
+                'password' => $password,
+                'role' => $level,
+            ];
+        }
+        $this->model->updateData('tbl_user', 'id_register', $id, $insert);
+        $this->session->set_flashdata('success', 'edit data berhasil');
+        redirect('controllerAdmin/dataAdmin');
+        // echo json_encode($this->input->post());
     }
     public function editData(Type $var = null)
     {

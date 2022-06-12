@@ -52,3 +52,4 @@ defined('BASEPATH') or exit('No direct script access allowed');
 $route['default_controller'] = 'Controller';
 $route['404_override'] = 'controller/error_page';
 $route['translate_uri_dashes'] = false;
+$route['member-review-get/(:any)'] = 'ServerSide/pagination/$1';
