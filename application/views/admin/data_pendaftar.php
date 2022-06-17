@@ -28,6 +28,7 @@
 							<th>Pas Foto</th>
 							<th>Lihat Data</th>
 							<th>Status</th>
+							<th>Tanggal Register</th>
 							<th>Aksi</th>
 						</tr>
 					</thead>
@@ -55,6 +56,9 @@
 							<?php elseif ($value->kelulusan == 'lulus'): ?>
 							<label for="" class="badge badge-info">Lulus</label>
 							<?php endif;?>
+						</td>
+						<td>
+							<?=$value->tgl_daftar;?>
 						</td>
 						<td>
 								<a href="<?=base_url('ControllerAdmin/hapus_data_pendaftar/' . $value->id_user)?>" name="hapus_pendaftaran" class=" btn btn-danger"><i

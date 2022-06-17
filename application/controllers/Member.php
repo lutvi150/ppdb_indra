@@ -52,6 +52,7 @@ class Member extends CI_Controller
     {
         $id_user = $this->session->userdata('id_user');
         $checkStatusDaftar = $this->model->findData('tbl_pendaftar', 'id_user', $this->session->userdata('id_user'))->row();
+        $data['foto_profil'] = $this->model->findData('tbl_user', 'id_register', $id_user)->row()->foto_profil;
         $data['content'] = 'member/tampil_data';
         $data['data_member'] = $checkStatusDaftar;
         $nilai = $this->dataNilai();
@@ -67,6 +68,7 @@ class Member extends CI_Controller
         }
         $data['nilai'] = $resultNilai;
         $this->load->view('member/index', $data, false);
+        // echo json_encode($data);
     }
     public function ubahPassword(Type $var = null)
     {

@@ -335,6 +335,32 @@ class ApiMember extends CI_Controller
         $data['pas_photo'] = $lampiran == null ? null : base_url('uploads/' . $lampiran->lampiran);
         $this->load->view('member/cetak_bukti', $data);
     }
+    public function updateFoto(Type $var = null)
+    {
+        $image = $this->input->post('image');
+
+        $config['upload_path'] = './uploads/';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['encrypt_name'] = true;
+
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload('image')) {
+            $respon = [
+                'status' => 'error',
+                'message' => $this->upload->display_errors(),
+            ];
+        } else {
+            $upload_data = $this->upload->data();
+            $respon = [
+                'status' => 'success',
+                'message' => 'Foto berhasil diupload',
+                'data' => $upload_data['file_name'],
+            ];
+        }
+        echo json_encode($respon);
+
+    }
 }
 
 /* End of file  ApiMember.php */

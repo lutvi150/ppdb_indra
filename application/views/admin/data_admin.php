@@ -19,13 +19,6 @@
 				<p><?=$this->session->flashdata('success');?></p>
 			</div>
 			<?php endif;?>
-			<?php if ($this->session->userdata('error')): ?>
-			<div class="alert alert-danger" role="alert">
-				<strong>Gagal</strong>
-				<p><?=$this->session->flashdata('error');
-?></p>
-			</div>
-			<?php endif;?>
 
 				<table id="table_id" class="display table table-bordered">
 					<thead>

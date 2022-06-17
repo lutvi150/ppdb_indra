@@ -49,11 +49,11 @@ class ControllerAdmin extends CI_Controller
         $insertData = [
             'nama' => $this->input->post('nama'),
             'username' => $this->input->post('username'),
-            'password' => $this->input->post('password'),
+            'password' => hash('sha512', $this->input->post('password')),
             'role' => $this->input->post('level'),
         ];
         $this->model->insertData('tbl_user', $insertData);
-        $this->session->set_flashdata('success', 'Data A cdmin berhasil di tambahkan');
+        $this->session->set_flashdata('success', 'Data Admin berhasil di tambahkan');
         redirect('controllerAdmin/dataAdmin');
 
     }
@@ -80,7 +80,7 @@ class ControllerAdmin extends CI_Controller
             $insert = [
                 'nama' => $name,
                 'username' => $username,
-                'password' => $password,
+                'password' => hash('sha512', $password),
                 'role' => $level,
             ];
         }
@@ -117,6 +117,7 @@ class ControllerAdmin extends CI_Controller
                     'dokumen' => $this->model->findData('tbl_lampiran', 'id_user', $value->id_user)->result(),
                     'id_user' => $value->id_user,
                     'kelulusan' => $value->kelulusan,
+                    'tgl_daftar' => $value->tgl_daftar,
                 ];
             }
         }

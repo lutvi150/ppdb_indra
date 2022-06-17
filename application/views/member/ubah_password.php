@@ -31,6 +31,7 @@
 							</tr>
 							<tr>
 								<td colspan="2" class="text-center" >
+									<a href="<?=base_url('member/profil')?>" class="btn btn-success btn-xs"><i class="fa fa-reply"></i> Kembali</a>
 									<button type="button" class="btn btn-success btn-xs" ><i class="fa fa-save"></i> Update Data</button>
 								</td>
 							</tr>

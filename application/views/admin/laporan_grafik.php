@@ -98,9 +98,11 @@
 							<th>Nama</th>
 							<th>Asal Sekolah</th>
 							<th>Keterangan</th>
+							<th>Tanggal Register</th>
 						</thead>
 						<tbody class="body-data-siswa">
 							<tr hidden>
+								<td></td>
 								<td></td>
 								<td></td>
 								<td></td>
@@ -182,6 +184,7 @@
 								<td>${valueOfElement.nama}</td>
 								<td>${valueOfElement.alamat}</td>
 								<td>${valueOfElement.kelulusan}</td>
+								<td>${valueOfElement.tgl_daftar}</td>
 							</tr>`;
 		 });
 		 $(".body-data-siswa").html(html);
