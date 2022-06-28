@@ -211,6 +211,9 @@ class ApiMember extends CI_Controller
                 'lampiran' => $upload_data['file_name'],
                 'type' => $upload_data['file_ext'],
             ];
+            if ($id_attachment == 1) {
+                $this->model->updateData('tbl_user', 'id_register', $id_user, ['foto_profil' => $upload_data['file_name']]);
+            }
             $checkLampiran = $this->model->findAttachment($id_user, $id_attachment);
             if ($checkLampiran) {
                 if (file_exists('./uploads/' . $checkLampiran->lampiran)) {
@@ -338,6 +341,7 @@ class ApiMember extends CI_Controller
     public function updateFoto(Type $var = null)
     {
         $image = $this->input->post('image');
+        $id_user = $this->input->post('id_user');
 
         $config['upload_path'] = './uploads/';
         $config['allowed_types'] = 'gif|jpg|png';
@@ -352,6 +356,13 @@ class ApiMember extends CI_Controller
             ];
         } else {
             $upload_data = $this->upload->data();
+            // remove image
+            $lampiran = $this->model->findAttachment($id_user, 1);
+            if (file_exists('./uploads/' . $lampiran->lampiran)) {
+                unlink('./uploads/' . $lampiran->lampiran);
+            }
+            $this->model->updateData('tbl_user', 'id_register', $id_user, ['foto_profil' => $upload_data['file_name']]);
+            $this->model->updateFotoProfil($id_user, ['lampiran' => $upload_data['file_name']]);
             $respon = [
                 'status' => 'success',
                 'message' => 'Foto berhasil diupload',

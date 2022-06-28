@@ -176,6 +176,13 @@ class Model extends CI_Model
         return $this->db->get()->result();
 
     }
+    // update foto user
+    public function updateFotoProfil($id_user, $object)
+    {
+        $this->db->where('id_user', $id_user);
+        $this->db->where('id_attachment', 1);
+        $this->db->update('tbl_lampiran', $object);
+    }
 }
 
 /* End of file Model.php */

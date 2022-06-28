@@ -23,7 +23,7 @@
 							</div>
 							<div class="col-md-3" style="text-align: center;">
 								<div class="col-md-12">
-									<div class="show-image"><img style="width: 150px;height: 150px;border-radius: 10px;" src='<?=$foto_profil == "" ? "https://howfix.net/wp-content/uploads/2018/02/sIaRmaFSMfrw8QJIBAa8mA-article.png" : base_url($foto_profil);?>'
+									<div class="show-image"><img style="width: 150px;height: 150px;border-radius: 10px;" src='<?=$foto_profil == "" ? "https://howfix.net/wp-content/uploads/2018/02/sIaRmaFSMfrw8QJIBAa8mA-article.png" : base_url('uploads/' . $foto_profil);?>'
 										alt=""></div>
 
 										<hr>
@@ -139,7 +139,7 @@
 				<div class="form-group">
 				  <label for="">Upload Foto</label>
 				  <input type="file" name="image" id="" class="form-control" placeholder="" aria-describedby="helpId">
-				  <small id="helpId" class="text-muted"></small>
+				  <small id="helpId" class="text-error efile"></small>
 				</div>
 			</div>
 			<div class="modal-footer">
@@ -162,8 +162,17 @@
 			dataType: "JSON",
 			success: function (response) {
 				if (response.status == 'success') {
+					swal({
+						title: "Berhasil",
+						text: "Foto berhasil diupload",
+						icon: "success",
+						button: "Tutup",
+					});
 					$("#modal-ubah-foto").modal('hide');
-					$("#foto").attr('src',response.data);
+					$(".show-image").html(`<img style="width: 150px;height: 150px;border-radius: 10px;" src='<?=base_url('uploads/')?>${response.data}'
+										alt="">`);
+				} else{
+					$(".efile").text(response.message);
 				}
 
 			},error:function(){
@@ -174,6 +183,6 @@
 					button: "Ok",
 				});
 			}
-		});
+		}).submit();
 	 }
 </script>
