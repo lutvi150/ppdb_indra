@@ -113,6 +113,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 						<a class="dropdown-item" href="<?=base_url('controller/menuprofil/visi_misi')?>">Visi Misi</a>
 						<a class="dropdown-item" href="<?=base_url('controller/menuprofil/ruangan_kelas')?>">Rungan Kelas</a>
+						<a class="dropdown-item" href="<?=base_url('controller/menuprofil/fasilitas_sekolah')?>">Fasilitas Sekolah</a>
+						<a class="dropdown-item" href="<?=base_url('controller/menuprofil/extrakurikuler')?>">Extrakurikuler</a>
 					</div>
 				</li>
 				<li class="nav-item dropdown">
@@ -143,7 +145,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 						<a class="dropdown-item" href="<?=base_url('controller/routePage/panduan')?>">Panduan</a>
 						<a class="dropdown-item" href="<?=base_url('controller/galeri')?>">Galeri</a>
+
+						<a class="dropdown-item" href="<?=base_url('controller/menuprofil/beasiswa')?>">Beasiswa</a>
 					</div>
+
 				</li>
 				<li>
 					<a href="<?=base_url('controller/routePage/register')?>" class="effect-3">Register</a>

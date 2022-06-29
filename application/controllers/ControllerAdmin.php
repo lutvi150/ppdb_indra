@@ -493,7 +493,8 @@ class ControllerAdmin extends CI_Controller
                 'judul' => 'syarat',
             ], [
                 'judul' => 'biaya',
-            ],
+            ], ['judul' => 'fasilitas_sekolah'],
+            ['judul' => 'extrakurikuler'],
         ];
         $this->model->insertBacth('tbl_informasi', $informasi);
         echo json_encode(['status' => 'success']);
@@ -509,6 +510,46 @@ class ControllerAdmin extends CI_Controller
             $data['informasi'] = $informasi;
             $this->load->view('admin/index', $data, false);
         }
+    }
+    public function dataImage(Type $var = null)
+    {
+        $data['content'] = 'admin/data_image';
+        $data['image'] = $this->model->getData('tbl_assets', 'id_assets', 'desc');
+        $this->load->view('admin/index', $data);
+    }
+    public function uploadDataImage(Type $var = null)
+    {
+
+        $config['upload_path'] = './uploads/';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['encrypt_name'] = true;
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload('assets')) {
+            $this->session->set_flashdata('error', 'Upload Error' . $this->upload->display_errors());
+            redirect('ControllerAdmin/dataImage');
+        } else {
+            $data = $this->upload->data();
+            $insert = [
+                'assets' => $data['file_name'],
+                'type' => $data['file_ext'],
+                'link' => base_url('uploads') . '/' . $data['file_name'],
+            ];
+            $this->model->insertData('tbl_assets', $insert);
+            $this->session->set_flashdata('success', 'Asset Berhasil di Tambahkan');
+            redirect('ControllerAdmin/dataImage');
+        }
+
+    }
+    public function deleteDataImage(Type $var = null)
+    {
+        $id = $this->input->post('id');
+        $checkFoto = $this->model->findData('tbl_assets', 'id_assets', $id)->row();
+        if (file_exists('./uploads/' . $checkFoto->assets)) {
+            unlink('./uploads/' . $checkFoto->assets);
+        }
+        $this->model->deleteData('tbl_assets', 'id_assets', $id);
+        echo json_encode(['status' => 'success']);
     }
     public function storeData(Type $var = null)
     {

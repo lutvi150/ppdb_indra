@@ -253,6 +253,34 @@ class ApiAdmin extends CI_Controller
         ];
         echo json_encode($respon);
     }
+    public function uploadAssets(Type $var = null)
+    {
+
+        $config['upload_path'] = './uploads/';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['encryption'] = true;
+
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload('assets')) {
+            $respon = [
+                'status' => 'failed',
+                'error' => $this->upload->display_errors(),
+            ];
+        } else {
+            $data = array('upload_data' => $this->upload->data());
+            $insert = [
+                'assets' => $this->upload->upload(),
+            ];
+            $respon = [
+                'status' => 'success',
+                'data' => $insert,
+            ];
+
+        }
+        echo json_encode($respon);
+
+    }
 }
 
 /* End of file  ApiAdmin.php */

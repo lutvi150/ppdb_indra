@@ -1,5 +1,6 @@
 <div class="mkl_footer">
-		<div class="sub-footer">
+<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15929.448686693646!2d98.6715802!3d3.50337!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x26d693a58ab83517!2sSekolah%20PNIEL%20BINA%20MISI!5e0!3m2!1sid!2sid!4v1656488162565!5m2!1sid!2sid" width="1000" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+<div class="sub-footer">
 			<div class="container">
 				<div class="mkls_footer_grid">
 					<div class="col-xs-4 mkls_footer_grid_left">
@@ -34,7 +35,7 @@
 		</div>
 		<div class="footer-copy-right">
 			<div class="container">
-				
+
 				<div class="footercopy-social">
 					<ul>
 						<li>
