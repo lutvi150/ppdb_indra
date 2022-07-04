@@ -116,6 +116,8 @@ class ApiAdmin extends CI_Controller
         $jenis_laporan = $this->input->post('jenis_laporan');
         $tahun = $this->input->post('tahun');
         $bulan = $this->input->post('bulan');
+        $tanggal_mulai = $this->input->post('tanggal_mulai');
+        $tanggal_selesai = $this->input->post('tanggal_selesai');
         if ($jenis_laporan == 'bulan') {
             $hari = cal_days_in_month(CAL_GREGORIAN, $bulan, $tahun);
             $data_siswa = $this->getDataSiswa($jenis_laporan, $tahun . '-' . $bulan);
@@ -144,6 +146,26 @@ class ApiAdmin extends CI_Controller
                 $tidak_lulus[] = $this->model->getDataChart($jenis_laporan, $tanggal, 'tidak lulus');
                 $peserta[] = $this->model->getDataChart($jenis_laporan, $tanggal, 'all');
 
+            }
+            $data = [
+                'label' => $label,
+                'lulus' => $lulus,
+                'tidak_lulus' => $tidak_lulus,
+                'peserta' => $peserta,
+                'data_siswa' => $data_siswa,
+            ];
+        } elseif ($jenis_laporan == 'mingguan') {
+            $data_siswa = $this->getDataSiswa($jenis_laporan, ['mulai' => $tanggal_mulai, 'selesai' => $tanggal_selesai]);
+            $date = new DatePeriod(
+                new DateTime($tanggal_mulai),
+                new DateInterval('P1D'),
+                new DateTime($tanggal_selesai)
+            );
+            foreach ($date as $key => $value) {
+                $label[] = $value->format('Y-m-d');
+                $lulus[] = $this->model->getDataChart($jenis_laporan, $value->format('Y-m-d'), 'lulus');
+                $tidak_lulus[] = $this->model->getDataChart($jenis_laporan, $value->format('Y-m-d'), 'tidak lulus');
+                $peserta[] = $this->model->getDataChart($jenis_laporan, $value->format('Y-m-d'), 'all');
             }
             $data = [
                 'label' => $label,
@@ -215,6 +237,49 @@ class ApiAdmin extends CI_Controller
             'message' => 'Data berhasil diupdate',
         ];
         echo json_encode($respon);
+    }
+    public function verifikasiAccount(Type $var = null)
+    {
+        $status_verifikasi = $this->input->post('status');
+        $id_user = $this->input->post('id_user');
+        $this->model->updateData('tbl_user', 'id_register', $id_user, ['verifikasi_email' => $status_verifikasi]);
+        $message = $status_verifikasi == 1 ? "Verifikasi account berhasil" : "Verifikasi berhasil di batalkan";
+        $respon = [
+            'status' => 'success',
+            'msg' => $message,
+            'id_user' => $id_user,
+            'status_verifikasi' => $status_verifikasi,
+            'data' => $this->model->findData('tbl_user', 'id_register', $id_user)->row(),
+        ];
+        echo json_encode($respon);
+    }
+    public function uploadAssets(Type $var = null)
+    {
+
+        $config['upload_path'] = './uploads/';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['encryption'] = true;
+
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload('assets')) {
+            $respon = [
+                'status' => 'failed',
+                'error' => $this->upload->display_errors(),
+            ];
+        } else {
+            $data = array('upload_data' => $this->upload->data());
+            $insert = [
+                'assets' => $this->upload->upload(),
+            ];
+            $respon = [
+                'status' => 'success',
+                'data' => $insert,
+            ];
+
+        }
+        echo json_encode($respon);
+
     }
 }
 

@@ -20,6 +20,7 @@
 			<div>
 				<button type="button" name="ubahpengumuman" class="btn-primary btn col-sm-1" onclick="storeData()">Edit </button>
 				<a href="<?=base_url('controllerAdmin/menuInformasi')?>" class="btn-primary btn col-sm-1">Batal</a>
+				<a href="<?=base_url('controllerAdmin/dataImage')?>" class="btn-info btn col-sm-1">Link Image</a>
 			</div>
 		</div>
     </form>

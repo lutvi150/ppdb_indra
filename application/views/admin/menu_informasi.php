@@ -27,7 +27,7 @@
 						<?php foreach ($data_informasi as $key => $value): ?>
 						<tr>
 							<td><?=$key + 1?></td>
-							<td><?=$value->judul?></td>
+							<td><?=str_replace("_", " ", $value->judul)?></td>
 							<td>
 								<a class="btn btn-info btn-xs" href="<?=base_url('controllerAdmin/editInformasi/' . $value->id_informasi)?>"><i class="fa fa-edit"></i></a>
 							</td>

@@ -1,3 +1,13 @@
+<style>
+	.aktif{
+		background-color: green;
+		color: white;
+	}
+	.nonaktif{
+		background-color: red;
+		color: white;
+	}
+</style>
 <body class="wide comments example dt-example-bootstrap">
 	<a name="top" id="top"></a>
 	<div class="fw-background">
@@ -13,43 +23,44 @@
 		</div>
 		<div class="fw-body">
 			<div class="content">
-<?php if ($this->session->flashdata('success')): ?>
-			<div class="alert alert-success" role="alert">
-				<strong>success</strong>
-				<p><?=$this->session->flashdata('success');?></p>
-			</div>
-			<?php endif;?>
 
 				<table id="table_id" class="display table table-bordered">
 					<thead>
 						<tr>
-							<th colspan="6"><button type="button" class="btn  btn-success col-md-2" onclick="tambah_data()" >Tambah Data</button></th><br><br>
-						</tr>
-						<tr>
 							<th>No</th>
+							<th>NISN</th>
 							<th>Nama Admin </th>
 							<th>Username</th>
-							<th>Level</th>
-							<th>Aksi</th>
+							<th>Status Akun</th>
+							<th>Action</th>
 						</tr>
 					</thead>
 
-					<?php foreach ($admin as $key => $value): ?>
+					<tbody>
+					<?php foreach ($user as $key => $value): ?>
 					<tr>
 
 						<td><?=$key + 1?></td>
+						<td><?=$value->nisn?></td>
 						<td><?=$value->nama;?></td>
 						<td><?=$value->username;?></td>
-						<td><?=$value->role?></td>
 						<td>
-
-							<a href="#" onclick="deleteData(<?=$value->id_register?>)" class="btn btn-danger btn-xs"><i
-									class="fa fa-trash-o	"></i></a>
-							<a href="#" class="btn btn-info btn-xs" onclick="editData(<?=$value->id_register?>,`<?=$value->username?>`,`<?=$value->nama?>`,`<?=$value->role?>`)"><i
-									class="fa fa-pencil-square"></i></a>
+							<?php if ($value->verifikasi_email == 1): ?>
+							<button type="button" class="badge badge-info" style="">Aktif</button>
+							<?php else: ?>
+							<button type="button" class="badge badge-danger">Tidak Aktif</button>
+							<?php endif;?>
 						</td>
+						<td>
+							<?php if ($value->verifikasi_email == 1): ?>
+								<button type="button" onclick="verifikasiAccount(0,'<?=$value->id_register?>')" class="btn btn-info btn-xs">Batalkan Verifikasi</button>
+								<?php else: ?>
+									<button type="button" onclick="verifikasiAccount(1,'<?=$value->id_register?>')" class="btn btn-warning btn-xs">Verifikasi Account</button>
+									<?php endif;?>
+								</td>
 					</tr>
 					<?php endforeach;?>
+					</tbody>
 				</table>
 			</div>
 		</div>
@@ -65,11 +76,10 @@
 				<h4 class="modal-title">Tambah Data</h4>
 			</div>
 			<div class="modal-body">
-				<form class="form-horizontal btn-warning" id="form-crud" method="POST" action="<?=base_url('ControllerAdmin/addAdmin')?>"
+				<form class="form-horizontal btn-warning" method="POST" action="aksi_simpan_admin.php"
 					enctype="multipart/form-data">
 					<div class="box-body">
 						<div class="form-group">
-							<input type="text" style="display:none ;" id="id_data_edit" class="form-control" name="id_register">
 							<label for="inputEmail3" class="col-sm-2 control-label">Nama Admin</label>
 							<div class="col-sm-10">
 								<input type="text" class="form-control" id="nama" name="nama" placeholder="">
@@ -102,37 +112,52 @@
 								<button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Batal</button>
 								<button type="submit" name="simpan" class="btn btn-success">Simpan</button>
 							</div>
-
-
-							<script>
-								function tambah_data() {
-									$("#form-crud").attr("action", "<?=base_url('ControllerAdmin/addAdmin')?>");
-									$("#modal-success").modal('show');
-								 }
-								 function editData(id,username,name,role) {
-									$("#form-crud").attr("action", "<?=base_url('ControllerAdmin/editAdmin')?>");
-									console.log(id);
-									$("#id_data_edit").val(id);
-									$("#username").val(username);
-									$("#nama").val(name);
-									$("#level").val(role);
-									$("#modal-success").modal('show');
-								  }
-								function deleteData(id) {
-									swal({
-										title: "Apakah anda yakin?",
-										text: "Data akan dihapus!",
-										icon: "warning",
-										buttons: true,
-										dangerMode: true,
-									}).then(
-										function(isConfirm) {
-											if (isConfirm) {
-												window.location.href = "<?=base_url('ControllerAdmin/deleteAdmin/')?>" + id;
-											} else {
-												swal("Data tidak dihapus!");
-											}
-										}
-									)
-								 }
-							</script>
+<script>
+	function verifikasiAccount(status,id_user) {
+		localStorage.setItem('status',status);
+		localStorage.setItem('id_user',id_user);
+		swal({
+			title: "Apakah anda yakin?",
+			text: "Setelah di verifikasi, anda tidak dapat mengubah data!",
+			icon: "warning",
+			buttons: true,
+			dangerMode: true,
+		}).then((willDelete) => {
+			if (willDelete) {
+				prosesVerifikasiAccount(localStorage.getItem('status'),localStorage.getItem('id_user'));
+			} else {
+				swal("Data tidak di verifikasi!");
+			}
+		});
+	 }
+	function prosesVerifikasiAccount(status,id_user) {
+		$.ajax({
+			type: "POST",
+			url: "<?=base_url('ApiAdmin/verifikasiAccount')?>",
+			data: {
+				status:status,
+				id_user:id_user
+			},
+			dataType: "JSON",
+			success: function (response) {
+				if (response.status=='success') {
+					swal({
+						title: "Berhasil!",
+						text: "Data berhasil di verifikasi!",
+						icon: "success",
+						button: "Ok!",
+					}).then(function() {
+						location.reload();
+					});
+				}
+			},error:function(){
+				swal({
+					title:"Gagal",
+					text:"Verifikasi Gagal,silahkan check server",
+					icon:"error",
+					button:"Ok",
+				})
+			}
+		});
+	 }
+</script>

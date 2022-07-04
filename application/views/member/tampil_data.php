@@ -23,10 +23,11 @@
 							</div>
 							<div class="col-md-3" style="text-align: center;">
 								<div class="col-md-12">
-									<img style="width: 150px;height: 150px;" src="<?=base_url();?>uploads/042042.jpg"
-										alt="">
+									<div class="show-image"><img style="width: 150px;height: 150px;border-radius: 10px;" src='<?=$foto_profil == "" ? "https://howfix.net/wp-content/uploads/2018/02/sIaRmaFSMfrw8QJIBAa8mA-article.png" : base_url('uploads/' . $foto_profil);?>'
+										alt=""></div>
+
 										<hr>
-									<button type="button" class="btn btn-success btn-xs"> <i class="fa fa-refresh"></i> Update Foto</button></div>
+									<button type="button" onclick="modalUpdateFoto()" class="btn btn-success btn-xs"> <i class="fa fa-refresh"></i> Update Foto</button></div>
 							</div>
 						</div>
 						<hr>
@@ -123,3 +124,65 @@
 		<!-- //contact form -->
 	</div>
 </section>
+<!-- Modal -->
+<div class="modal fade" id="modal-ubah-foto" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<form action="#" id="form-upload-foto" method="post">
+			<div class="modal-header">
+				<h5 class="modal-title">Upload Foto</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+			</div>
+			<div class="modal-body">
+				<div class="form-group">
+				  <label for="">Upload Foto</label>
+				  <input type="file" name="image" id="" class="form-control" placeholder="" aria-describedby="helpId">
+				  <small id="helpId" class="text-error efile"></small>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+				<button type="button" onclick="uploadFoto()" class="btn btn-primary">Simpan</button>
+			</div>
+			</form>
+		</div>
+	</div>
+</div>
+<script>
+	function modalUpdateFoto() {
+		$('#modal-ubah-foto').modal('show');
+	 }
+	function uploadFoto() {
+		$("#form-upload-foto").ajaxForm({
+			type: "POST",
+			url: "<?=base_url('ApiMember/updateFoto')?>",
+			data: {id_user:"<?=$this->session->userdata('id_user')?>"},
+			dataType: "JSON",
+			success: function (response) {
+				if (response.status == 'success') {
+					swal({
+						title: "Berhasil",
+						text: "Foto berhasil diupload",
+						icon: "success",
+						button: "Tutup",
+					});
+					$("#modal-ubah-foto").modal('hide');
+					$(".show-image").html(`<img style="width: 150px;height: 150px;border-radius: 10px;" src='<?=base_url('uploads/')?>${response.data}'
+										alt="">`);
+				} else{
+					$(".efile").text(response.message);
+				}
+
+			},error:function(){
+				swal({
+					title: "Gagal",
+					text: "Gagal Upload Foto",
+					icon: "error",
+					button: "Ok",
+				});
+			}
+		}).submit();
+	 }
+</script>

@@ -30,6 +30,14 @@ class ControllerAdmin extends CI_Controller
         $this->load->view('admin/index', $data, false);
 
     }
+    // data user
+    public function data_user(Type $var = null)
+    {
+        $data['user'] = $this->model->findData('tbl_user', 'role', 'siswa')->result();
+        $data['content'] = "admin/data_user";
+        $this->load->view('admin/index', $data, false);
+        // echo json_encode($data);
+    }
     public function dataAdmin(Type $var = null)
     {
         $data['admin'] = $this->model->findData('tbl_user', 'role', 'admin')->result();
@@ -41,20 +49,45 @@ class ControllerAdmin extends CI_Controller
         $insertData = [
             'nama' => $this->input->post('nama'),
             'username' => $this->input->post('username'),
-            'password' => $this->input->post('password'),
-            'level' => $this->input->post('level'),
+            'password' => hash('sha512', $this->input->post('password')),
+            'role' => $this->input->post('level'),
         ];
         $this->model->insertData('tbl_user', $insertData);
-        $this->session->set_flashdata('success', 'Data A cdmin berhasil di tambahkan');
+        $this->session->set_flashdata('success', 'Data Admin berhasil di tambahkan');
         redirect('controllerAdmin/dataAdmin');
 
     }
-    public function deleteAdmin(Type $var = null)
+    public function deleteAdmin($id_register)
     {
-        $id_register = $this->input->post('id_register');
-        $this->model->deleteData('tbl_user', $id_register, $id_register);
+        $this->model->deleteData('tbl_user', 'id_register', $id_register);
         $this->session->set_flashdata('success', 'Data berhasil di hapus');
         redirect('controllerAdmin/dataAdmin');
+    }
+    public function editAdmin(Type $var = null)
+    {
+        $id = $this->input->post('id_register');
+        $name = $this->input->post('nama');
+        $username = $this->input->post('username');
+        $password = $this->input->post('password');
+        $level = $this->input->post('level');
+        if ($password == '') {
+            $insert = [
+                'nama' => $name,
+                'username' => $username,
+                'role' => $level,
+            ];
+        } else {
+            $insert = [
+                'nama' => $name,
+                'username' => $username,
+                'password' => hash('sha512', $password),
+                'role' => $level,
+            ];
+        }
+        $this->model->updateData('tbl_user', 'id_register', $id, $insert);
+        $this->session->set_flashdata('success', 'edit data berhasil');
+        redirect('controllerAdmin/dataAdmin');
+        // echo json_encode($this->input->post());
     }
     public function editData(Type $var = null)
     {
@@ -84,6 +117,7 @@ class ControllerAdmin extends CI_Controller
                     'dokumen' => $this->model->findData('tbl_lampiran', 'id_user', $value->id_user)->result(),
                     'id_user' => $value->id_user,
                     'kelulusan' => $value->kelulusan,
+                    'tgl_daftar' => $value->tgl_daftar,
                 ];
             }
         }
@@ -459,7 +493,8 @@ class ControllerAdmin extends CI_Controller
                 'judul' => 'syarat',
             ], [
                 'judul' => 'biaya',
-            ],
+            ], ['judul' => 'fasilitas_sekolah'],
+            ['judul' => 'extrakurikuler'],
         ];
         $this->model->insertBacth('tbl_informasi', $informasi);
         echo json_encode(['status' => 'success']);
@@ -475,6 +510,46 @@ class ControllerAdmin extends CI_Controller
             $data['informasi'] = $informasi;
             $this->load->view('admin/index', $data, false);
         }
+    }
+    public function dataImage(Type $var = null)
+    {
+        $data['content'] = 'admin/data_image';
+        $data['image'] = $this->model->getData('tbl_assets', 'id_assets', 'desc');
+        $this->load->view('admin/index', $data);
+    }
+    public function uploadDataImage(Type $var = null)
+    {
+
+        $config['upload_path'] = './uploads/';
+        $config['allowed_types'] = 'gif|jpg|png|jpeg';
+        $config['encrypt_name'] = true;
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload('assets')) {
+            $this->session->set_flashdata('message', 'Upload Error' . $this->upload->display_errors());
+            redirect('ControllerAdmin/dataImage');
+        } else {
+            $data = $this->upload->data();
+            $insert = [
+                'assets' => $data['file_name'],
+                'type' => $data['file_ext'],
+                'link' => base_url('uploads') . '/' . $data['file_name'],
+            ];
+            $this->model->insertData('tbl_assets', $insert);
+            $this->session->set_flashdata('message', 'Asset Berhasil di Tambahkan');
+            redirect('ControllerAdmin/dataImage');
+        }
+
+    }
+    public function deleteDataImage(Type $var = null)
+    {
+        $id = $this->input->post('id');
+        $checkFoto = $this->model->findData('tbl_assets', 'id_assets', $id)->row();
+        if (file_exists('./uploads/' . $checkFoto->assets)) {
+            unlink('./uploads/' . $checkFoto->assets);
+        }
+        $this->model->deleteData('tbl_assets', 'id_assets', $id);
+        echo json_encode(['status' => 'success']);
     }
     public function storeData(Type $var = null)
     {

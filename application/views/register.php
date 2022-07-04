@@ -26,8 +26,8 @@
 						<span class="text-error enama_lengkap"></span>
 					</div>
 					<div class="">
-						<p>Email</p>
-						<input class="form-control" type="email" name="user" id="user" placeholder="Masukan Username" required="">
+						<p>Username</p>
+						<input class="form-control" type="username" name="user" id="user" placeholder="Masukan Username" required="">
 						<span class="text-error euser"></span>
 					</div>
 					<div class="">

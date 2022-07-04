@@ -14,8 +14,8 @@
         <div class="login-form">
 				<form method="POST" action="#" enctype="multipart/form-data">
 					<div class="">
-						<p>Email </p>
-                        <input type="email"  class="form-control" id="username" name="username" placeholder="">
+						<p>Username</p>
+                        <input type="username"  class="form-control" id="username" name="username" placeholder="">
 						<span class="text-error eusername"></span>
 					</div>
 					<div class="">
@@ -62,11 +62,11 @@
 					$(".eusername").text(response.errors.username);
 					$(".epassword").text(response.errors.password);
 				} else if (response.status=='username not found') {
-					$(".username").text(response.errors.username);
+					$(".eusername").text(response.errors.username);
 				} else if(response.status=='email not verified'){
 					swal({
-						title: "Email Belum Diverifikasi",
-						text: "Silahkan Cek Email Anda",
+						title: "Akun Belum Diverifikasi",
+						text: "Silahkan Lapor Admin",
 						icon: "warning",
 						button: "Ok",
 					});

@@ -138,7 +138,7 @@ class Model extends CI_Model
         $this->db->from('tbl_pendaftar');
         if ($jenis == 'tahun') {
             $this->db->where('SUBSTRING(tgl_daftar,1,7)', $tanggal);
-        } else if ($jenis == 'bulan') {
+        } else if ($jenis == 'bulan' || $jenis == 'mingguan') {
             $this->db->where('tgl_daftar', $tanggal);
         }
         if ($status !== 'all') {
@@ -151,15 +151,38 @@ class Model extends CI_Model
         $this->db->from('tbl_pendaftar');
         if ($jenis == 'tahun') {
             $this->db->where('SUBSTRING(tgl_daftar,1,4)', $tanggal);
-        } else if ($jenis == 'bulan') {
+        } elseif ($jenis == 'bulan') {
             $this->db->where('SUBSTRING(tgl_daftar,1,7)', $tanggal);
+        } elseif ($jenis == 'mingguan') {
+            $this->db->where(' tgl_daftar >= date("' . $tanggal['mulai'] . '")');
+            $this->db->where('tgl_daftar <= date("' . $tanggal['selesai'] . '")');
         }
+
         // if ($status !== 'all') {
         //     $this->db->where('kelulusan', $status);
         // }
         return $this->db->get()->result();
     }
+    public function filterData($tahun)
+    {
+        $data = $this->model->filterByYear($tahun);
+        echo json_encode($data);
+    }
+    public function filterByYear($tahun)
+    {
+        $this->db->from('log_tamu');
+        $this->db->where('SUBSTR(check_in,1,4)', $tahun);
+        $this->db->join('tamu', 'log_tamu.uid = tamu.uid');
+        return $this->db->get()->result();
 
+    }
+    // update foto user
+    public function updateFotoProfil($id_user, $object)
+    {
+        $this->db->where('id_user', $id_user);
+        $this->db->where('id_attachment', 1);
+        $this->db->update('tbl_lampiran', $object);
+    }
 }
 
 /* End of file Model.php */

@@ -55,7 +55,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<div class="bottom_header_right">
 				<div class="bottom-social-icons">
-					<a class="facebook" href="#">
+					<!-- <a class="facebook" href="#">
 						<span class="fa fa-facebook"></span>
 					</a>
 					<a class="twitter" href="#">
@@ -66,7 +66,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</a>
 					<a class="linkedin" href="#">
 						<span class="fa fa-linkedin"></span>
-					</a>
+					</a> -->
 				</div>
 
 				<div class="clearfix"> </div>
@@ -100,8 +100,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 	<!--/.navbar-header-->
 	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-		<nav class="link-effect-2" id="link-effect-2">
-			<ul class="navbar-nav mr-auto">
+		<nav class="link-effect-2" id="link-effect-2" style="background-color:rgb(222 209 209 / 73%) ;">
+			<ul class="navbar-nav mr-auto" style="background-color:rgb(222 209 209 / 73%);">
 				<li class="active">
 					<a href="<?=base_url()?>" class="effect-2">Home</a>
 				</li>
@@ -113,6 +113,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 						<a class="dropdown-item" href="<?=base_url('controller/menuprofil/visi_misi')?>">Visi Misi</a>
 						<a class="dropdown-item" href="<?=base_url('controller/menuprofil/ruangan_kelas')?>">Rungan Kelas</a>
+						<a class="dropdown-item" href="<?=base_url('controller/menuprofil/fasilitas_sekolah')?>">Fasilitas Sekolah</a>
+						<a class="dropdown-item" href="<?=base_url('controller/menuprofil/extrakurikuler')?>">Extrakurikuler</a>
 					</div>
 				</li>
 				<li class="nav-item dropdown">
@@ -143,7 +145,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 						<a class="dropdown-item" href="<?=base_url('controller/routePage/panduan')?>">Panduan</a>
 						<a class="dropdown-item" href="<?=base_url('controller/galeri')?>">Galeri</a>
+
+						<a class="dropdown-item" href="<?=base_url('controller/menuprofil/beasiswa')?>">Beasiswa</a>
 					</div>
+
 				</li>
 				<li>
 					<a href="<?=base_url('controller/routePage/register')?>" class="effect-3">Register</a>

@@ -8,7 +8,7 @@
 <div>
   <tr  align="center">
   <table style="width:98%" border="0">
-  <th><img src="<?=base_url('assets/member/images/logo7.jpg')?>" width="150px" height="150px" align="left"> </th>
+  <th><img src="<?=base_url('assets/member/images/303.jpg')?>" width="150px" height="150px" align="left"> </th>
             <td align="center" colspan="3"><h3>PEMERINTAH KOTA MEDAN<br>DINAS PENDIDIKAN DAN KEBUDAYAAN<br> SMP Swasta PNIEL MEDAN<br>
             </h3>Jl. Perjuangan Gg. Pisang No. 1 Pasar IV, Deli Tua, Kec. Namo Rambe
             </td>

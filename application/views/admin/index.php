@@ -96,9 +96,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								Admin</a>
 						</li>
 
-						<!-- <li>
-							<a href="<?=base_url('ControllerAdmin/data_member')?>"><i class="fa fa-users nav_icon"></i>Data Member</a>
-						</li> -->
+						<li>
+							<a href="<?=base_url('ControllerAdmin/data_user')?>"><i class="fa fa-users nav_icon"></i>Data User</a>
+						</li>
 
 						<li>
 							<a href="<?=base_url('ControllerAdmin/data_pendaftar')?>"><i
