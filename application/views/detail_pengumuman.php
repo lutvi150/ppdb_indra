@@ -18,7 +18,7 @@
                     <img witdh="500px" height="290px" src="<?=base_url('uploads/' . $pengumuman->foto_pengumuman)?>" alt="" />
             </div>
                 </div>
-                    <div class="col-md-7 agileits-about-right">
+                    <div class="col-md-12 agileits-about-right">
                         <h4 style="color:black; Font-size:20"><?=$pengumuman->judul_pengumuman . "," . $date?></h4>
                             <p align="justify"  style="color:black; Font-Family:Times New Roman" ><?=$pengumuman->isi_pengumuman;?></p>
                                 </p>

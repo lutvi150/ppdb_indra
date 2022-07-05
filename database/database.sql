@@ -1,0 +1,545 @@
+-- phpMyAdmin SQL Dump
+-- version 4.9.7
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost:3306
+-- Generation Time: Jul 05, 2022 at 08:48 AM
+-- Server version: 10.3.35-MariaDB
+-- PHP Version: 7.4.29
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `cloverte_kiki`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_assets`
+--
+
+CREATE TABLE `tbl_assets` (
+  `id_assets` int(11) NOT NULL,
+  `assets` varchar(255) DEFAULT NULL,
+  `link` text DEFAULT NULL,
+  `type` varchar(30) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tbl_assets`
+--
+
+INSERT INTO `tbl_assets` (`id_assets`, `assets`, `link`, `type`) VALUES
+(2, 'e63fa135766a4ff696a7380023d67172.png', 'http://localhost:8888/ppdb_indra/uploads/e63fa135766a4ff696a7380023d67172.png', '.png'),
+(3, '98bd4946248eb1784b960b4669b7103d.png', 'http://localhost:8888/ppdb_indra/uploads/98bd4946248eb1784b960b4669b7103d.png', '.png'),
+(4, 'af0521f82bcb996b687e0e4f98f97566.png', 'http://localhost:8888/ppdb_indra/uploads/af0521f82bcb996b687e0e4f98f97566.png', '.png'),
+(6, '8b80ba1abe8b79f193bb823277a1bda7.PNG', 'https://ppdbpniel.cloverteam.my.id/uploads/8b80ba1abe8b79f193bb823277a1bda7.PNG', '.PNG'),
+(7, '93b2a19f60becea4ac1a6e22a6f31ae3.png', 'https://ppdbpniel.cloverteam.my.id/uploads/93b2a19f60becea4ac1a6e22a6f31ae3.png', '.png'),
+(8, 'fcde945238f426eab84a0059f3db5b44.png', 'https://ppdbpniel.cloverteam.my.id/uploads/fcde945238f426eab84a0059f3db5b44.png', '.png'),
+(9, 'edd7e5c25d4623175e383949f4504821.PNG', 'https://ppdbpniel.cloverteam.my.id/uploads/edd7e5c25d4623175e383949f4504821.PNG', '.PNG'),
+(10, 'cc0afba9410c4bd3d0d36364141ebac7.PNG', 'https://ppdbpniel.cloverteam.my.id/uploads/cc0afba9410c4bd3d0d36364141ebac7.PNG', '.PNG'),
+(13, '34df3563c1989a06154dd52deffdaa4d.jpeg', 'https://ppdb.cloverteam.my.id/uploads/34df3563c1989a06154dd52deffdaa4d.jpeg', '.jpeg'),
+(14, 'f589889fedf5d8975c3ab8b88b17429b.jpeg', 'https://ppdb.cloverteam.my.id/uploads/f589889fedf5d8975c3ab8b88b17429b.jpeg', '.jpeg'),
+(15, 'bc967aa45690f8620cf5e6589ae5d192.jpeg', 'https://ppdbpniel.cloverteam.my.id/uploads/bc967aa45690f8620cf5e6589ae5d192.jpeg', '.jpeg'),
+(19, 'd64cedb783f19d6f9e286b43fd5b1262.jpeg', 'https://ppdb.cloverteam.my.id/uploads/d64cedb783f19d6f9e286b43fd5b1262.jpeg', '.jpeg'),
+(20, '47b3dbab41b4854b66f36bf154249aed.jpeg', 'https://ppdb.cloverteam.my.id/uploads/47b3dbab41b4854b66f36bf154249aed.jpeg', '.jpeg'),
+(21, '2027817ec35832cb682a60c17085d5d8.jpeg', 'https://ppdb.cloverteam.my.id/uploads/2027817ec35832cb682a60c17085d5d8.jpeg', '.jpeg'),
+(22, 'e710c7dd173313b698cea9276379da68.jpeg', 'https://ppdb.cloverteam.my.id/uploads/e710c7dd173313b698cea9276379da68.jpeg', '.jpeg'),
+(23, '893fdc744685fed930253039045ec846.jpeg', 'https://ppdb.cloverteam.my.id/uploads/893fdc744685fed930253039045ec846.jpeg', '.jpeg'),
+(24, '16364226eea7fac47ced79d4c677d66c.jpeg', 'https://ppdb.cloverteam.my.id/uploads/16364226eea7fac47ced79d4c677d66c.jpeg', '.jpeg'),
+(25, '6e12a1c52a36a9a480da2ff02a01aabe.jpeg', 'https://ppdb.cloverteam.my.id/uploads/6e12a1c52a36a9a480da2ff02a01aabe.jpeg', '.jpeg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_galeri`
+--
+
+CREATE TABLE `tbl_galeri` (
+  `id_foto` int(11) NOT NULL,
+  `nama_foto` varchar(45) NOT NULL,
+  `foto_galeri` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_galeri`
+--
+
+INSERT INTO `tbl_galeri` (`id_foto`, `nama_foto`, `foto_galeri`) VALUES
+(2, 'Labor', '2955877_orig.png'),
+(4, 'babababa', '042.jpg'),
+(5, '', '67fa68a2b805879824d67789c4f3afd5.png');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_informasi`
+--
+
+CREATE TABLE `tbl_informasi` (
+  `id_informasi` int(11) NOT NULL,
+  `judul` varchar(100) DEFAULT NULL,
+  `isi` text DEFAULT NULL,
+  `last_update` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_informasi`
+--
+
+INSERT INTO `tbl_informasi` (`id_informasi`, `judul`, `isi`, `last_update`) VALUES
+(1, 'visi_misi', '<p>VISI MISI SEKOLAH PNIEL MEDAN DAN TUJUAN&nbsp;</p>\n\n<p>VISI&nbsp;</p>\n\n<p>Sekolah Kristen yang unggul dalam menjadikan siswa berilmu,beriman dan berkarya&nbsp;</p>\n\n<p>MISI</p>\n\n<p>1. Melaksanakan pendidikan yang berkualitas sehinnga para siswa memiliki kemampuan akademik&nbsp;</p>\n\n<p>2. Melaksanakan pendidikan karakter terhadap siswa sesuai ajaran alkitab.</p>\n\n<p>3. Melaksanakan pendidikan agar siswa memilik karya</p>\n\n<p>&nbsp;</p>\n', NULL),
+(2, 'ruangan_kelas', '<p><strong>RUANGAN KELAS 1</strong></p>\n\n<p><strong><img alt=\"\" src=\"https://ppdb.cloverteam.my.id/uploads/f589889fedf5d8975c3ab8b88b17429b.jpeg\" style=\"height:360px; width:640px\" /></strong></p>\n\n<p>&nbsp;</p>\n\n<p><strong>RUANGAN KELAS 2</strong></p>\n\n<p><img alt=\"RUANGAN KELAS 1\" src=\"https://ppdb.cloverteam.my.id/uploads/34df3563c1989a06154dd52deffdaa4d.jpeg\" style=\"height:360px; width:640px\" /></p>\n\n<p>&nbsp;</p>\n\n<p><strong>RUANGAN KELAS 3</strong></p>\n\n<p><img alt=\"\" src=\"https://ppdbpniel.cloverteam.my.id/uploads/bc967aa45690f8620cf5e6589ae5d192.jpeg\" style=\"height:360px; width:640px\" /></p>\n', NULL),
+(3, 'pengumuman', '<p>TEST</p>\n', NULL),
+(4, 'kegiatan', NULL, NULL),
+(5, 'syarat', '<p><strong>Syarat Pendaftaran</strong></p>\n\n<p><strong>1. FC ijazah&nbsp;</strong></p>\n\n<p><strong>2. Fc akte lahir</strong></p>\n\n<p><strong>3. Fc kartu keluarga&nbsp;</strong></p>\n\n<p><strong>4. Pasphoto 2X3 &amp;3X4 masing masing 4 lembar</strong></p>\n', NULL),
+(6, 'biaya', '<p><strong>1.UANG PENDAFTARAN SEBESAR Rp.100,00,</strong></p>\n\n<p><strong>2.UANG BULANAN Rp.110.000,</strong></p>\n\n<p><strong>3.SERAGAM 1 PASANG+BAJU OLARAGA Rp.450.000,</strong></p>\n\n<p><strong>4.UANG PENGEMBANGAN PENDIDIKAN Rp .150.000,</strong></p>\n\n<p>&nbsp;</p>\n', NULL),
+(7, 'fasilitas_sekolah', '<p><strong>1.PERPUSTAKAAN</strong></p>\n\n<p><strong><img alt=\"1.PERPUSTAKAAN\" src=\"https://ppdb.cloverteam.my.id/uploads/893fdc744685fed930253039045ec846.jpeg\" style=\"height:480px; width:640px\" /></strong></p>\n\n<p><strong>2.RUANGAN KOMPUTER</strong></p>\n\n<p>&nbsp;</p>\n\n<p><strong><img alt=\"2.RUANGAN KOMPUTER\" src=\"https://ppdb.cloverteam.my.id/uploads/6e12a1c52a36a9a480da2ff02a01aabe.jpeg\" style=\"height:480px; width:640px\" /></strong></p>\n\n<p><strong><img alt=\"\" src=\"https://ppdb.cloverteam.my.id/uploads/16364226eea7fac47ced79d4c677d66c.jpeg\" style=\"height:480px; width:640px\" /></strong></p>\n\n<p>&nbsp;</p>\n\n<p>&nbsp;</p>\n\n<p>&nbsp;</p>\n', NULL),
+(8, 'extrakurikuler', '<p>&nbsp;</p>\n\n<p><strong>1.TEKONDO</strong></p>\n\n<p><strong><img alt=\"\" src=\"https://ppdb.cloverteam.my.id/uploads/d64cedb783f19d6f9e286b43fd5b1262.jpeg\" style=\"height:480px; width:640px\" /></strong></p>\n\n<p>&nbsp;</p>\n\n<p><strong><img alt=\"\" src=\"https://ppdb.cloverteam.my.id/uploads/2027817ec35832cb682a60c17085d5d8.jpeg\" style=\"height:360px; width:640px\" /></strong></p>\n\n<p>&nbsp;</p>\n\n<p><strong>2. PENDALAMAN ALKITAB<img alt=\"2.PENDALAMAN ALKITAB\" src=\"https://ppdb.cloverteam.my.id/uploads/e710c7dd173313b698cea9276379da68.jpeg\" style=\"height:492px; width:1040px\" /></strong></p>\n', NULL),
+(9, 'beasiswa', '<p><strong>Anak pendeta discount uang sekolah sampai tamat&nbsp;</strong></p>\n\n<p><strong>Rangking I-III gratis uang sekolah selama 3 bulan&nbsp;&nbsp;</strong></p>\n', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_lampiran`
+--
+
+CREATE TABLE `tbl_lampiran` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `id_attachment` int(11) DEFAULT NULL,
+  `id_user` int(11) DEFAULT NULL,
+  `lampiran` text DEFAULT NULL,
+  `type` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tbl_lampiran`
+--
+
+INSERT INTO `tbl_lampiran` (`id`, `id_attachment`, `id_user`, `lampiran`, `type`) VALUES
+(6, 1, 17, '2a41ae3902cf8af6d02e6a32d3c2a519.jpg', '.jpg'),
+(7, 2, 17, 'c62eecf1b6f1bdd09372409b765511e5.jpg', '.jpg'),
+(8, 3, 17, 'cb5bd5b7125532427a611399c4208443.png', '.png'),
+(9, 1, 18, '3bff4e5ef24967d20e813ac8170fc2f6.png', '.png'),
+(10, 2, 18, '971b0a711d57f23cab24d931f001e02a.pdf', '.pdf'),
+(11, 3, 18, '532f0fc0f91fd52aa0b6fd096a3bf9bd.pdf', '.pdf'),
+(12, 1, 19, '2cd1549ad48a1ca1389a1f809e2670a4.jpg', '.jpg'),
+(13, 2, 19, '3b3af3f707fd64fdeb461c33ef5c0f72.jpg', '.jpg'),
+(14, 3, 19, 'cde09ba533a35c57765b7b3511c4c636.jpg', '.jpg'),
+(15, 1, 20, '08b6bc7e86b96c68558dd87ba5b5a597.jpg', '.jpg'),
+(16, 2, 20, '8822e51b7dfa8a7b88962f41259e7cd4.jpg', '.jpg'),
+(17, 3, 20, 'd4340e5687a7c05b453306b8b7ffa2bf.png', '.png'),
+(21, 1, 22, '558d37c6def1f9c4cc0007d4f81c430f.png', '.png'),
+(22, 2, 22, '8bd48e7066206c9225601040028b8939.png', '.png'),
+(23, 3, 22, '5d6c2ad8cad885deccd01c23f5bb548b.png', '.png'),
+(24, 1, 23, '13e827ee805570b7a5abd8627456d6d4.png', '.png'),
+(25, 2, 23, 'a602571926341412f5915749c5ae6f22.png', '.png'),
+(26, 3, 23, '9420be8c75318c3fea0f068333910395.png', '.png'),
+(27, 1, 25, 'f92e205776a49699f6135438a08146f2.jpg', '.jpg'),
+(28, 2, 25, '32fa4fb384bda63d90d683c5a2ded9c8.jpg', '.jpg'),
+(29, 3, 25, '803945cd7cb15957aa8502c7434c63bb.png', '.png'),
+(30, 1, 32, '421cc7b5025a44ec76aced32f3032989.jpg', '.jpg'),
+(31, 2, 32, 'a6a554919ca2db19bb487bc2d931dfef.jpg', '.jpg'),
+(32, 3, 32, '3a820cb56183913645f2c25aed1ee68d.jpg', '.jpg'),
+(33, 1, 33, '00b9225f8e9c6ec9d6b04578d79ca7d7.jpg', '.jpg'),
+(34, 2, 33, '3448e8ad5b0dfefa7b1ad7f61eace25d.jpg', '.jpg'),
+(35, 3, 33, 'e829497fbf112518f3e5cb1f051bd224.jpg', '.jpg'),
+(36, 1, 41, 'a75880c482daebf96c5c4405f9e048bc.jpg', '.jpg'),
+(37, 2, 41, '66d111d49c563cae6ead5e60d8c701ad.jpg', '.jpg'),
+(38, 3, 41, 'e8d5538a0de1e95f26ced836e2df1256.jpg', '.jpg'),
+(39, 1, 44, '26c0e634fe46d50df2e0d474aa3fc104.jpg', '.jpg'),
+(40, 2, 44, '33827ecbaf21794b50092cacd4582bc2.jpg', '.jpg'),
+(41, 3, 44, '06eaadef1a525586d3733b94739d23a6.jpg', '.jpg'),
+(42, 1, 45, '87825a4e452fcc79e8e1f5d2ffe61190.jpg', '.jpg'),
+(43, 2, 45, '9a836c8b5e945707adc94b1edc92b7d9.jpg', '.jpg'),
+(44, 3, 45, '5d0e867d29c1247b8e76a2fb85526553.jpg', '.jpg'),
+(45, 1, 46, '80972fc9d624e52ac301dd79f8bdde6a.png', '.png'),
+(46, 2, 46, 'da42d5599ab82d134538e94620e982aa.png', '.png'),
+(47, 3, 46, '96df19ab1ac2e6b7757517f0532d4128.png', '.png');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_nilai`
+--
+
+CREATE TABLE `tbl_nilai` (
+  `id_nilai` int(11) UNSIGNED NOT NULL,
+  `jenis_nilai` varchar(200) DEFAULT NULL,
+  `id_user` int(11) DEFAULT NULL,
+  `nilai` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tbl_nilai`
+--
+
+INSERT INTO `tbl_nilai` (`id_nilai`, `jenis_nilai`, `id_user`, `nilai`) VALUES
+(49, 'ipa', 14, 90),
+(50, 'matematika', 14, 80),
+(51, 'bahasa_inggris', 14, 90),
+(136, 'ipa', 17, 70),
+(137, 'matematika', 17, 79),
+(138, 'bahasa_inggris', 17, 95),
+(187, 'ipa', NULL, NULL),
+(188, 'matematika', NULL, NULL),
+(189, 'bahasa_inggris', NULL, NULL),
+(286, 'ipa', 18, 89),
+(287, 'matematika', 18, 20),
+(288, 'bahasa_inggris', 18, 90),
+(289, 'bahasa_indonesia', 18, 20),
+(290, 'ipa', 15, 80),
+(291, 'matematika', 15, 80),
+(292, 'bahasa_inggris', 15, 80),
+(293, 'bahasa_indonesia', 15, 80),
+(338, 'ipa', 19, 70),
+(339, 'matematika', 19, 88),
+(340, 'bahasa_inggris', 19, 89),
+(341, 'bahasa_indonesia', 19, 78),
+(527, 'ipa', 20, 78),
+(528, 'matematika', 20, 70),
+(529, 'bahasa_inggris', 20, 88),
+(530, 'bahasa_indonesia', 20, 88),
+(599, 'ipa', 21, 77),
+(600, 'matematika', 21, 79),
+(601, 'bahasa_inggris', 21, 86),
+(602, 'bahasa_indonesia', 21, 77),
+(627, 'ipa', 22, 90),
+(628, 'matematika', 22, 80),
+(629, 'bahasa_inggris', 22, 70),
+(630, 'bahasa_indonesia', 22, 90),
+(643, 'ipa', 23, 80),
+(644, 'matematika', 23, 70),
+(645, 'bahasa_inggris', 23, 90),
+(646, 'bahasa_indonesia', 23, 70),
+(671, 'ipa', 25, 60),
+(672, 'matematika', 25, 66),
+(673, 'bahasa_inggris', 25, 66),
+(674, 'bahasa_indonesia', 25, 60),
+(687, 'ipa', 32, 70),
+(688, 'matematika', 32, 70),
+(689, 'bahasa_inggris', 32, 60),
+(690, 'bahasa_indonesia', 32, 80),
+(755, 'ipa', 33, 50),
+(756, 'matematika', 33, 55),
+(757, 'bahasa_inggris', 33, 59),
+(758, 'bahasa_indonesia', 33, 50),
+(783, 'ipa', 41, 60),
+(784, 'matematika', 41, 60),
+(785, 'bahasa_inggris', 41, 77),
+(786, 'bahasa_indonesia', 41, 70),
+(811, 'ipa', 44, 70),
+(812, 'matematika', 44, 80),
+(813, 'bahasa_inggris', 44, 80),
+(814, 'bahasa_indonesia', 44, 70),
+(831, 'ipa', 45, 70),
+(832, 'matematika', 45, 70),
+(833, 'bahasa_inggris', 45, 70),
+(834, 'bahasa_indonesia', 45, 70),
+(879, 'ipa', 46, 80),
+(880, 'matematika', 46, 0),
+(881, 'bahasa_inggris', 46, 0),
+(882, 'bahasa_indonesia', 46, 80);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_pendaftar`
+--
+
+CREATE TABLE `tbl_pendaftar` (
+  `id_pendaftaran` int(11) NOT NULL,
+  `id_register` int(11) NOT NULL,
+  `no_pendaftaran` varchar(30) NOT NULL,
+  `tgl_daftar` date NOT NULL,
+  `nisn` varchar(30) NOT NULL DEFAULT '',
+  `nama` varchar(30) NOT NULL,
+  `tempat_lahir` text NOT NULL,
+  `tgl_lahir` date NOT NULL,
+  `jenis_kelamin` varchar(30) NOT NULL,
+  `agama` varchar(34) NOT NULL,
+  `asal_sekolah` varchar(30) NOT NULL,
+  `nm_ayah` varchar(50) NOT NULL,
+  `nm_ibu` varchar(50) NOT NULL,
+  `pekerjaan` varchar(50) NOT NULL,
+  `bahasa_indonesia` varchar(56) NOT NULL,
+  `pas_foto` text NOT NULL,
+  `foto_skhu` text NOT NULL,
+  `alamat` text NOT NULL,
+  `no_tlp` varchar(30) NOT NULL,
+  `konfirmasi` varchar(50) NOT NULL,
+  `id_user` int(11) DEFAULT NULL,
+  `status` varchar(50) DEFAULT NULL,
+  `anak_ke` int(11) DEFAULT NULL,
+  `jumlah_saudara` int(11) DEFAULT NULL,
+  `penghasilan_ayah` bigint(30) DEFAULT NULL,
+  `penghasilan_ibu` bigint(30) DEFAULT NULL,
+  `pekerjaan_ayah` varchar(200) DEFAULT NULL,
+  `pekerjaan_ibu` varchar(200) DEFAULT NULL,
+  `nilai_rata_rata` int(11) DEFAULT NULL,
+  `kelulusan` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_pendaftar`
+--
+
+INSERT INTO `tbl_pendaftar` (`id_pendaftaran`, `id_register`, `no_pendaftaran`, `tgl_daftar`, `nisn`, `nama`, `tempat_lahir`, `tgl_lahir`, `jenis_kelamin`, `agama`, `asal_sekolah`, `nm_ayah`, `nm_ibu`, `pekerjaan`, `bahasa_indonesia`, `pas_foto`, `foto_skhu`, `alamat`, `no_tlp`, `konfirmasi`, `id_user`, `status`, `anak_ke`, `jumlah_saudara`, `penghasilan_ayah`, `penghasilan_ibu`, `pekerjaan_ayah`, `pekerjaan_ibu`, `nilai_rata_rata`, `kelulusan`) VALUES
+(11, 0, 'REG-20220521-22', '2022-05-21', '11122', 'indra', 'Medan', '2022-05-18', 'L', 'Islam', '5', 'A. S', 'Ibu', '', '', '', '', 'Medan City', '0852912892', '0', 22, 'process', 2, 5, 120000, 55550, 'A. S', 'IRT', 83, 'lulus'),
+(12, 0, 'REG-20220525-23', '2022-05-25', '20110249', 'mei', 'Medan', '2000-05-25', 'L', 'Kristen', 'SD Cinta Rakyat', 'Muttadin', 'Hermi', '', '', '', '', 'Binjai', '08123412445', '0', 23, 'process', 2, 5, 2000000, 500000, 'Petani', 'ART', 78, 'lulus'),
+(13, 0, '0', '2022-06-06', '222222', 'indra', '0', '2022-06-06', '-', '-', '-', '-', '-', '', '', '', '', '-', '-', '-', 24, 'draft', 0, 0, 0, 0, '0', '0', NULL, NULL),
+(14, 0, 'REG-20220606-25', '2022-06-06', '20222022', 'reh', 'Medan', '2022-06-06', 'L', 'Hindu', '4', 'Rea', 'Ira', '', '', '', '', 'MEDAN', '085132165425', '0', 25, 'process', 2, 4, 5000000, 50000, 'Rea', 'IRT', 63, 'lulus'),
+(15, 0, '0', '2022-06-07', '12345678', 'Budi Hartono', '0', '2022-06-07', '-', '-', '-', '-', '-', '', '', '', '', '-', '-', '-', 26, 'draft', 0, 0, 0, 0, '0', '0', NULL, NULL),
+(16, 0, '0', '2022-06-07', '00023893', 'Lestari', '0', '2022-06-07', '-', '-', '-', '-', '-', '', '', '', '', '-', '-', '-', 27, 'draft', 0, 0, 0, 0, '0', '0', NULL, NULL),
+(17, 0, '0', '2022-06-07', '10186897', 'nur', '0', '2022-06-07', '-', '-', '-', '-', '-', '', '', '', '', '-', '-', '-', 28, 'draft', 0, 0, 0, 0, '0', '0', NULL, NULL),
+(18, 0, '0', '2022-06-08', '12081124', 'nurcahayapermata', '0', '2022-06-08', '-', '-', '-', '-', '-', '', '', '', '', '-', '-', '-', 29, 'draft', 0, 0, 0, 0, '0', '0', NULL, NULL),
+(19, 0, '0', '2022-06-08', '12081000', 'naomigiawa', '0', '2022-06-08', '-', '-', '-', '-', '-', '', '', '', '', '-', '-', '-', 30, 'draft', 0, 0, 0, 0, '0', '0', NULL, NULL),
+(20, 0, '0', '2022-06-08', '10189797', 'josuapandiangan', '0', '2022-06-08', '-', '-', '-', '-', '-', '', '', '', '', '-', '-', '-', 31, 'draft', 0, 0, 0, 0, '0', '0', NULL, NULL),
+(21, 0, 'REG-20220608-32', '2022-06-08', '12345679', 'nura', 'medan', '2003-06-08', 'P', 'Hindu', 'SD MARI BERSAMA', 'RASYA', 'NIARI', '', '', '', '', 'JLN MUARA TAKUS', '081265676877', '0', 32, 'process', 2, 2, 3500000, 0, 'PNS', 'IRT', 70, 'lulus'),
+(22, 0, 'REG-20220611-33', '2022-06-11', '12456789', 'yunita', 'lampung', '2003-06-11', 'P', 'Budha', 'sd kusuma jaya', 'M.P', 'L.M', '', '', '', '', 'JLN JLN', '091456778887', '0', 33, 'process', 1, 2, 540000, 0, 'pengusaha', 'IRT', 54, 'tidak lulus'),
+(23, 0, 'REG-20220614-41', '2022-06-14', '12334567', 'revanda', '0', '2003-06-14', 'L', 'Hindu', '0', 'nn', 'k.n', '', '', '', '', 'jln hari raya', '111', '0', 41, 'process', 1, 2, 1200000, 0, 'p', 'irt', 67, 'lulus'),
+(24, 0, '0', '2022-06-15', '01369524', 'udinrene', '0', '2022-06-15', '-', '-', '-', '-', '-', '', '', '', '', '-', '-', '-', 42, 'draft', 0, 0, 0, 0, '0', '0', NULL, NULL),
+(25, 0, '0', '2022-06-15', '12378907', 'purapura', '0', '2022-06-15', '-', '-', '-', '-', '-', '', '', '', '', '-', '-', '-', 43, 'draft', 0, 0, 0, 0, '0', '0', NULL, NULL),
+(26, 0, 'REG-20220615-44', '2022-06-15', '10192345', 'taniasari', 'pekanbaru', '2001-06-15', 'P', 'Hindu', 'sd damai sukaramai', 'm.m', 's.m', '', '', '', '', 'bahagia', '09123456', '0', 44, 'process', 1, 3, 4900000, 0, 'pengusaha', 'ibu rumah tangga', 75, 'lulus'),
+(27, 0, 'REG-20220617-45', '2022-06-17', '44444444', 'kumalasari', 'jogja', '2001-06-17', 'P', 'Islam', 'sd 118', 'Y.H', 'K.S', '', '', '', '', 'DAMAI AJA', '01234456678', '0', 45, 'process', 2, 2, 480000, 0, 'pns', 'IRT', 70, 'lulus'),
+(28, 0, 'REG-20220617-46', '2022-06-17', '12345458', 'Budi Hartono', 'Batusangkar', '1993-06-17', 'L', 'Islam', 'SMA 1 Batusangkar', 'Budi', 'Yani', '', '', '', '', 'Tes alamat', '082285498005', '0', 46, 'process', 2, 2, 300000, 0, 'Petani', 'Rumah Tangga', 40, 'tidak lulus');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_pengumuman`
+--
+
+CREATE TABLE `tbl_pengumuman` (
+  `id_pengumuman` int(11) NOT NULL,
+  `tgl_pengumuman` date NOT NULL,
+  `judul_pengumuman` varchar(30) NOT NULL,
+  `isi_pengumuman` text NOT NULL,
+  `foto_pengumuman` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_pengumuman`
+--
+
+INSERT INTO `tbl_pengumuman` (`id_pengumuman`, `tgl_pengumuman`, `judul_pengumuman`, `isi_pengumuman`, `foto_pengumuman`) VALUES
+(5, '2019-08-06', 'Upacar bendera', 'Pancasila lahir sebagai refleksi dari perjuangan bangsa Indonesia sendiri. Dibuat berdasarkan sejarah perjuangan bangsa Indonesia sejak sebelum masa kerajaan hingga mencapai kemerdekaan. Pancasila merupakan buah pemikiran dan perenungan jiwa yang mendalam mengenai nilai-nilai luhur yang dimiliki oleh bangsa Indonesia. Dalam proses perumusannya, para penggagas Pancasila berpikir ', '042.jpg'),
+(6, '2019-08-06', 'Hari Besar', 'petugas untuk ibadah di sekolah', '2955877_orig.png'),
+(7, '2019-08-07', 'petugas upacara bendera', 'petugas upacara bendera ', 'lxX7j.jpg'),
+(8, '2019-08-09', 'kegiatan sekolah', 'pengumuman perlombaan olimpiade ', '2020-11-17_(52).png');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_setting`
+--
+
+CREATE TABLE `tbl_setting` (
+  `id_setting` int(11) UNSIGNED NOT NULL,
+  `jenis_setting` varchar(200) DEFAULT NULL,
+  `setting` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tbl_setting`
+--
+
+INSERT INTO `tbl_setting` (`id_setting`, `jenis_setting`, `setting`) VALUES
+(1, 'pengumuman', '2022-05-25 14:00:45'),
+(2, 'kuata', '100'),
+(3, 'total_lulus', '60'),
+(4, 'nilai_minimal', '60');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_user`
+--
+
+CREATE TABLE `tbl_user` (
+  `id_register` int(11) NOT NULL,
+  `nisn` varchar(30) NOT NULL,
+  `nama` varchar(30) NOT NULL,
+  `username` varchar(200) NOT NULL,
+  `password` varchar(200) NOT NULL,
+  `role` varchar(30) NOT NULL,
+  `foto_profil` text DEFAULT NULL,
+  `verifikasi_email` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_user`
+--
+
+INSERT INTO `tbl_user` (`id_register`, `nisn`, `nama`, `username`, `password`, `role`, `foto_profil`, `verifikasi_email`) VALUES
+(4, '-', 'Admin', 'admin', 'c7ad44cbad762a5da0a452f9e854fdc1e0e7a52a38015f23f3eab1d80b931dd472634dfac71cd34ebc35d16ab7fb8a90c81f975113d6c7538dc69dd8de9077ec', 'admin', NULL, NULL),
+(8, '1550010081', '1550010081', '1550010081', '147cc12f888bae4627202b813385f26f9811a0610ac74d29a501eb17a25f743480589c77b38584554088e82bd11a4965e1a084f52b2bea01ef8ab34b7f87859e', 'siswa', NULL, NULL),
+(9, '1550010081', 'ani', 'ani', '0118af338e587b46c64cc79782f494ea03b673872490c260590bd2b1c2976c533c3d771cc1caf30456dc70a21dc4662177f45e7e3ade0b4e078436344e7ad1ae', 'siswa', NULL, '1'),
+(10, '1550010092', 'Mahmud', '1550010092', '18dcee3bc16cfe25702a6e80aab25e26905e3d7ac4a67d5e2641a10dcfff4128c1e5dcca5390bcb46c8db12b205fdeb39c17ba557a6885e809245cc6531e0910', 'siswa', NULL, NULL),
+(11, '1550010020', 'Lala', '1550010020', '2b7b25d1d252cdcaec29495e37d29ce26fcfb58213a610740a8e859aa56c0d9efa5a1e0e99f2cc04d3f0456869e442d6d890d53fff8e62bd8a5a84c2df809efe', 'siswa', NULL, NULL),
+(14, '1550010056', 'tata', '1550010056', '11a3b9ba3cc558f1d05f056dbd2567a43031c857dd3325f5b9179d21ee8ed4f9a7d0441d904c7a51501da4132963eeb7f8f359012fa028ca6bdbbf4deda92702', 'siswa', NULL, NULL),
+(15, '20110945', 'irma', 'irma', '6b7cb98bda6a8207277eaf54cea6e8aac0d71c8420bba2b54201ec8b01ad3eada8825751ac68ed10aea1b174b38bd374b10b53caac341604dcfb613358a0d137', 'siswa', NULL, NULL),
+(16, '1550010034', 'Budi hartini', '1550010034', '08a3f253a4d4113c055b8caacf5f8aaa1187d4be9c0616d7081cf19cc1aa9fc2dc70f33eb215b5702e5077e46b8464d25ada09fb31a39170c6ad520c570fb105', 'siswa', NULL, NULL),
+(17, '2011202', 'adeva', 'adevakirana', '68496107728fc31e74a89eb5b706e1d27e767b2db1170f6fcb44998d421b56888317a972bf87347675474c67e63998c3c4bf0bbf065afac73648a4692d44e761', 'siswa', NULL, NULL),
+(18, '1550010019', 'TIA MHARANI', '1550010019', '3a8ed78734c030f8fdb620d39e660dec9dde584530df7eb0b2e154ec258bfa23ed89204c3ea38cd0899d6dc9156e8804490c9372ccd01498c219fefe78507002', 'siswa', NULL, NULL),
+(19, '08091004', 'ayudwitanti', 'ayudwitanti', 'b7a81606f8e78336178d6c7e3474b590976c7428606d6333fe53b1425ad21f1e0d223ab661fbfea6332da7376720d8596ade1df61adf64d939ac7ff9d4e4a4e4', 'siswa', NULL, NULL),
+(20, '111111111123', 'rasyapanjaitan', 'rasyapanjaitan', '12e327b0692270ab067ea630fceaf757f173fa2041173fd8150759fc4fe5c4f1d216f0a4f25e10faf4274f3c9d5a5187e0aad7a784da078f3135cc08e8ab2e65', 'siswa', NULL, NULL),
+(21, '18081234', 'murniati', 'murni', '399184a24327963dd4201b874f0472560ac53d7651f3b851e6d058b0337237e2c6ae60f4317b85bf424425ee7710f4d5c810b596058b566329383b9aae9905c4', 'siswa', NULL, NULL),
+(22, '11122', 'indra', 'indra', '1c8dd7a2bd923cc22a2aa84631d9ad51a31413a13b4407cec629226cfe631e9e557df6320069a25a0f93388b7dfb88bc0fe537c6fdb90ae746726f18608a8448', 'siswa', NULL, NULL),
+(23, '20110249', 'mei', 'mei', '5dd1455ddc6a5d46a15e562f63ca88767e3792232d6d3a8be9da2011f1da266709beba7163fb2cf6a0b0f3bc0b084bca33e15929b216bce079b0cbb7bff78d52', 'siswa', NULL, NULL),
+(24, '222222', 'indra', 'indra         3', 'cb13c023494c8c2e949bff1a299b23474e797bacbbeaa851a7514b0b5bd01379f5ad6c6a7812ee520a911b30e7001555b99aa2e9bb00849147c758128fc65741', 'siswa', NULL, NULL),
+(25, '20222022', 'reh', 'rehul', '3ae6af77559d18e019feb617aec6e3d52047f26dcdf35d7824f83901c74f3eebd5f98b88c71755b88f5284e1828271d138f75121618bf7f07c5f5452dc5ccac7', 'siswa', NULL, NULL),
+(26, '12345678', 'Budi Hartono', 'lutvi1500@gmail.com', '4b45ca58f624f1120f152a927695a072e111855d97c78199ed63d07e7ef3dc9e02622a241f24d13d5dc49781e73546746672bc67452a09b01fdc37809c0453a6', 'siswa', NULL, '0'),
+(27, '00023893', 'Lestari', 'Lestari98@gmail.com', '22f14bce26eec6a7b08b5ae7bb9ca3732b6860beef6147c9b62c78ab2795d667231ff102e28ebb91c25fd7153dd531245a6c06678bd0c9c7759631e7389adbfb', 'siswa', NULL, '0'),
+(28, '10186897', 'nur', 'nuraja99@gmail.com', 'cc6ef7ba465e251f8e4934280859fdf4f5d806ba393c2cacab9da18d0a5cf22f00038cac159bf75576f9b683065cd5ca30a1d2995348838b790c68e21675699e', 'siswa', NULL, '0'),
+(29, '12081124', 'nurcahayapermata', 'nurcahaya', '61f9a7aa188889f10b94cb4bbff07809dc822a76d352c122b484cd05c409cbf59c610dd888ec1ee347a7a8920afa3e076b333ba5d8824e33418ef9a209dae6dc', 'siswa', NULL, '0'),
+(30, '12081000', 'naomigiawa', 'naomigiawa', '08d3b57ae74a3bc8d924dba55fa01fe9fc4457a20e679621773f76812a807c36cf551d8f50a74532ea01e5a4033202748666bccd281705e6aa02d1a3102ac44b', 'siswa', NULL, '0'),
+(31, '10189797', 'josuapandiangan', 'josuapandiangan', '8fedb124321ed31a35d69d2c6941153abd6a58509bf4253cf7fda50dfd8333fb64dfead1d0819a2cddae3115d8dae9f995ca6998df463a9ddddcd3b463fe10d0', 'siswa', NULL, '0'),
+(32, '12345679', 'nura', 'nuraisyah', 'ad334e1d81b7206bcc63dadf054e906d693c677fffc1209ba65f173e4bcf89c04dd09bfa4a459cc26d69cd42856dcb5fd864281c1e8005fa75c8243372c185fe', 'siswa', NULL, '0'),
+(33, '12456789', 'yunita', 'yunita', '0ddbe93c35bbe5916411f421ecd63ea743a5ed7e570eadeb1e246a61f958306b80777dbb61c5e4c67056cb201be9720bdf21da7d20c4990adad9e9b0afbf74b8', 'siswa', NULL, '1'),
+(34, '', 'admin2', 'admin2', 'admin2', 'admin', NULL, NULL),
+(35, '', 'nando', 'nando', 'nando', 'admin3', NULL, NULL),
+(36, '', 'rando', 'rando', 'rando', 'admin4', NULL, NULL),
+(37, '', 'Tes', 'Tes', 'tes', 'admin', NULL, NULL),
+(38, '', 'yuhu', 'yuhu', 'yuhu', 'admin', NULL, NULL),
+(39, '', 'budi', 'budi', 'budi', 'admin', NULL, NULL),
+(40, '', 'indra', 'indra', '1c8dd7a2bd923cc22a2aa84631d9ad51a31413a13b4407cec629226cfe631e9e557df6320069a25a0f93388b7dfb88bc0fe537c6fdb90ae746726f18608a8448', 'admin', NULL, NULL),
+(41, '12334567', 'revanda', 'revan', 'e4336544bc72f5fecfec67559975d7a87ea0309dc5005bae861e03e78c47ab4f60de232fc4318959d56efc8175b960a48265a1dccf785946fc68c9b00c10ec94', 'siswa', NULL, '1'),
+(42, '01369524', 'udinrene', 'udinrene', '4773dc9afd29f18dd2cf42aeb051db808d20c7edb9561736ae91bcbca588593fce8ab3b086dcb6ece0434bb1a6ff570dd13ae692320b92c48c7c8dbcffb07fe2', 'siswa', NULL, '1'),
+(43, '12378907', 'purapura', 'purapura', '70d3fdeb0627596c6da6bba60abc2c5b1c566591034030941a54df12f07f5ac4b221d7cf9ac1c3dbf68be0162ede36e09978d5fa7e80824160fb00f72685c35f', 'siswa', NULL, '1'),
+(44, '10192345', 'taniasari', 'taniasari', '8d2ca541984e3782889fa6ed95a96d3dba68a8c13304decfa836cea333ae14a48dd8379eec7b333ccbaeae7b26cb069e0a8e0322ab1f8f173b7d2906b9dbfd3c', 'siswa', NULL, '1'),
+(45, '44444444', 'kumalasari', 'kumalasari', 'dffdf3d719d50e469df642fd7f903290feede5fb1031eb148f1ae5537305a6b99c0a6ecd9144e14a541dd36a565c40075e1e5e4695dcc3f0c4aad3c2b29da26b', 'siswa', '87825a4e452fcc79e8e1f5d2ffe61190.jpg', '1'),
+(46, '12345458', 'Budi Hartono', 'budi123', '4dea3a8e63f43542fe75f17e6c5977f50e39398ac10d6293de1460b457305d84512560611c240d48bab4a903cbdde7593baf4b5c9dbe77a2aab17c1e9b08597a', 'siswa', '80972fc9d624e52ac301dd79f8bdde6a.png', '1');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `tbl_assets`
+--
+ALTER TABLE `tbl_assets`
+  ADD PRIMARY KEY (`id_assets`);
+
+--
+-- Indexes for table `tbl_galeri`
+--
+ALTER TABLE `tbl_galeri`
+  ADD PRIMARY KEY (`id_foto`);
+
+--
+-- Indexes for table `tbl_informasi`
+--
+ALTER TABLE `tbl_informasi`
+  ADD PRIMARY KEY (`id_informasi`),
+  ADD KEY `tbl_informasi_id_informasi_idx` (`id_informasi`) USING BTREE;
+
+--
+-- Indexes for table `tbl_lampiran`
+--
+ALTER TABLE `tbl_lampiran`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_user` (`id_user`);
+
+--
+-- Indexes for table `tbl_nilai`
+--
+ALTER TABLE `tbl_nilai`
+  ADD PRIMARY KEY (`id_nilai`);
+
+--
+-- Indexes for table `tbl_pendaftar`
+--
+ALTER TABLE `tbl_pendaftar`
+  ADD PRIMARY KEY (`id_pendaftaran`);
+
+--
+-- Indexes for table `tbl_pengumuman`
+--
+ALTER TABLE `tbl_pengumuman`
+  ADD PRIMARY KEY (`id_pengumuman`);
+
+--
+-- Indexes for table `tbl_setting`
+--
+ALTER TABLE `tbl_setting`
+  ADD PRIMARY KEY (`id_setting`);
+
+--
+-- Indexes for table `tbl_user`
+--
+ALTER TABLE `tbl_user`
+  ADD PRIMARY KEY (`id_register`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `tbl_assets`
+--
+ALTER TABLE `tbl_assets`
+  MODIFY `id_assets` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+
+--
+-- AUTO_INCREMENT for table `tbl_galeri`
+--
+ALTER TABLE `tbl_galeri`
+  MODIFY `id_foto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `tbl_informasi`
+--
+ALTER TABLE `tbl_informasi`
+  MODIFY `id_informasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `tbl_lampiran`
+--
+ALTER TABLE `tbl_lampiran`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+
+--
+-- AUTO_INCREMENT for table `tbl_nilai`
+--
+ALTER TABLE `tbl_nilai`
+  MODIFY `id_nilai` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=883;
+
+--
+-- AUTO_INCREMENT for table `tbl_pendaftar`
+--
+ALTER TABLE `tbl_pendaftar`
+  MODIFY `id_pendaftaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+
+--
+-- AUTO_INCREMENT for table `tbl_pengumuman`
+--
+ALTER TABLE `tbl_pengumuman`
+  MODIFY `id_pengumuman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `tbl_setting`
+--
+ALTER TABLE `tbl_setting`
+  MODIFY `id_setting` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `tbl_user`
+--
+ALTER TABLE `tbl_user`
+  MODIFY `id_register` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

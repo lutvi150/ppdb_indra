@@ -70,7 +70,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	/* basic menu styles */
 	.nav-menu {
 		display: block;
-		background: #74adaa;
+		background: #2AD050;
 		width: 1035px;
 		margin: 50px auto 150px;
 	}
@@ -78,7 +78,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	.nav-menu>li {
 		display: inline;
 		float: left;
-		border-right: 1px solid #94c0be;
+		border-right: 1px solid #2AD050;
 		position: relative;
 	}
 
@@ -183,7 +183,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		position: absolute;
 		top: 0;
 		left: 0;
-		background: #74adaa;
+		background: #2AD050;
 		padding: 15px 30px 15px 31px;
 		color: white;
 		-webkit-pointer-events: none;
@@ -199,7 +199,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	.nav-menu li .active .back,
 	.nav-menu li a:hover .front,
 	.nav-menu li a:hover .back {
-		background-color: #51938f;
+		background-color: #2AD050;
 		-webkit-background-size: 5px 5px;
 		background-size: 5px 5px;
 		background-position: 0 0, 30px 30px;
@@ -387,7 +387,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<span class="three-d-box"><span class="front">Ruangan Kelas</span><span class="back">Ruangan
 									Kelas</span></span>
 						</a></li>
-					<li><a href="<?=base_url('controller/menuprofil/fasiliras_sekolah')?>" class="three-d">
+					<li><a href="<?=base_url('controller/menuprofil/fasilitas_sekolah')?>" class="three-d">
 							Fasilitas Sekolah
 							<span class="three-d-box"><span class="front">Fasilitas Sekolah</span><span
 									class="back">Fasilitas Sekolah</span></span>
@@ -410,11 +410,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							Pengumuman
 							<span class="three-d-box"><span class="front">Pengumuman</span><span
 									class="back">Pengumuman</span></span>
-						</a></li>
-					<li><a href="<?=base_url('controller/menuprofil/kegiatan')?>" class="three-d">
-							Ruangan Kelas
-							<span class="three-d-box"><span class="front">Ruangan Kelas</span><span class="back">Ruangan
-									Kelas</span></span>
 						</a></li>
 				</ul>
 			</li>
