@@ -57,7 +57,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		font-weight: normal;
 		font-style: normal;
 	}
-
+	.inner_page_agile{
+	    text-align:center !important;
+	    max-width: 1035px!important;
+	    display:block;
+	}
 	body {
 		background-color: #edecec;
 	}
@@ -72,7 +76,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		display: block;
 		background: #2AD050;
 		width: 1035px;
-		margin: 50px auto 150px;
+		margin: 50px auto 0px;
 	}
 
 	.nav-menu>li {
@@ -410,6 +414,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							Pengumuman
 							<span class="three-d-box"><span class="front">Pengumuman</span><span
 									class="back">Pengumuman</span></span>
+						</a></li>
+						<li><a href="<?=base_url('controller/data_guru')?>" class="three-d">
+							Data Guru
+							<span class="three-d-box"><span class="front">Data Guru</span><span
+									class="back">Data Guru</span></span>
 						</a></li>
 				</ul>
 			</li>

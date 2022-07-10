@@ -281,6 +281,57 @@ class ApiAdmin extends CI_Controller
         echo json_encode($respon);
 
     }
+    public function storeGuru($status)
+    {
+
+        $insert = [
+            'nip_guru' => $this->input->post('nip'),
+            'nama_guru' => $this->input->post('nama'),
+        ];
+        if ($status == 'add') {
+            $this->form_validation->set_rules('nip', 'NIP', 'trim|required|min_length[18]|max_length[18]|numeric|is_unique[tbl_guru.nip_guru]', [
+                'is_unique' => 'NIP sudah terdaftar',
+                'min_length' => 'NIP harus 18 karakter',
+                'max_length' => 'NIP harus 18 karakter',
+                'numeric' => 'NIP harus berupa angka',
+                'required' => 'NIP harus diisi',
+            ]);
+            $this->form_validation->set_rules('nama', 'Nama', 'trim|required', [
+                'required' => 'Nama harus diisi',
+            ]);
+
+            if ($this->form_validation->run() ==
+                false) {
+                $respon = [
+                    'status' => 'validation_failed',
+                    'message' => $this->form_validation->error_array(),
+                ];
+            } else {
+                $this->model->insertData('tbl_guru', $insert);
+                $respon = [
+                    'status' => 'success',
+                    'message' => 'Data berhasil ditambahkan',
+                ];
+            }
+
+        } elseif ($status == 'update') {
+            $this->model->updateData('tbl_guru', 'id_guru', $this->input->post('id_guru'), $insert);
+            $respon = [
+                'status' => 'success',
+                'message' => 'Data berhasil diupdate',
+            ];
+        }
+        echo json_encode($respon);
+    }
+    public function delete_guru($id)
+    {
+        $this->model->deleteData('tbl_guru', 'id_guru', $id);
+        $respon = [
+            'status' => 'success',
+            'message' => 'Data berhasil dihapus',
+        ];
+        echo json_encode($respon);
+    }
 }
 
 /* End of file  ApiAdmin.php */

@@ -196,18 +196,18 @@ function makeChart(response) {
     labels: labels,
     datasets: [{
       label: 'Peserta Lulus',
-      backgroundColor: 'rgb(255, 99, 132)',
-      borderColor: 'rgb(255, 99, 132)',
+      backgroundColor: 'rgb(80, 130, 191)',
+      borderColor: 'rgb(80, 130, 191)',
       data: response.data.lulus,
     },{
 		label: 'Peserta Tidak Lulus',
-      backgroundColor: 'rgb(255, 20, 132)',
-      borderColor: 'rgb(255, 99, 132)',
+      backgroundColor: 'rgb(193, 80, 76)',
+      borderColor: 'rgb(193, 80, 76)',
       data: response.data.tidak_lulus,
 	},{
 		label: 'Total Peserta',
-      backgroundColor: 'rgb(255, 20, 50)',
-      borderColor: 'rgb(255, 99, 132)',
+      backgroundColor: 'rgb(154, 188, 91)',
+      borderColor: 'rgb(154, 188, 91)',
       data: response.data.peserta,
 	}]
   };

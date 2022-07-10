@@ -1,4 +1,20 @@
-<div class="inner_page_agile"></div>
+
+			<style>
+				.text-error{
+					color: red;
+				}
+				.image-background{
+		text-align: center;
+	}
+			</style>
+<div style="height: 20px;"></div>
+<div
+		class="image-background">
+
+		<img class="" style="width:1035px;height: 250px;" src="<?=base_url();?>assets/images/03.jpg" alt="" srcset="">
+	</div>
+
+	<div style="height: 20px;"></div>
         <div class="title-div">
 				<h3 class="tittle">
 					Login
@@ -6,11 +22,6 @@
 				<div class="tittle-style">
 				</div>
 			</div>
-			<style>
-				.text-error{
-					color: red;
-				}
-			</style>
         <div class="login-form">
 				<form method="POST" action="#" enctype="multipart/form-data">
 					<div class="">

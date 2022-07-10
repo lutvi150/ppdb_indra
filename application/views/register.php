@@ -2,12 +2,21 @@
 	.text-error{
 		color: red;
 	}
+	.image-background{
+		text-align: center;
+	}
 </style>
-<div class="inner_page_agile"></div>
+<div style="height: 20px;"></div>
+<div
+		class="image-background">
+
+		<img class="" style="width:1035px;height: 250px;" src="<?=base_url();?>assets/images/03.jpg" alt="" srcset="">
+	</div>
+	<div style="height: 20px;"></div>
 <div class="container">
 			<div class="title-div">
 				<h3 class="tittle">
-					From Register
+					Form Register
 				</h3>
 				<div class="tittle-style">
 

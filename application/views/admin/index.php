@@ -101,6 +101,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</li>
 
 						<li>
+							<a href="<?=base_url('ControllerAdmin/data_guru')?>"><i class="fa fa-users nav_icon"></i>Data Guru</a>
+						</li>
+
+						<li>
 							<a href="<?=base_url('ControllerAdmin/data_pendaftar')?>"><i
 									class="fa fa-file-text nav_icon"></i>Data Pendaftar</a>
 						</li>

@@ -62,6 +62,22 @@
 									<th><?=$data_member->anak_ke?></th>
 								</tr>
 								<tr>
+									<th>Hobby</th>
+									<th><?=$data_member->hobby?></th>
+								</tr>
+								<tr>
+									<th>Berat/Tinggi</th>
+									<th><?=$data_member->berat . " Kg /" . $data_member->tinggi?> Cm</th>
+								</tr>
+								<tr>
+									<th>Golongan Darah</th>
+									<th><?=$data_member->gol_darah?></th>
+								</tr>
+								<tr>
+									<th>Cita Cita</th>
+									<th><?=$data_member->cita_cita?></th>
+								</tr>
+								<tr>
 									<th>Dari ... Bersaudara</th>
 									<th><?=$data_member->jumlah_saudara?></th>
 								</tr>
@@ -110,6 +126,10 @@
 									<th><?=$data_member->no_tlp?></th>
 								</tr>
 
+								<tr>
+									<th>Dari mana Anda Tahu Sekolah ini</th>
+									<th><?=$data_member->information_source?></th>
+								</tr>
 
 
 

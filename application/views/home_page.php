@@ -6,14 +6,18 @@
 		</div>
 	</div>
 	<!-- banner -->
-	<div id="myCarousel" class="carousel slide" data-ride="carousel">
+	<div style="height: 20px;"></div>
+<div class="text-center">
+
+	<img style="width: 1035px;" src="<?=base_url();?>assets/images/02.jpg" alt="">
+</div>
+	<div hidden id="myCarousel" class="carousel slide" data-ride="carousel">
 		<!-- Indicators -->
 		<div class="carousel-inner" role="listbox">
-			<div class="item active">
+			<div class=" active">
 				<div class="container">
 					<div class="carousel-caption">
 						<div >
-
 						</div>
 					</div>
 				</div>

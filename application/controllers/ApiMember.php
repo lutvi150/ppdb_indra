@@ -67,6 +67,27 @@ class ApiMember extends CI_Controller
         $this->form_validation->set_rules('jmlsaudara', 'Jumlah Saudara', 'trim|required', [
             'required' => 'Jumlah Saudara harus diisi',
         ]);
+        $this->form_validation->set_rules('gol_darah', 'Gol Darah', 'trim|required', [
+            'required' => 'Gol Darah harus diisi',
+        ]);
+        $this->form_validation->set_rules('tinggi', 'Tinggi', 'trim|required|numeric', [
+            'required' => 'Tinggi harus diisi',
+            'numeric' => 'Tinggi harus diisi dengan angka',
+        ]);
+        $this->form_validation->set_rules('berat', 'Berat', 'trim|required|numeric', [
+            'required' => 'Tinggi harus diisi',
+            'numeric' => 'Tinggi harus diisi dengan angka',
+        ]);
+        $this->form_validation->set_rules('hobby', 'Hobi', 'trim|required', [
+            'required' => 'Hobi harus diisi',
+        ]);
+        $this->form_validation->set_rules('cita_cita', 'Cita Cita', 'trim|required', [
+            'required' => 'Cita Cita harus diisi',
+        ]);
+        $this->form_validation->set_rules('information_source', 'Sumber Informasi', 'trim|required', [
+            'required' => 'Sumber Informasi harus diisi',
+        ]);
+
         // use for check kuata
         $checkKuata = $this->model->getSetting('kuata');
         $countRegister = $this->model->findData('tbl_pendaftar', 'status', 'process')->num_rows();
@@ -111,6 +132,12 @@ class ApiMember extends CI_Controller
                             'status' => 'process',
                             'anak_ke' => $this->input->post('anakke'),
                             'jumlah_saudara' => $this->input->post('jmlsaudara'),
+                            'gol_darah' => $this->input->post('gol_darah'),
+                            'tinggi' => $this->input->post('tinggi'),
+                            'berat' => $this->input->post('berat'),
+                            'hobby' => $this->input->post('hobby'),
+                            'cita_cita' => $this->input->post('cita_cita'),
+                            'information_source' => $this->input->post('information_source'),
                         ];
                         $this->model->updateData('tbl_pendaftar', 'id_user', $id_user, $register);
                         $this->prosesUserLulus();
@@ -344,7 +371,7 @@ class ApiMember extends CI_Controller
         $id_user = $this->input->post('id_user');
 
         $config['upload_path'] = './uploads/';
-        $config['allowed_types'] = 'gif|jpg|png';
+        $config['allowed_types'] = 'gif|jpg|png|jpeg';
         $config['encrypt_name'] = true;
 
         $this->load->library('upload', $config);

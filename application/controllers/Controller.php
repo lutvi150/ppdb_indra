@@ -322,6 +322,12 @@ class Controller extends CI_Controller
             $this->load->view('home', $data, false);
         }
     }
+    public function data_guru(Type $var = null)
+    {
+        $data['guru'] = $this->model->getData('tbl_guru', 'id_guru', 'desc');
+        $data['content'] = 'data_guru';
+        $this->load->view('home', $data, false);
+    }
 }
 
 /* End of file  Controller.php */
