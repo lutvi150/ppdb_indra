@@ -87,7 +87,12 @@ class ApiMember extends CI_Controller
         $this->form_validation->set_rules('information_source', 'Sumber Informasi', 'trim|required', [
             'required' => 'Sumber Informasi harus diisi',
         ]);
-
+        $this->form_validation->set_rules('tempat_lahir_ayah', 'Tempat Lahir Ayah', 'trim|required', [
+            'required' => 'Tempat Lahir Ayah harus diisi',
+        ]);
+        $this->form_validation->set_rules('tempat_lahir_ibu', 'Tempat Lahir Ibu', 'trim|required', ['required' => 'Tempat Lahir Ibu harus diisi']);
+        $this->form_validation->set_rules('tgl_lahir_ibu', 'Tanggal Lahir Ibu', 'trim|required', ['required' => 'Tanggal Lahir Ibu harus diisi']);
+        $this->form_validation->set_rules('tgl_lahir_ayah', 'Tanggal Lahir Ayah', 'trim|required', ['required' => 'Tanggal Lahir Ayah harus diisi']);
         // use for check kuata
         $checkKuata = $this->model->getSetting('kuata');
         $countRegister = $this->model->findData('tbl_pendaftar', 'status', 'process')->num_rows();
@@ -138,6 +143,11 @@ class ApiMember extends CI_Controller
                             'hobby' => $this->input->post('hobby'),
                             'cita_cita' => $this->input->post('cita_cita'),
                             'information_source' => $this->input->post('information_source'),
+                            'tempat_lahir_ayah' => $this->input->post('tempat_lahir_ayah'),
+                            'tempat_lahir_ibu' => $this->input->post('tempat_lahir_ibu'),
+                            'tgl_lahir_ibu' => $this->input->post('tgl_lahir_ibu'),
+                            'tgl_lahir_ayah' => $this->input->post('tgl_lahir_ayah'),
+                            'nm_panggilan' => $this->input->post('nm_panggilan'),
                         ];
                         $this->model->updateData('tbl_pendaftar', 'id_user', $id_user, $register);
                         $this->prosesUserLulus();

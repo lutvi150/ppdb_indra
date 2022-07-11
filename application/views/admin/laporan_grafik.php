@@ -146,7 +146,16 @@
 		 let tahun = $('#tahun').children("option:selected").val();
 		 let tanggal_mulai = $('#tanggal_mulai').val();
 		 let tanggal_selesai = $('#tanggal_selesai').val();
-		 $.ajax({
+		 if (jenis_laporan=="") {
+			swal({
+				title: "Pilih Jenis Laporan",
+				text: "Pilih Jenis Laporan Terlebih Dahulu",
+				icon: "error",
+				button: "Ok",
+			});
+		 } else{
+
+			$.ajax({
 			 type: "POST",
 			 url: url+"ApiAdmin/makeChart",
 			 data: {
@@ -174,6 +183,7 @@
 				 });
 			 }
 		 });
+		 }
 	 }
 	 function showTableDataSiswa(response) {
 		 $(".body-data-siswa").html('');

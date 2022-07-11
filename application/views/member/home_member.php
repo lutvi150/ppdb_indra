@@ -31,6 +31,13 @@
 					</div>
 
 					<div class="form-group">
+						<label for="">Nama Panggilan</label>
+						<input class="form-control" type="text" name="nm_panggilan" placeholder=""
+							value="<?=$data_member->nm_panggilan?>" id="nm_panggilan" >
+						<span class="text-error enm_panggilan"></span>
+					</div>
+
+					<div class="form-group">
 						<label for="">Tempat Lahir</label>
 						<input class="form-control" type="text" value="<?=$data_member->tempat_lahir?>"
 							name="tmpt_lahir" placeholder="">
@@ -138,10 +145,11 @@
 						<span class="text-error enm_ayah"></span>
 					</div>
 
+
 					<div class="form-group">
 						<label for="">Pekerjaan Ayah</label>
-						<input class="form-control" type="text" name="kerja_ayah" value="<?=$data_member->nm_ayah?>"
-							placeholder="">
+						<input class="form-control" value="<?=$data_member->kerja_ayah;?>" type="text"
+							name="kerja_ayah" placeholder="">
 						<span class="text-error ekerja_ayah"></span>
 					</div>
 
@@ -152,6 +160,16 @@
 						<span class="text-error ehasil_ayah"></span>
 					</div>
 
+					<div class="form-group">
+						<label for="">Tempat/ Tanggal Lahir Ayah</label>
+						<div class="row col-md-12">
+							<input class="form-control col-sm-6 col-xs-offset-2" type="text" name="tempat_lahir_ayah"
+								value="<?=$data_member->tempat_lahir_ayah?>" placeholder="Tempat Lahir">
+							<input type="date" class="form-control col-sm-6 col-xs-offset-2" type="text" name="tgl_lahir_ayah"
+								placeholder="Tanggal Lahir" value="<?=$data_member->tgl_lahir_ayah?>">
+							<span class="text-error etempat_lahir_ayah"></span>
+						</div>
+					</div>
 					<div class="form-group">
 						<label for="">Nama Ibu</label>
 						<input class="form-control" type="text" name="nm_ibu" value="<?=$data_member->nm_ibu?>"
@@ -174,6 +192,16 @@
 					</div>
 
 
+					<div class="form-group">
+						<label for="">Tempat/ Tanggal Lahir Ibu</label>
+						<div class="row col-md-12">
+							<input class="form-control col-sm-6 col-xs-offset-2" type="text" name="tempat_lahir_ibu"
+								value="<?=$data_member->tempat_lahir_ibu?>" placeholder="Tempat Lahir Ibu">
+							<input type="date" class="form-control col-sm-6 col-xs-offset-2" type="text" name="tgl_lahir_ibu"
+								placeholder="Tanggal Lahir Ibu" value="<?=$data_member->tgl_lahir_ibu?>">
+							<span class="text-error etempat_lahir_ibu"></span>
+						</div>
+					</div>
 					<center>
 						<h4 class="mb-4 sec-title-w3 let-spa text-bl">III. Nilai<br></h4>
 					</center>
@@ -497,6 +525,11 @@ ${html_lampiran}
 					$(".ehobby").text(response.message.ehobby);
 					$(".ecita_cita").text(response.message.cita_cita);
 					$(".einformation_source").text(response.message.information_source);
+					$(".etempat_lahir_ayah").text(response.message.tempat_lahir_ayah);
+					$(".etempat_lahir_ayah").text(response.message.tgl_lahir_ayah);
+					$(".etempat_lahir_ibu").text(response.message.tempat_lahir_ibu);
+					$(".etempat_lahir_ibu").text(response.message.tgl_lahir_ibu);
+					$(".enm_panggilan").text(response.message.nm_panggilan);
 				} else if (response.status == 'success') {
 					swal({
 						title: "Berhasil",

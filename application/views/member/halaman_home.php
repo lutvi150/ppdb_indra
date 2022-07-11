@@ -55,7 +55,7 @@
 			success: function (response) {
 				if (response.data=="lulus") {
 					$(".show-status-success").html(`<div class="alert alert-success text-center" role="alert">
-					<strong>Siswa Yang lulus harap segere mendaftar ulang</strong>
+					<strong>Siswa Yang lulus harap segera mendaftar ulang</strong>
 				</div>`)
 				}
 			},

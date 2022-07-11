@@ -42,6 +42,10 @@
 									<th><?=$data_member->nama?></th>
 								</tr>
 								<tr>
+									<th>Nama Panggilan</th>
+									<th><?=$data_member->nm_panggilan?></th>
+								</tr>
+								<tr>
 									<th>Tempat Lahir Lahir</th>
 									<th><?=$data_member->tempat_lahir?></th>
 								</tr>
@@ -98,6 +102,10 @@
 									<th>Penghasilan Ayah</th>
 									<th><?=$data_member->penghasilan_ayah?></th>
 								</tr>
+								<tr>
+									<th>Tempat/ Tanggal Lahir Ayah</th>
+									<th><?=$data_member->tempat_lahir_ayah . '/' . substr($data_member->tgl_lahir_ayah, 0, 10)?></th>
+								</tr>
 
 								<tr>
 									<th>Nama Ibu</th>
@@ -110,6 +118,10 @@
 								<tr>
 									<th>Penghasilan Ibu</th>
 									<th><?=$data_member->penghasilan_ibu?></th>
+								</tr>
+								<tr>
+									<th>Tempat/ Tanggal Lahir Ibu</th>
+									<th><?=$data_member->tempat_lahir_ibu . '/' . substr($data_member->tgl_lahir_ibu, 0, 10)?></th>
 								</tr>
 								<?php foreach ($nilai as $key => $value): ?>
 								<tr>
