@@ -1,5 +1,13 @@
-<div 
-		class="inner_page_agile">
+<style>
+	.image-background{
+		text-align: center;
+	}
+</style>
+<div style="height: 20px;"></div>
+<div
+		class="image-background">
+
+		<img class="" style="width:1035px;height: 250px;" src="<?=base_url();?>assets/images/03.jpg" alt="" srcset="">
 	</div>
 		<div class="container">
 			<div class="title-div">
