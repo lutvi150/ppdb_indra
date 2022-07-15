@@ -415,11 +415,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<span class="three-d-box"><span class="front">Pengumuman</span><span
 									class="back">Pengumuman</span></span>
 						</a></li>
-						<li><a href="<?=base_url('controller/data_guru')?>" class="three-d">
-							Data Guru
-							<span class="three-d-box"><span class="front">Data Guru</span><span
-									class="back">Data Guru</span></span>
-						</a></li>
+						<!--<li><a href="<?=base_url('controller/data_guru')?>" class="three-d">-->
+						<!--	Data Guru-->
+						<!--	<span class="three-d-box"><span class="front">Data Guru</span><span-->
+						<!--			class="back">Data Guru</span></span>-->
+						<!--</a></li>-->
 				</ul>
 			</li>
 			<li><a href="#" class="three-d">
