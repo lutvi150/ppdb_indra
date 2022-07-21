@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 11, 2022 at 06:07 PM
+-- Generation Time: Jul 21, 2022 at 05:51 AM
 -- Server version: 10.3.35-MariaDB
 -- PHP Version: 7.4.30
 
@@ -242,10 +242,6 @@ INSERT INTO `tbl_nilai` (`id_nilai`, `jenis_nilai`, `id_user`, `nilai`) VALUES
 (600, 'matematika', 21, 79),
 (601, 'bahasa_inggris', 21, 86),
 (602, 'bahasa_indonesia', 21, 77),
-(627, 'ipa', 22, 90),
-(628, 'matematika', 22, 80),
-(629, 'bahasa_inggris', 22, 70),
-(630, 'bahasa_indonesia', 22, 90),
 (643, 'ipa', 23, 80),
 (644, 'matematika', 23, 70),
 (645, 'bahasa_inggris', 23, 90),
@@ -289,7 +285,11 @@ INSERT INTO `tbl_nilai` (`id_nilai`, `jenis_nilai`, `id_user`, `nilai`) VALUES
 (1043, 'ipa', 51, 89),
 (1044, 'matematika', 51, 78),
 (1045, 'bahasa_inggris', 51, 77),
-(1046, 'bahasa_indonesia', 51, 77);
+(1046, 'bahasa_indonesia', 51, 77),
+(1055, 'ipa', 22, 90),
+(1056, 'matematika', 22, 80),
+(1057, 'bahasa_inggris', 22, 70),
+(1058, 'bahasa_indonesia', 22, 80);
 
 -- --------------------------------------------------------
 
@@ -346,7 +346,7 @@ CREATE TABLE `tbl_pendaftar` (
 --
 
 INSERT INTO `tbl_pendaftar` (`id_pendaftaran`, `id_register`, `no_pendaftaran`, `tgl_daftar`, `nisn`, `nama`, `tempat_lahir`, `tgl_lahir`, `jenis_kelamin`, `agama`, `asal_sekolah`, `nm_ayah`, `nm_ibu`, `pekerjaan`, `bahasa_indonesia`, `pas_foto`, `foto_skhu`, `alamat`, `no_tlp`, `konfirmasi`, `id_user`, `status`, `anak_ke`, `jumlah_saudara`, `penghasilan_ayah`, `penghasilan_ibu`, `pekerjaan_ayah`, `pekerjaan_ibu`, `nilai_rata_rata`, `kelulusan`, `information_source`, `cita_cita`, `gol_darah`, `tinggi`, `berat`, `hobby`, `tgl_lahir_ayah`, `tgl_lahir_ibu`, `tempat_lahir_ayah`, `tempat_lahir_ibu`, `nm_panggilan`) VALUES
-(11, 0, 'REG-20220521-22', '2022-05-21', '11122', 'indra', 'Medan', '2022-05-18', 'L', 'Islam', '5', 'A. S', 'Ibu', '', '', '', '', 'Medan City', '0852912892', '0', 22, 'process', 2, 5, 120000, 55550, 'A. S', 'IRT', 83, 'lulus', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(11, 0, 'REG-20220721-22', '2022-07-21', '11122', 'indra', 'Medan', '2022-05-18', 'L', 'Islam', '5', 'A. S', 'Ibu', '', '', '', '', 'Medan City', '0852912892', '0', 22, 'process', 2, 5, 120000, 55550, 'o', 'IRT', 80, 'lulus', 'adadada', 'Programmer', 'A', 60, 166, 'adada', '2022-07-21 00:00:00', '2022-07-21 00:00:00', 'Medan', 'Medan', 'Mei'),
 (12, 0, 'REG-20220525-23', '2022-05-25', '20110249', 'mei', 'Medan', '2000-05-25', 'L', 'Kristen', 'SD Cinta Rakyat', 'Muttadin', 'Hermi', '', '', '', '', 'Binjai', '08123412445', '0', 23, 'process', 2, 5, 2000000, 500000, 'Petani', 'ART', 78, 'lulus', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (13, 0, '0', '2022-06-06', '222222', 'indra', '0', '2022-06-06', '-', '-', '-', '-', '-', '', '', '', '', '-', '-', '-', 24, 'draft', 0, 0, 0, 0, '0', '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (14, 0, 'REG-20220606-25', '2022-06-06', '20222022', 'reh', 'Medan', '2022-06-06', 'L', 'Hindu', '4', 'Rea', 'Ira', '', '', '', '', 'MEDAN', '085132165425', '0', 25, 'process', 2, 4, 5000000, 50000, 'Rea', 'IRT', 63, 'lulus', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
@@ -586,7 +586,7 @@ ALTER TABLE `tbl_lampiran`
 -- AUTO_INCREMENT for table `tbl_nilai`
 --
 ALTER TABLE `tbl_nilai`
-  MODIFY `id_nilai` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1047;
+  MODIFY `id_nilai` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1059;
 
 --
 -- AUTO_INCREMENT for table `tbl_pendaftar`

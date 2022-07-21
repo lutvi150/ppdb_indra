@@ -26,138 +26,219 @@
 
 		<!-- //map -->
 		<!-- contact form -->
-		<div class="col-lg-12 main_grid_contact" data-aos="flip-left" data-aos-easing="ease-out-cubic"
+	<div class="col-lg-12 main_grid_contact" data-aos="flip-left" data-aos-easing="ease-out-cubic"
 			data-aos-duration="2000">
 			<div class="form-w3ls p-md-10 p-4">
 				<center>
-					<h4 class="mb-4 sec-title-w3 let-spa text-bl">I. Data Diri<br><h5>Lengkapi Data Diri Sesungguhnya</h5></h4>
+					<h4 class="mb-4 sec-title-w3 let-spa text-bl">I. Data Diri<br>
+						<h5>Lengkapi Data Diri Sesungguhnya</h5>
+					</h4>
 				</center>
 
-				<form action="#" id="form-data-member" method="POST" enctype="multipart/form-data" >
+				<form action="#" id="form-data-member" method="POST" enctype="multipart/form-data">
 					<div class="form-group">
-					<label for="">NISN</label>
-						<input class="form-control" readonly type="text" name="nisn" placeholder="" value="<?=$data_member->nisn?>" id="nis" >
+						<label for="">NISN</label>
+						<input class="form-control" readonly type="text" name="nisn" placeholder=""
+							value="<?=$data_member->nisn?>" id="nis">
 						<span class="text-error enis"></span>
 					</div>
 
 					<div class="form-group">
-					<label for="">Nama Lengkap</label>
-						<input class="form-control" type="text" name="nm_lengkap" placeholder=""    value="<?=$data_member->nama?>" id="nama" readonly >
+						<label for="">Nama Lengkap</label>
+						<input class="form-control" type="text" name="nm_lengkap" placeholder=""
+							value="<?=$data_member->nama?>" id="nama" readonly>
 						<span class="text-error enama"></span>
 					</div>
 
 					<div class="form-group">
-					<label for="">Tempat Lahir</label>
-						<input class="form-control" type="text" value="<?=$data_member->tempat_lahir?>" name="tmpt_lahir" placeholder=""  >
+						<label for="">Nama Panggilan</label>
+						<input class="form-control" type="text" name="nm_panggilan" placeholder=""
+							value="<?=$data_member->nm_panggilan?>" id="nm_panggilan" >
+						<span class="text-error enm_panggilan"></span>
+					</div>
+
+					<div class="form-group">
+						<label for="">Tempat Lahir</label>
+						<input class="form-control" type="text" value="<?=$data_member->tempat_lahir?>"
+							name="tmpt_lahir" placeholder="">
 						<span class="text-error etmpt_lahir"></span>
 					</div>
 
 
 					<div class="form-group">
-					<label for="">Tanggal Lahir</label>
-						<input class="form-control" type="date" name="tgl_lahir" value="<?=$data_member->tgl_lahir?>" placeholder="" >
+						<label for="">Tanggal Lahir</label>
+						<input class="form-control" type="date" name="tgl_lahir" value="<?=$data_member->tgl_lahir?>"
+							placeholder="">
 						<span class="text-error etgl_lahir"></span>
 					</div>
 
 					<div class="form-group">
-							<label  for="inputError1">Jenis Kelamin </label>
-							<select  name="jenis" class="form-control" required>
-							<option value=""  <?=$data_member->jenis_kelamin == null ? "selected" : ""?> > ----PILIH----</option>
-								<option value="L" <?=$data_member->jenis_kelamin == "L" ? "selected" : ""?>>Laki-Laki</option>
-								<option value="P" <?=$data_member->jenis_kelamin == ""?>> Perempuan</option>
-							</select>
-							<span class="text-error ejenis_kelamin"></span>
+						<label for="inputError1">Jenis Kelamin </label>
+						<select name="jenis" class="form-control" required>
+							<option value="" <?=$data_member->jenis_kelamin == null ? "selected" : ""?> > ----PILIH----
+							</option>
+							<option value="L" <?=$data_member->jenis_kelamin == "L" ? "selected" : ""?>>Laki-Laki
+							</option>
+							<option value="P" <?=$data_member->jenis_kelamin == ""?>> Perempuan</option>
+						</select>
+						<span class="text-error ejenis_kelamin"></span>
 					</div>
 
 					<div class="form-group">
-							<label  for="inputError1">Agama </label>
-							<select  name="agama" class="form-control" required>
+						<label for="inputError1">Agama </label>
+						<select name="agama" class="form-control" required>
 							<option value="" <?=$data_member == null ? "selected" : ""?>> ----PILIH----</option>
-								<option value="Islam" <?=$data_member->agama == "Islam" ? "selected" : ""?>>Islam</option>
-								<option value="Kristen" <?=$data_member->agama == "Kristen" ? "selected" : ""?>> Kristen</option>
-								<option value="Hindu" <?=$data_member->agama == "Hindu" ? "selected" : ""?>> Hindu</option>
-								<option value="Budha" <?=$data_member->agama == "Budha" ? "selected" : ""?> > Budha</option>
-								<option value="Khong Wu Chu" <?=$data_member->agama == "Khong Wu Chu" ? "selected" : ""?>> Khong Wu Chu</option>
-							</select>
-							<span class="text-error eagama"></span>
+							<option value="Islam" <?=$data_member->agama == "Islam" ? "selected" : ""?>>Islam</option>
+							<option value="Kristen" <?=$data_member->agama == "Kristen" ? "selected" : ""?>> Kristen
+							</option>
+							<option value="Hindu" <?=$data_member->agama == "Hindu" ? "selected" : ""?>> Hindu</option>
+							<option value="Budha" <?=$data_member->agama == "Budha" ? "selected" : ""?> > Budha</option>
+							<option value="Khong Wu Chu" <?=$data_member->agama == "Khong Wu Chu" ? "selected" : ""?>>
+								Khong Wu Chu</option>
+						</select>
+						<span class="text-error eagama"></span>
 					</div>
 
 					<div class="form-group">
-					<label for="">Anak Ke</label>
-						<input class="form-control" type="text" name="anakke" value="<?=$data_member->anak_ke;?>" placeholder=""  >
+						<label for="">Anak Ke</label>
+						<input class="form-control" type="text" name="anakke" value="<?=$data_member->anak_ke;?>"
+							placeholder="">
 						<span class="text-error eanakke"></span>
 					</div>
 
 					<div class="form-group">
-					<label for="">Dari ... Bersaudara</label>
-						<input class="form-control" type="text" name="jmlsaudara" value="<?=$data_member->jumlah_saudara;?>" placeholder=""  >
+						<label for="">Dari ... Bersaudara</label>
+						<input class="form-control" type="text" name="jmlsaudara"
+							value="<?=$data_member->jumlah_saudara;?>" placeholder="">
 						<span class="text-error ejml_sdr"></span>
 					</div>
 
 					<div class="form-group">
-					<label for="">Asal Sekolah</label>
-						<input class="form-control" type="text" name="asl_sk" value="<?=$data_member->jumlah_saudara?>" placeholder=""   >
+						<label for="">Hobby</label>
+						<input class="form-control" type="text" name="hobby" value="<?=$data_member->hobby?>"
+							placeholder="">
+						<span class="text-error ehobby"></span>
+					</div>
+					<div class="form-group">
+						<label for="">Berat/Tinggi</label>
+						<div class="row col-md-12">
+							<input class="form-control col-sm-3 col-xs-offset-2" type="text" name="berat"
+								value="<?=$data_member->berat?>" placeholder="Berat">
+							<input type="text" class="form-control col-sm-3 col-xs-offset-2" type="text" name="tinggi"
+								placeholder="Tinggi" value="<?=$data_member->tinggi?>">
+							<span class="text-error etinggi"></span>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="">Golongan Darah</label>
+						<select name="gol_darah" class="form-control" id="gol_darah">
+							<option value="" <?=$data_member->gol_darah == null ? "selected" : "";?>>Pilih Golongan Darah</option>
+							<option value="A" <?=$data_member->gol_darah == "A" ? "selected" : "";?>>A</option>
+							<option value="B" <?=$data_member->gol_darah == "B" ? "selected" : "";?>>B</option>
+							<option value="AB" <?=$data_member->gol_darah == "AB" ? "selected" : "";?>>AB</option>
+							<option value="O" <?=$data_member->gol_darah == "O" ? "selected" : "";?>>O</option>
+						</select>
+						<span class="text-error egol_darah"></span>
+					</div>
+					<div class="form-group">
+						<label for="">Cita Cita</label>
+						<input class="form-control" type="text" name="cita_cita" value="<?=$data_member->cita_cita?>"
+							placeholder="">
+						<span class="text-error ecita_cita"></span>
+					</div>
+					<div class="form-group">
+						<label for="">Asal Sekolah</label>
+						<input class="form-control" type="text" name="asl_sk" value="<?=$data_member->jumlah_saudara?>"
+							placeholder="">
 						<span class="text-error easl_sk"></span>
 					</div>
 
-	<center>
-		<h4 class="mb-4 sec-title-w3 let-spa text-bl">II. Data Orang Tua<br></h4>
-	</center>
+					<center>
+						<h4 class="mb-4 sec-title-w3 let-spa text-bl">II. Data Orang Tua<br></h4>
+					</center>
 
 					<div class="form-group">
-					<label for="">Nama Ayah</label>
-						<input class="form-control" type="text" name="nm_ayah" value="<?=$data_member->nm_ayah?>" placeholder=""  >
+						<label for="">Nama Ayah</label>
+						<input class="form-control" type="text" name="nm_ayah" value="<?=$data_member->nm_ayah?>"
+							placeholder="">
 						<span class="text-error enm_ayah"></span>
 					</div>
 
+
 					<div class="form-group">
-					<label for="">Pekerjaan Ayah</label>
-						<input class="form-control" type="text" name="kerja_ayah" value="<?=$data_member->nm_ayah?>" placeholder=""  >
+						<label for="">Pekerjaan Ayah</label>
+						<input class="form-control" value="<?=$data_member->pekerjaan_ayah;?>" type="text"
+							name="kerja_ayah" placeholder="">
 						<span class="text-error ekerja_ayah"></span>
 					</div>
 
 					<div class="form-group">
-					<label for="">Penghasilan Ayah</label>
-						<input class="form-control" value="<?=$data_member->penghasilan_ayah;?>" type="text" name="hasil_ayah" placeholder=""  >
+						<label for="">Penghasilan Ayah</label>
+						<input class="form-control" value="<?=$data_member->penghasilan_ayah;?>" type="text"
+							name="hasil_ayah" placeholder="">
 						<span class="text-error ehasil_ayah"></span>
 					</div>
 
 					<div class="form-group">
-					<label for="">Nama Ibu</label>
-						<input class="form-control" type="text" name="nm_ibu" value="<?=$data_member->nm_ibu?>" placeholder=""  >
+						<label for="">Tempat/ Tanggal Lahir Ayah</label>
+						<div class="row col-md-12">
+							<input class="form-control col-sm-6 col-xs-offset-2" type="text" name="tempat_lahir_ayah"
+								value="<?=$data_member->tempat_lahir_ayah?>" placeholder="Tempat Lahir">
+							<input type="date" class="form-control col-sm-6 col-xs-offset-2" type="text" name="tgl_lahir_ayah"
+								placeholder="Tanggal Lahir" value="<?=$data_member->tgl_lahir_ayah?>">
+							<span class="text-error etempat_lahir_ayah"></span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="">Nama Ibu</label>
+						<input class="form-control" type="text" name="nm_ibu" value="<?=$data_member->nm_ibu?>"
+							placeholder="">
 						<span class="text-error enm_ibu"></span>
 					</div>
 
 					<div class="form-group">
-					<label for="">Pekerjaan Ibu</label>
-						<input class="form-control" type="text" name="kerja_ibu" placeholder="" value="<?=$data_member->pekerjaan_ibu?>"  >
+						<label for="">Pekerjaan Ibu</label>
+						<input class="form-control" type="text" name="kerja_ibu" placeholder=""
+							value="<?=$data_member->pekerjaan_ibu?>">
 						<span class="text-error ekerja_ibu"></span>
 					</div>
 
 					<div class="form-group">
-					<label for="">Penghasilan Ibu</label>
-						<input class="form-control" value="<?=$data_member->penghasilan_ibu?>" type="text" name="hasil_ibu" placeholder=""  >
+						<label for="">Penghasilan Ibu</label>
+						<input class="form-control" value="<?=$data_member->penghasilan_ibu?>" type="text"
+							name="hasil_ibu" placeholder="">
 						<span class="text-error ehasil_ibu"></span>
 					</div>
 
 
+					<div class="form-group">
+						<label for="">Tempat/ Tanggal Lahir Ibu</label>
+						<div class="row col-md-12">
+							<input class="form-control col-sm-6 col-xs-offset-2" type="text" name="tempat_lahir_ibu"
+								value="<?=$data_member->tempat_lahir_ibu?>" placeholder="Tempat Lahir Ibu">
+							<input type="date" class="form-control col-sm-6 col-xs-offset-2" type="text" name="tgl_lahir_ibu"
+								placeholder="Tanggal Lahir Ibu" value="<?=$data_member->tgl_lahir_ibu?>">
+							<span class="text-error etempat_lahir_ibu"></span>
+						</div>
+					</div>
 					<center>
-		<h4 class="mb-4 sec-title-w3 let-spa text-bl">III. Nilai<br></h4>
-	</center>
-	<table class="table">
-		<thead>
-			<th>No</th>
-			<th>Mata Pelajaran</th>
-			<th>
-				Nilai
-			</th>
-		</thead>
-		<tbody class="score">
-		</tbody>
-	</table>
+						<h4 class="mb-4 sec-title-w3 let-spa text-bl">III. Nilai<br></h4>
+					</center>
+					<table class="table">
+						<thead>
+							<th>No</th>
+							<th>Mata Pelajaran</th>
+							<th>
+								Nilai
+							</th>
+						</thead>
+						<tbody class="score">
+						</tbody>
+					</table>
 					<center>
-		<h4 class="mb-4 sec-title-w3 let-spa text-bl">IV. Dokumen Lampiran<br></h4>
-	</center>
+						<h4 class="mb-4 sec-title-w3 let-spa text-bl">IV. Dokumen Lampiran<br></h4>
+					</center>
 
 					<table class="table table-bordere">
 						<thead>
@@ -166,25 +247,31 @@
 							<th>Dokumen (Klik untuk View Dokument)</th>
 							<th>Upload</th>
 						</thead>
-						<tbody class="lampiran-data" >
+						<tbody class="lampiran-data">
 						</tbody>
 					</table>
 					<div class="form-group">
 
-					<label for="">Alamat Lengkap</label>
-						<textarea id="input" class="form-control" rows="3" name="almt_lkp"  required="required"><?=$data_member->alamat?></textarea>
+						<label for="">Alamat Lengkap</label>
+						<textarea id="input" class="form-control" rows="3" name="almt_lkp"
+							required="required"><?=$data_member->alamat?></textarea>
 						<span class="text-error ealmt_lkp"></span>
 					</div>
 
 					<div class="form-group">
-					<label for="">No Tlp</label>
-						<input class="form-control" value="<?=$data_member->no_tlp?>" type="text" name="no_tlp" placeholder=""  >
+						<label for="">No Tlp</label>
+						<input class="form-control" value="<?=$data_member->no_tlp?>" type="text" name="no_tlp"
+							placeholder="">
 						<span class="text-error eno_tlp"></span>
 					</div>
+					<div class="form-group">
+						<label for="">Darimana Anda Tau Sekolah ini ?</label>
+						<textarea name="information_source" class="form-control" id="information_source" cols="30" rows="3"><?=$data_member->information_source?></textarea>
+						<span class="text-error einformation_source"></span>
+					</div>
 
-
-					<div class="input-group1 text-right">
-						<a href="<?=base_url('ControllerAdmin/dafta_pendaftar')?>" class="btn btn-primary"><i class="fa fa-reply"></i> Kembali</a>
+				<div class="input-group1 text-right">
+						<a href="<?=base_url('ControllerAdmin/data_pendaftar')?>" class="btn btn-primary"><i class="fa fa-reply"></i> Kembali</a>
 						<button class="btn btn-primary"  name="simpan" onclick="storeData()" type="submit" id="simpan">Update Data</button>
 					</div>
 				</form>
@@ -429,9 +516,20 @@ ${html_lampiran}
 					$(".ehasil_ibu").text(response.message.hasil_ibu);
 					$(".ealmt_lkp").text(response.message.alamat);
 					$(".eno_tlp").text(response.message.no_tlp);
+					$(".egol_darah").text(response.message.gol_darah);
+					$(".etinggi").text(response.message.berat);
+					$(".etinggi").text(response.message.tinggi);
+					$(".ehobby").text(response.message.hobby);
+					$(".ecita_cita").text(response.message.cita_cita);
+					$(".einformation_source").text(response.message.information_source);
+					$(".etempat_lahir_ayah").text(response.message.tempat_lahir_ayah);
+					$(".etempat_lahir_ayah").text(response.message.tgl_lahir_ayah);
+					$(".etempat_lahir_ibu").text(response.message.tempat_lahir_ibu);
+					$(".etempat_lahir_ibu").text(response.message.tgl_lahir_ibu);
+					$(".enm_panggilan").text(response.message.nm_panggilan);
 				} else if (response.status=='success') {
 					swal("Berhasil", "Data Berhasil Disimpan", "success");
-					location.reload();
+					// location.reload();
 				} else if (response.status=='document_error') {
 					swal("Gagal", response.message, "error");
 				} else if (response.status=='score_not_enough') {

@@ -70,36 +70,28 @@ defined('BASEPATH') or exit('No direct script access allowed');
 | The $query_builder variables lets you determine whether or not to load
 | the query builder class.
  */
+$server = $_SERVER['HTTP_HOST'];
+if ($server == 'localhost:8888') {
+    $username = 'root';
+    $database = 'db_smp';
+    $password = 'root';
+} else if ($server == 'localhost') {
+    $username = 'root';
+    $database = 'db_smp';
+    $password = '';
+} else {
+    $username = 'cloverte_lutvi';
+    $database = 'cloverte_kiki';
+    $password = 'UseAnotherWord#3';
+}
 $active_group = 'default';
 $query_builder = true;
-
 $db['default'] = array(
     'dsn' => '',
     'hostname' => 'localhost',
-    'username' => 'root',
-    'password' => '',
-    'database' => 'db_smp',
-    'dbdriver' => 'mysqli',
-    'dbprefix' => '',
-    'pconnect' => false,
-    'db_debug' => (ENVIRONMENT !== 'production'),
-    'cache_on' => false,
-    'cachedir' => '',
-    'char_set' => 'utf8',
-    'dbcollat' => 'utf8_general_ci',
-    'swap_pre' => '',
-    'encrypt' => false,
-    'compress' => false,
-    'stricton' => false,
-    'failover' => array(),
-    'save_queries' => true,
-);
-$db['online'] = array(
-    'dsn' => '',
-    'hostname' => 'localhost',
-    'username' => 'cloverte_lutvi',
-    'password' => 'UseAnotherWord#3',
-    'database' => 'cloverte_kiki',
+    'username' => $username,
+    'password' => $password,
+    'database' => $database,
     'dbdriver' => 'mysqli',
     'dbprefix' => '',
     'pconnect' => false,
