@@ -114,10 +114,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								Galeri</a>
 						</li>
 
-						<li>
+						<!-- <li>
 							<a href="<?=base_url('ControllerAdmin/data_pengumuman')?>"><i
 									class="fa fa-bell-o nav_icon"></i>Data Pengumuman</a>
-						</li>
+						</li> -->
 
 						<li>
 							<a href="<?=base_url('ControllerAdmin/data_kelulusan/lulus')?>"><i
